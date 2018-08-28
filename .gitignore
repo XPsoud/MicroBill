@@ -1,0 +1,22 @@
+# Build files
+*.[oa]
+*.exe
+*.dll
+*.lib
+*.res
+
+# Code::Blocks specific files
+*.layout
+*.depend
+*.cdTemp
+
+# OSX Specific files
+.DS_Store
+
+# VS-Code settings folder
+.vscode
+
+# Output and temporary and tools folders
+bin/
+build/
+tools/
