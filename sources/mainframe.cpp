@@ -4,8 +4,10 @@
 #include "appversion.h"
 #include "dlgoptions.h"
 #include "settingsmanager.h"
+#include "panelnbookpage_home.h"
 
 #include <wx/display.h>
+#include <wx/notebook.h>
 #include <wx/aboutdlg.h>
 
 #ifndef __WXMSW__
@@ -82,6 +84,14 @@ void MainFrame::CreateControls()
 
 
     wxPanel *pnlMain=new wxPanel(this, -1);
+    wxBoxSizer *szrMain=new wxBoxSizer(wxVERTICAL);
+        m_nBook=new wxNotebook(pnlMain, -1);
+        szrMain->Add(m_nBook, 1, wxALL|wxEXPAND, 0);
+    pnlMain->SetSizer(szrMain);
+
+    // Page "Home"
+    m_nbPage[PNBP_TYPE_HOME]=new PanelNBookPage_Home(m_nBook);
+    m_nBook->AddPage(m_nbPage[PNBP_TYPE_HOME], _("Home"));
 
     // Menu bar
     wxMenuBar* mbar = new wxMenuBar();

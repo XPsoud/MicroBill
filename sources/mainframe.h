@@ -4,6 +4,9 @@
 #include <wx/wx.h>
 
 class SettingsManager;
+class wxNotebook;
+
+#include "panelnbookpage.h"
 
 class MainFrame: public wxFrame
 {
@@ -21,6 +24,8 @@ class MainFrame: public wxFrame
         void OnExitClicked(wxCommandEvent &event);
         void OnAboutClicked(wxCommandEvent &event);
         // Controls vars
+        wxNotebook *m_nBook;
+        PanelNBookPage* m_nbPage[PNBP_TYPE_COUNT];
         // Misc vars
         SettingsManager& m_settings;
 };

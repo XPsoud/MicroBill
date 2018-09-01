@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-01 21:05+0200\n"
-"PO-Revision-Date: 2018-09-01 21:05+0200\n"
+"POT-Creation-Date: 2018-09-01 21:43+0200\n"
+"PO-Revision-Date: 2018-09-01 21:43+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -99,15 +99,19 @@ msgstr "Compresser le fichier des paramètres (pour la taille et la confidential
 msgid "General"
 msgstr "Général"
 
-#: sources/main.cpp:33
+#: sources/main.cpp:53
 msgid "An other instance of this application is already running !"
 msgstr "Une autre instance de cette application est déjà en train de tourner !"
 
-#: sources/main.cpp:33
+#: sources/main.cpp:53
 msgid "Multiple instances forbidden"
 msgstr "Instances multiples interdites"
 
-#: sources/mainframe.cpp:142
+#: sources/mainframe.cpp:94
+msgid "Home"
+msgstr "Accueil"
+
+#: sources/mainframe.cpp:152
 msgid ""
 "You changed the translation settings.\n"
 "You must restart the application to see this in effect."
@@ -115,6 +119,10 @@ msgstr ""
 "Vous avez modifié les réglages de traduction.\n"
 "Vous devez redémarrer l'application pour que cela soit effectif."
 
-#: sources/mainframe.cpp:142
+#: sources/mainframe.cpp:152
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
+
+#: sources/panelnbookpage_home.cpp:39
+msgid "Your micro entreprise billing software"
+msgstr "Le logiciel de facturation de votre micro entreprise"

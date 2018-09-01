@@ -321,6 +321,24 @@
 		<Unit filename="../sources/mainframe.h">
 			<Option virtualFolder="Interface/" />
 		</Unit>
+		<Unit filename="../sources/microbill.png.cpp">
+			<Option virtualFolder="Graphx/" />
+		</Unit>
+		<Unit filename="../sources/microbill.png.h">
+			<Option virtualFolder="Graphx/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_home.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_home.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
 		<Unit filename="../sources/resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option virtualFolder="Misc/" />
