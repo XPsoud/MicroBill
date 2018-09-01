@@ -10,6 +10,7 @@
 
 #define PRODUCTNAME "MicroBill"
 #define DESCRIPTION "MicroBill Application"
+#define wDESCRIPTION _("MicroBill Application")
 
 #define COPYRIGHT "Copyright (c) X.P. 2018"
 

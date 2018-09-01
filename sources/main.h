@@ -11,6 +11,7 @@ class MicroBillApp : public wxApp
         virtual int OnExit();
         wxString GetBuildInfos(bool all=false);
         wxString GetVersionString(bool full=false, bool build=false);
+        wxString GetVersionNumString(bool full=false, bool build=false);
     private:
         wxSingleInstanceChecker *m_pSnglInstChkr;
 };

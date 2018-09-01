@@ -98,9 +98,15 @@ wxString MicroBillApp::GetBuildInfos(bool all)
 wxString MicroBillApp::GetVersionString(bool full, bool build)
 {
     wxString sRes=wxTheApp->GetAppName();
-    sRes << _T(" (v") << VERSION_MAJOR << _T(".") << VERSION_MINOR;
+    sRes << _T(" (v") << GetVersionNumString(full, build) << _T(")");
+    return sRes;
+}
+
+wxString MicroBillApp::GetVersionNumString(bool full, bool build)
+{
+    wxString sRes=_T("");
+    sRes << VERSION_MAJOR << _T(".") << VERSION_MINOR;
     if (full) sRes << _T(".") << VERSION_REV;
-    sRes << _T(")");
     if (build)
         sRes << _T(" build ") << VERSION_BUILD;
     return sRes;

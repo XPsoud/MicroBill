@@ -1,10 +1,12 @@
 #include "mainframe.h"
 
 #include "main.h"
+#include "appversion.h"
 #include "dlgoptions.h"
 #include "settingsmanager.h"
 
 #include <wx/display.h>
+#include <wx/aboutdlg.h>
 
 #ifndef __WXMSW__
     #include "../graphx/wxwin.xpm"
@@ -140,5 +142,13 @@ void MainFrame::OnExitClicked(wxCommandEvent& event)
 
 void MainFrame::OnAboutClicked(wxCommandEvent& event)
 {
-    //
+    wxAboutDialogInfo info;
+
+    info.SetName(_T(PRODUCTNAME));
+    info.SetVersion(wxGetApp().GetVersionNumString(true));
+    info.SetDescription(wDESCRIPTION);
+    info.SetCopyright(COPYRIGHT);
+    info.SetIcon(wxICON(appIcon));
+
+    wxAboutBox(info);
 }
