@@ -1,6 +1,7 @@
 #include "mainframe.h"
 
 #include "main.h"
+#include "dlgoptions.h"
 #include "settingsmanager.h"
 
 #include <wx/display.h>
@@ -128,7 +129,8 @@ void MainFrame::OnMove(wxMoveEvent& event)
 
 void MainFrame::OnPrefsClicked(wxCommandEvent &event)
 {
-    //
+    DlgOptions dlg(this);
+    dlg.ShowModal();
 }
 
 void MainFrame::OnExitClicked(wxCommandEvent& event)
