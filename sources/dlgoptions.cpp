@@ -45,7 +45,7 @@ void DlgOptions::CreateControls()
         page=new wxPanel(m_nBook, -1);
             pageszr=new wxBoxSizer(wxVERTICAL);
 
-                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Position of the main window: "));
+                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Position of the main window:"));
                     label=new wxStaticText(page, -1, _("Position of the main window at application startup"));
                     box->Add(label, 0, wxALL, 5);
                     lnszr=new wxBoxSizer(wxHORIZONTAL);
@@ -72,15 +72,17 @@ void DlgOptions::CreateControls()
                     box->Add(box2, 0, wxALL|wxEXPAND, 5);
                 pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
 
-                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Misc : "));
+                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Misc :"));
                     m_chkSingleInstance=new wxCheckBox(page, -1, _("Allow only one instance of the application"));
                     box->Add(m_chkSingleInstance, 0, wxALL, 5);
+                    m_chkKeepLang=new wxCheckBox(page, -1, _("Keep the interface language in English (restart needed)"));
+                    box->Add(m_chkKeepLang, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
                     m_chkCompSettings=new wxCheckBox(page, -1, _("Compress settings file (for size and privacy)"));
                     box->Add(m_chkCompSettings, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
                 pageszr->Add(box, 0, wxALL|wxEXPAND, 5);
 
             page->SetSizer(pageszr);
-        m_nBook->AddPage(page, _T("General"));
+        m_nBook->AddPage(page, _("General"));
 
 
         szrMain->Add(m_nBook, 1, wxALL|wxEXPAND, 0);
@@ -142,6 +144,7 @@ void DlgOptions::FillControls()
     OnStartupPosTypeChanged(evt);
 
     m_chkSingleInstance->SetValue(m_options.GetMultipleInstancesAllowed()==false);
+    m_chkKeepLang->SetValue(m_options.GetProhibitI18N());
     m_chkCompSettings->SetValue(m_options.GetCompressSettings());
 
     m_btnApply->Disable();
@@ -178,6 +181,7 @@ bool DlgOptions::ApplySettings()
     m_options.SetMainWndStartupPos(iStartPos);
 
     m_options.SetMultipleInstancesAllowed(m_chkSingleInstance->IsChecked()==false);
+    m_options.SetProhibitI18N(m_chkKeepLang->IsChecked());
     m_options.SetCompressSettings(m_chkCompSettings->IsChecked());
 
     m_btnApply->Disable();

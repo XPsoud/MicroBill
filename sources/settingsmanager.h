@@ -30,6 +30,9 @@ class SettingsManager
         // Multiple instances
         bool GetMultipleInstancesAllowed() { return (m_bSingleInstance==false); }
         void SetMultipleInstancesAllowed(bool value);
+        // Prohibit translations and transaltions related stuff
+        bool GetProhibitI18N() { return m_bProhibI18N; }
+        void SetProhibitI18N(bool value);
     protected:
     private:
         SettingsManager();
@@ -48,7 +51,7 @@ class SettingsManager
         int m_iStartPos;
         wxPoint m_ptStartPos;
         wxSize m_szStartSize;
-        bool m_bSingleInstance;
+        bool m_bSingleInstance, m_bProhibI18N;
 };
 
 #endif // __SETTINGSMANAGER_H_INCLUDED__

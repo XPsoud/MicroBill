@@ -4,6 +4,8 @@
 #include "appversion.h"
 #include "settingsmanager.h"
 
+#include <wx/stdpaths.h>
+
 IMPLEMENT_APP(MicroBillApp);
 
 bool MicroBillApp::OnInit()
@@ -20,6 +22,26 @@ bool MicroBillApp::OnInit()
     SettingsManager& settings=SettingsManager::Get();
     // Read settings if any
     settings.ReadSettings();
+
+        // Initialize the locale if possible (and if wanted)
+    // Easter egg for debugging purpose
+    bool bI18N=(settings.GetProhibitI18N()==false);
+    if (wxGetKeyState(WXK_SHIFT))
+        bI18N=!bI18N;
+
+    if (bI18N)
+    {
+#ifdef __WXMAC__
+        wxString sDir=wxStandardPaths::Get().GetResourcesDir();
+#else
+        wxString sDir=settings.GetAppPath();
+#endif // __WXMAC__
+        sDir.Append(_T("langs"));
+        m_locale.AddCatalogLookupPathPrefix(sDir);
+        m_locale.Init(wxLANGUAGE_DEFAULT, wxLOCALE_LOAD_DEFAULT);
+        m_locale.AddCatalog(_T(PRODUCTNAME));
+    }
+
     // Check for single instance
     m_pSnglInstChkr=NULL;
     if (!settings.GetMultipleInstancesAllowed())

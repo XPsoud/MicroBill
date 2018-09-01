@@ -13,6 +13,7 @@ class MicroBillApp : public wxApp
         wxString GetVersionString(bool full=false, bool build=false);
         wxString GetVersionNumString(bool full=false, bool build=false);
     private:
+        wxLocale m_locale;
         wxSingleInstanceChecker *m_pSnglInstChkr;
 };
 
