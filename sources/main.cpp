@@ -2,6 +2,7 @@
 
 #include "mainframe.h"
 #include "appversion.h"
+#include "settingsmanager.h"
 
 IMPLEMENT_APP(MicroBillApp);
 
@@ -14,6 +15,24 @@ bool MicroBillApp::OnInit()
     wxInitAllImageHandlers();
 
     SetAppName(_T(PRODUCTNAME));
+
+    // Initialize settings manager
+    SettingsManager& settings=SettingsManager::Get();
+    // Read settings if any
+    settings.ReadSettings();
+    // Check for single instance
+    m_pSnglInstChkr=NULL;
+    if (!settings.GetMultipleInstancesAllowed())
+    {
+        m_pSnglInstChkr=new wxSingleInstanceChecker();
+        m_pSnglInstChkr->Create(_T(PRODUCTNAME));
+        if (m_pSnglInstChkr->IsAnotherRunning())
+        {
+            wxMessageBox(_("An other instance of this application is already running !"), _("Multiple instances forbidden"), wxICON_EXCLAMATION|wxOK|wxCENTER);
+            delete m_pSnglInstChkr;
+            return false;
+        }
+    }
 
     MainFrame* frame = new MainFrame(GetVersionString(true));
 
@@ -29,6 +48,16 @@ int MicroBillApp::OnExit()
 #ifdef __WXDEBUG__
     wxPrintf(_T("Exiting from the MicroBill Application\n"));
 #endif // __WXDEBUG__
+
+    // Get the instance of the settings manager
+    SettingsManager& settings=SettingsManager::Get();
+    // Save settings if needed
+    if (settings.IsModified())
+        settings.SaveSettings();
+
+    if (m_pSnglInstChkr!=NULL)
+        delete m_pSnglInstChkr;
+
     return wxApp::OnExit();
 }
 

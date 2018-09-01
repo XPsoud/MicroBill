@@ -8,7 +8,7 @@
 // the complete date in format : YYYYMMJJ
 #define VERSION_BUILD	80831
 
-#define PRODUCTNAME "MicroBillApp"
+#define PRODUCTNAME "MicroBill"
 #define DESCRIPTION "MicroBill Application"
 
 #define COPYRIGHT "Copyright (c) X.P. 2018"

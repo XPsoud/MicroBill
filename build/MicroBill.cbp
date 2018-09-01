@@ -4,7 +4,7 @@
 	<Project>
 		<Option title="µBill" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Graphx/;Misc/;Interface/;Datas/;Dialogs/" />
+		<Option virtualFolders="Graphx/;Misc/;Interface/;Datas-Options/;Dialogs/" />
 		<Build>
 			<Target title="Release32">
 				<Option platforms="Windows;" />
@@ -314,6 +314,12 @@
 		<Unit filename="../sources/resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option virtualFolder="Misc/" />
+		</Unit>
+		<Unit filename="../sources/settingsmanager.cpp">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/settingsmanager.h">
+			<Option virtualFolder="Datas-Options/" />
 		</Unit>
 		<Extensions>
 			<code_completion />

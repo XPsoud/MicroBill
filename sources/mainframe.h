@@ -3,6 +3,8 @@
 
 #include <wx/wx.h>
 
+class SettingsManager;
+
 class MainFrame: public wxFrame
 {
     public:
@@ -20,6 +22,7 @@ class MainFrame: public wxFrame
         void OnAboutClicked(wxCommandEvent &event);
         // Controls vars
         // Misc vars
+        SettingsManager& m_settings;
 };
 
 #endif // __MAINFRAME_H_INCLUDED__
