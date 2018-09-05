@@ -303,6 +303,18 @@
 		<Unit filename="../sources/appversion.h">
 			<Option virtualFolder="Misc/" />
 		</Unit>
+		<Unit filename="../sources/client.cpp">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/client.h">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/datasmanager.cpp">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/datasmanager.h">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
 		<Unit filename="../sources/dlgoptions.cpp">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>

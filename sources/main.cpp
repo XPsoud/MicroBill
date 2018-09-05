@@ -2,6 +2,7 @@
 
 #include "mainframe.h"
 #include "appversion.h"
+#include "datasmanager.h"
 #include "settingsmanager.h"
 
 #include <wx/stdpaths.h>
@@ -18,7 +19,7 @@ bool MicroBillApp::OnInit()
 
     SetAppName(_T(PRODUCTNAME));
 
-    // Initialize settings manager
+    // Initialize the settings manager
     SettingsManager& settings=SettingsManager::Get();
     // Read settings if any
     settings.ReadSettings();
@@ -56,6 +57,11 @@ bool MicroBillApp::OnInit()
         }
     }
 
+    // Initialize the DatasManager instance
+    DatasManager& datas=DatasManager::Get();
+    // Read the datas if any
+    datas.ReadDatas();
+
     MainFrame* frame = new MainFrame(GetVersionString(true));
 
     SetTopWindow(frame);
@@ -70,6 +76,12 @@ int MicroBillApp::OnExit()
 #ifdef __WXDEBUG__
     wxPrintf(_T("Exiting from the MicroBill Application\n"));
 #endif // __WXDEBUG__
+
+    // Get the instance of the datas manager
+    DatasManager& datas=DatasManager::Get();
+    // Save datas if needed
+    if (datas.IsModified())
+        datas.SaveDatas();
 
     // Get the instance of the settings manager
     SettingsManager& settings=SettingsManager::Get();
