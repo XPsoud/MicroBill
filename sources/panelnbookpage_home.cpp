@@ -47,7 +47,7 @@ void PanelNBookPage_Home::CreateControls()
 void PanelNBookPage_Home::ConnectControls()
 {
 #ifdef __WXDEBUG__
-    m_btnStart->Connect(wxEVT_BUTTON, wxCommandEventHandler(PanelNBookPage_Home::OnDoStartTest), NULL, this);
+    m_btnStart->Bind(wxEVT_BUTTON, &PanelNBookPage_Home::OnDoStartTest, this);
 #endif // __WXDEBUG__
 }
 
