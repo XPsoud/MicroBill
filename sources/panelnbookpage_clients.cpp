@@ -42,7 +42,7 @@ void PanelNBookPage_Clients::CreateControls()
             m_cmbFilterField->Append(_("Last name"));
             m_cmbFilterField->Append(_("First name"));
             m_cmbFilterField->Append(_("Email"));
-            m_cmbFilterField->Append(_("Phone number"));
+            m_cmbFilterField->Append(_("Phone"));
             m_cmbFilterField->Append(_("Address"));
             m_cmbFilterField->SetSelection(0);
         hszr->Add(m_cmbFilterField, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
@@ -76,6 +76,13 @@ void PanelNBookPage_Clients::CreateControls()
     GetMainSizer()->Add(hszr, 1, wxLEFT|wxRIGHT|wxEXPAND, 5);
 
     GetMainSizer()->AddSpacer(5);
+
+    // Get minimal columns widths
+    for (int i=0; i<CI_COLS_COUNT; ++i)
+    {
+        m_lstClients->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        m_iMinWidth[i] = m_lstClients->GetColumnWidth(i);
+    }
 }
 
 void PanelNBookPage_Clients::ConnectControls()
@@ -122,10 +129,7 @@ void PanelNBookPage_Clients::RefreshClientsList()
             InsertClientItemToList(item, wxID_ANY, (item==selItem));
         }
     }
-    for (int i=0; i<m_lstClients->GetColumnCount(); ++i)
-    {
-        m_lstClients->SetColumnWidth(i, wxLIST_AUTOSIZE);
-    }
+    UpdateColumnsWidths();
 }
 
 long PanelNBookPage_Clients::InsertClientItemToList(Client* item, long before, bool select, bool updateWidths)
@@ -135,9 +139,19 @@ long PanelNBookPage_Clients::InsertClientItemToList(Client* item, long before, b
     long lBefore=(before==wxID_ANY?m_lstClients->GetItemCount():before);
     long lRes=m_lstClients->InsertItem(lBefore, wxEmptyString);
 
+    wxString sItem;
+
     for (int i=0; i<CI_COLS_COUNT; ++i)
     {
-        m_lstClients->SetItem(lRes, i, item->GetAttribute(m_sColItem[i]));
+        sItem = item->GetAttribute(m_sColItem[i]);
+        m_lstClients->SetItem(lRes, i, sItem);
+        if ((!sItem.IsEmpty()) && updateWidths)
+        {
+            m_lstClients->SetColumnWidth(i, wxLIST_AUTOSIZE);
+            int iWdth = m_lstClients->GetColumnWidth(i);
+            if (iWdth < m_iMinWidth[i])
+                m_lstClients->SetColumnWidth(i, m_iMinWidth[i]);
+        }
     }
 
     m_lstClients->SetItemPtrData(lRes, wxUIntPtr(item));
@@ -147,15 +161,7 @@ long PanelNBookPage_Clients::InsertClientItemToList(Client* item, long before, b
         m_lstClients->EnsureVisible(lRes);
         m_lstClients->Select(lRes);
     }
-    if (updateWidths)
-    {
-        // TODO (Xaviou#1#): Find a better way to handle columns widths
 
-        for (int i=0; i<m_lstClients->GetColumnCount(); ++i)
-        {
-            m_lstClients->SetColumnWidth(i, wxLIST_AUTOSIZE);
-        }
-    }
     return lRes;
 }
 
@@ -168,6 +174,44 @@ void PanelNBookPage_Clients::UpdateClientItem(long lItem)
     {
         m_lstClients->SetItem(lItem, i, item->GetAttribute(m_sColItem[i]));
     }
+}
+
+void PanelNBookPage_Clients::UpdateColumnsWidths()
+{
+    int iCount = m_lstClients->GetItemCount();
+    if (iCount == 0)
+        return;
+    bool bCol[CI_COLS_COUNT];
+    for (int i=0; i<CI_COLS_COUNT; ++i)
+        bCol[i] = false;
+
+    for(int iCol = 0; iCol < CI_COLS_COUNT; ++iCol)
+    {
+        for(int iItem =0; iItem < iCount; ++iItem)
+        {
+            if (!bCol[iCol])
+            {
+                if (m_lstClients->GetItemText(iItem, iCol) != wxEmptyString)
+                    bCol[iCol] = true;
+            }
+            else
+            {
+                iItem = iCount;
+            }
+        }
+        if (bCol[iCol])
+        {
+            m_lstClients->SetColumnWidth(iCol, wxLIST_AUTOSIZE);
+            int iWdth = m_lstClients->GetColumnWidth(iCol);
+            if (iWdth < m_iMinWidth[iCol])
+                m_lstClients->SetColumnWidth(iCol, wxLIST_AUTOSIZE_USEHEADER);
+        }
+        else
+        {
+            m_lstClients->SetColumnWidth(iCol, wxLIST_AUTOSIZE_USEHEADER);
+        }
+    }
+
 }
 
 void PanelNBookPage_Clients::OnTxtFilterChanged(wxCommandEvent& event)

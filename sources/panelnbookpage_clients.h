@@ -32,6 +32,7 @@ class PanelNBookPage_Clients : public PanelNBookPage
         void RefreshClientsList();
         long InsertClientItemToList(Client* item, long before=wxID_ANY, bool select=false, bool updateWidths=false);
         void UpdateClientItem(long lItem);
+        void UpdateColumnsWidths();
         // Events handlers
         void OnTxtFilterChanged(wxCommandEvent &event);
         void OnCmbFilterFieldChanged(wxCommandEvent &event);
@@ -49,6 +50,7 @@ class PanelNBookPage_Clients : public PanelNBookPage
         wxButton *m_btnAddClient, *m_btnDelClient, *m_btnEditClient;
         // Misc vars
         static const wxString m_sColItem[CI_COLS_COUNT];
+        int m_iMinWidth[CI_COLS_COUNT];
         bool m_bColOrderAsc[3];
 };
 

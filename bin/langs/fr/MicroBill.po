@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-06 18:39+0200\n"
-"PO-Revision-Date: 2018-09-06 18:39+0200\n"
+"POT-Creation-Date: 2018-09-06 19:33+0200\n"
+"PO-Revision-Date: 2018-09-06 19:33+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -207,9 +207,9 @@ msgstr "Prénom"
 msgid "Email"
 msgstr "Email"
 
-#: sources/panelnbookpage_clients.cpp:45 sources/panelnbookpage_clients.cpp:63
-msgid "Phone number"
-msgstr "Tél. Fixe"
+#: sources/panelnbookpage_clients.cpp:45
+msgid "Phone"
+msgstr "Téléphone"
 
 #: sources/panelnbookpage_clients.cpp:46
 msgid "Address"
@@ -218,6 +218,10 @@ msgstr "Adresse"
 #: sources/panelnbookpage_clients.cpp:51
 msgid "Result:"
 msgstr "Résultat :"
+
+#: sources/panelnbookpage_clients.cpp:63
+msgid "Phone number"
+msgstr "Tél. Fixe"
 
 #: sources/panelnbookpage_clients.cpp:64
 msgid "Cell. Number"

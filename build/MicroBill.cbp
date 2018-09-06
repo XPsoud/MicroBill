@@ -303,6 +303,12 @@
 		<Unit filename="../sources/appversion.h">
 			<Option virtualFolder="Misc/" />
 		</Unit>
+		<Unit filename="../sources/bill.cpp">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/bill.h">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
 		<Unit filename="../sources/client.cpp">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
@@ -326,6 +332,12 @@
 		</Unit>
 		<Unit filename="../sources/dlgoptions.h">
 			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/estimate.cpp">
+			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/estimate.h">
+			<Option virtualFolder="Datas-Options/" />
 		</Unit>
 		<Unit filename="../sources/main.cpp">
 			<Option virtualFolder="Misc/" />
