@@ -315,6 +315,12 @@
 		<Unit filename="../sources/datasmanager.h">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
+		<Unit filename="../sources/dlgaddeditclient.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditclient.h">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
 		<Unit filename="../sources/dlgoptions.cpp">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>
@@ -343,6 +349,12 @@
 			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_clients.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_clients.h">
 			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage_home.cpp">

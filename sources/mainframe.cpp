@@ -5,6 +5,7 @@
 #include "dlgoptions.h"
 #include "settingsmanager.h"
 #include "panelnbookpage_home.h"
+#include "panelnbookpage_clients.h"
 
 #include <wx/display.h>
 #include <wx/notebook.h>
@@ -92,6 +93,9 @@ void MainFrame::CreateControls()
     // Page "Home"
     m_nbPage[PNBP_TYPE_HOME]=new PanelNBookPage_Home(m_nBook);
     m_nBook->AddPage(m_nbPage[PNBP_TYPE_HOME], _("Home"));
+    // Page "Clients"
+    m_nbPage[PNBP_TYPE_CLIENTS]=new PanelNBookPage_Clients(m_nBook);
+    m_nBook->AddPage(m_nbPage[PNBP_TYPE_CLIENTS], _("Clients"));
 
     // Menu bar
     wxMenuBar* mbar = new wxMenuBar();

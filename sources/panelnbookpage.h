@@ -7,10 +7,12 @@ enum
 {
     PNBP_TYPE_UNKNOWN = -1,
     PNBP_TYPE_HOME = 0, // Homepage
+    PNBP_TYPE_CLIENTS,  // Clients management
 
     PNBP_TYPE_COUNT
 };
 
+#include "datasmanager.h"
 #include "settingsmanager.h"
 
 class PanelNBookPage : public wxPanel
@@ -20,8 +22,10 @@ class PanelNBookPage : public wxPanel
         virtual ~PanelNBookPage();
         int GetPageType() { return m_iType; }
         wxSizer* GetMainSizer() { return m_szrMain; }
+        virtual void RefreshDatasLists();
     protected:
         SettingsManager& m_SettingsMngr;
+        DatasManager& m_DatasMngr;
     private:
         // Misc functions
         virtual void CreateControls();

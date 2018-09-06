@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-01 21:43+0200\n"
-"PO-Revision-Date: 2018-09-01 21:43+0200\n"
+"POT-Creation-Date: 2018-09-06 18:39+0200\n"
+"PO-Revision-Date: 2018-09-06 18:39+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -22,6 +22,58 @@ msgstr ""
 #: sources/appversion.h:13
 msgid "MicroBill Application"
 msgstr "Application MicroBill"
+
+#: sources/dlgaddeditclient.cpp:14
+msgid "Creating a new client"
+msgstr "Créer un nouveau client"
+
+#: sources/dlgaddeditclient.cpp:16
+msgid "Editing a client"
+msgstr "Édition d'un client"
+
+#: sources/dlgaddeditclient.cpp:39
+msgid "Company / Association:"
+msgstr "Entreprise/Association :"
+
+#: sources/dlgaddeditclient.cpp:46
+msgid "Last name:"
+msgstr "Nom de famille :"
+
+#: sources/dlgaddeditclient.cpp:50
+msgid "First name:"
+msgstr "Prénom :"
+
+#: sources/dlgaddeditclient.cpp:55
+msgid "Email:"
+msgstr "Email :"
+
+#: sources/dlgaddeditclient.cpp:59
+msgid "Phone number:"
+msgstr "Tél. Fixe :"
+
+#: sources/dlgaddeditclient.cpp:68
+msgid "Cell number:"
+msgstr "Tél. portable :"
+
+#: sources/dlgaddeditclient.cpp:77
+msgid "Address #1:"
+msgstr "Adresse 1 :"
+
+#: sources/dlgaddeditclient.cpp:82
+msgid "Address #2:"
+msgstr "Adresse 2 :"
+
+#: sources/dlgaddeditclient.cpp:87
+msgid "Zip code:"
+msgstr "Code postal :"
+
+#: sources/dlgaddeditclient.cpp:93
+msgid "City:"
+msgstr "Ville :"
+
+#: sources/dlgaddeditclient.cpp:97
+msgid "Country:"
+msgstr "Pays :"
 
 #: sources/dlgoptions.cpp:48
 msgid "Position of the main window:"
@@ -99,19 +151,23 @@ msgstr "Compresser le fichier des paramètres (pour la taille et la confidential
 msgid "General"
 msgstr "Général"
 
-#: sources/main.cpp:53
+#: sources/main.cpp:54
 msgid "An other instance of this application is already running !"
 msgstr "Une autre instance de cette application est déjà en train de tourner !"
 
-#: sources/main.cpp:53
+#: sources/main.cpp:54
 msgid "Multiple instances forbidden"
 msgstr "Instances multiples interdites"
 
-#: sources/mainframe.cpp:94
+#: sources/mainframe.cpp:95
 msgid "Home"
 msgstr "Accueil"
 
-#: sources/mainframe.cpp:152
+#: sources/mainframe.cpp:98
+msgid "Clients"
+msgstr "Clients"
+
+#: sources/mainframe.cpp:156
 msgid ""
 "You changed the translation settings.\n"
 "You must restart the application to see this in effect."
@@ -119,9 +175,89 @@ msgstr ""
 "Vous avez modifié les réglages de traduction.\n"
 "Vous devez redémarrer l'application pour que cela soit effectif."
 
-#: sources/mainframe.cpp:152
+#: sources/mainframe.cpp:156
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
+
+#: sources/panelnbookpage_clients.cpp:32
+msgid "Search filter:"
+msgstr "Filtre de recherche :"
+
+#: sources/panelnbookpage_clients.cpp:37
+msgid "Search field:"
+msgstr "Champ de recherche :"
+
+#: sources/panelnbookpage_clients.cpp:40
+msgid "All fields"
+msgstr "Tous les champs"
+
+#: sources/panelnbookpage_clients.cpp:41 sources/panelnbookpage_clients.cpp:59
+msgid "Company"
+msgstr "Entreprise"
+
+#: sources/panelnbookpage_clients.cpp:42 sources/panelnbookpage_clients.cpp:61
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: sources/panelnbookpage_clients.cpp:43 sources/panelnbookpage_clients.cpp:60
+msgid "First name"
+msgstr "Prénom"
+
+#: sources/panelnbookpage_clients.cpp:44 sources/panelnbookpage_clients.cpp:62
+msgid "Email"
+msgstr "Email"
+
+#: sources/panelnbookpage_clients.cpp:45 sources/panelnbookpage_clients.cpp:63
+msgid "Phone number"
+msgstr "Tél. Fixe"
+
+#: sources/panelnbookpage_clients.cpp:46
+msgid "Address"
+msgstr "Adresse"
+
+#: sources/panelnbookpage_clients.cpp:51
+msgid "Result:"
+msgstr "Résultat :"
+
+#: sources/panelnbookpage_clients.cpp:64
+msgid "Cell. Number"
+msgstr "Tél. portable"
+
+#: sources/panelnbookpage_clients.cpp:73
+msgid "Modify"
+msgstr "Modifier"
+
+#: sources/panelnbookpage_clients.cpp:206
+msgid ""
+"The selected client is referenced by another element.\n"
+"It Can't actually be removed from the database.\n"
+"\n"
+"Remove the elements that has a reference to it first."
+msgstr ""
+"Le client sélectionné est référencé par un autre élément.\n"
+"Il ne peut être actuellement supprimé de la base de données.\n"
+"\n"
+"Supprimez les éléments qui le référencent en premier."
+
+#: sources/panelnbookpage_clients.cpp:207
+msgid "Impossible operation"
+msgstr "Opération impossible"
+
+#: sources/panelnbookpage_clients.cpp:210
+msgid "Remove the selected client?"
+msgstr "Supprimer le client sélectionné ?"
+
+#: sources/panelnbookpage_clients.cpp:210
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: sources/panelnbookpage_clients.cpp:214
+msgid "An error occurred while removing the selected client!"
+msgstr "Une erreur est survenue lors de la suppression du client sélectionné !"
+
+#: sources/panelnbookpage_clients.cpp:214
+msgid "Error"
+msgstr "Erreur"
 
 #: sources/panelnbookpage_home.cpp:39
 msgid "Your micro entreprise billing software"

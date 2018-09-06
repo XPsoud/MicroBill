@@ -1,7 +1,7 @@
 #include "panelnbookpage.h"
 
 PanelNBookPage::PanelNBookPage(wxWindow* parent, int type) : wxPanel(parent, -1),
-    m_SettingsMngr(SettingsManager::Get())
+    m_SettingsMngr(SettingsManager::Get()), m_DatasMngr(DatasManager::Get())
 {
 #ifdef __WXDEBUG__
     wxPrintf(_T("Creating a \"PanelNBookPage\" object of type %d\n"), type);
@@ -39,6 +39,11 @@ void PanelNBookPage::CreateControls()
 }
 
 void PanelNBookPage::ConnectControls()
+{
+    //
+}
+
+void PanelNBookPage::RefreshDatasLists()
 {
     //
 }
