@@ -102,15 +102,8 @@ void DlgAddEditClient::CreateControls()
         grdszr->AddGrowableCol(1, 1);
         szrMain->Add(grdszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, 5);
 
-        szrMain->Add(new wxStaticLine(this, wxID_STATIC), 0, wxALL|wxEXPAND, 5);
+        szrMain->Add(CreateSeparatedButtonSizer(wxOK|wxCANCEL), 0, wxALL|wxEXPAND, 5);
 
-        hszr=new wxBoxSizer(wxHORIZONTAL);
-            m_btnOk=new wxButton(this, wxID_OK, wxGetStockLabel(wxID_OK, wxSTOCK_FOR_BUTTON));
-            hszr->Add(m_btnOk, 0, wxALL, 0);
-            hszr->AddSpacer(10);
-            m_btnCancel=new wxButton(this, wxID_CANCEL, wxGetStockLabel(wxID_CANCEL, wxSTOCK_FOR_BUTTON));
-            hszr->Add(m_btnCancel, 0, wxALL, 0);
-        szrMain->Add(hszr, 0, wxALL|wxALIGN_CENTER, 5);
     SetSizer(szrMain);
 
     if (m_Client!=NULL)
@@ -133,8 +126,8 @@ void DlgAddEditClient::CreateControls()
 
 void DlgAddEditClient::ConnectControls()
 {
-    m_btnOk->Bind(wxEVT_BUTTON, &DlgAddEditClient::OnBtnValidClicked, this);
-    m_btnOk->Bind(wxEVT_UPDATE_UI, &DlgAddEditClient::OnUpdateUI_BtnValid, this);
+    Bind(wxEVT_BUTTON, &DlgAddEditClient::OnBtnValidClicked, this, wxID_OK);
+    Bind(wxEVT_UPDATE_UI, &DlgAddEditClient::OnUpdateUI_BtnValid, this, wxID_OK);
 }
 
 void DlgAddEditClient::OnUpdateUI_BtnValid(wxUpdateUIEvent& event)

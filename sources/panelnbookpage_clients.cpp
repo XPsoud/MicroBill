@@ -64,10 +64,10 @@ void PanelNBookPage_Clients::CreateControls()
             m_lstClients->AppendColumn(_("Cell. Number"));
         hszr->AddSpacer(5);
         vszr=new wxBoxSizer(wxVERTICAL);
-            m_btnAddClient=new wxButton(this, wxID_ADD, wxGetStockLabel(wxID_ADD));
+            m_btnAddClient=new wxButton(this, wxID_ADD, wxGetStockLabel(wxID_ADD, wxSTOCK_FOR_BUTTON));
             vszr->Add(m_btnAddClient, 0, wxALL|wxEXPAND, 0);
             vszr->AddSpacer(5);
-            m_btnDelClient=new wxButton(this, wxID_DELETE, wxGetStockLabel(wxID_DELETE));
+            m_btnDelClient=new wxButton(this, wxID_DELETE, wxGetStockLabel(wxID_DELETE, wxSTOCK_FOR_BUTTON));
             vszr->Add(m_btnDelClient, 0, wxALL|wxEXPAND, 0);
             vszr->AddSpacer(5);
             m_btnEditClient=new wxButton(this, wxID_EDIT, _("Modify"));

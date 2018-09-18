@@ -22,7 +22,6 @@ class DlgAddEditClient : public wxDialog
         // Controls vars
         wxTextCtrl *m_txtCompany, *m_txtFirstName, *m_txtLastName, *m_txtEmail, *m_txtPhone, *m_txtCell;
         wxTextCtrl *m_txtAddr1, *m_txtAddr2, *m_txtZipCode, *m_txtCity, *m_txtCountry;
-        wxButton *m_btnOk, *m_btnCancel;
         // Misc vars
         Client* m_Client;
 };
