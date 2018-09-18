@@ -6,6 +6,7 @@
 #include "settingsmanager.h"
 #include "panelnbookpage_home.h"
 #include "panelnbookpage_clients.h"
+#include "panelnbookpage_estimates.h"
 
 #include <wx/display.h>
 #include <wx/notebook.h>
@@ -96,6 +97,9 @@ void MainFrame::CreateControls()
     // Page "Clients"
     m_nbPage[PNBP_TYPE_CLIENTS]=new PanelNBookPage_Clients(m_nBook);
     m_nBook->AddPage(m_nbPage[PNBP_TYPE_CLIENTS], _("Clients"));
+    // Page "Estimates"
+    m_nbPage[PNBP_TYPE_ESTIMATES]=new PanelNBookPage_Estimates(m_nBook);
+    m_nBook->AddPage(m_nbPage[PNBP_TYPE_ESTIMATES], _("Estimates"));
 
     // Menu bar
     wxMenuBar* mbar = new wxMenuBar();

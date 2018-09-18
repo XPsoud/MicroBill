@@ -327,10 +327,28 @@
 		<Unit filename="../sources/dlgaddeditclient.h">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>
+		<Unit filename="../sources/dlgaddeditestimate.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditestimate.h">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditestimitem.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditestimitem.h">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
 		<Unit filename="../sources/dlgoptions.cpp">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>
 		<Unit filename="../sources/dlgoptions.h">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgselectclient.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgselectclient.h">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>
 		<Unit filename="../sources/estimate.cpp">
@@ -338,6 +356,12 @@
 		</Unit>
 		<Unit filename="../sources/estimate.h">
 			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/estimitemctrl.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/estimitemctrl.h">
+			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/main.cpp">
 			<Option virtualFolder="Misc/" />
@@ -367,6 +391,12 @@
 			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage_clients.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_estimates.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_estimates.h">
 			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage_home.cpp">

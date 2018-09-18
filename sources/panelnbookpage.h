@@ -8,6 +8,7 @@ enum
     PNBP_TYPE_UNKNOWN = -1,
     PNBP_TYPE_HOME = 0, // Homepage
     PNBP_TYPE_CLIENTS,  // Clients management
+    PNBP_TYPE_ESTIMATES,// Estimates management
 
     PNBP_TYPE_COUNT
 };
