@@ -24,7 +24,7 @@ bool MicroBillApp::OnInit()
     // Read settings if any
     settings.ReadSettings();
 
-        // Initialize the locale if possible (and if wanted)
+    // Initialize the locale if possible (and if wanted)
     // Easter egg for debugging purpose
     bool bI18N=(settings.GetProhibitI18N()==false);
     if (wxGetKeyState(WXK_SHIFT))
@@ -41,6 +41,9 @@ bool MicroBillApp::OnInit()
         m_locale.AddCatalogLookupPathPrefix(sDir);
         m_locale.Init(wxLANGUAGE_DEFAULT, wxLOCALE_LOAD_DEFAULT);
         m_locale.AddCatalog(_T(PRODUCTNAME));
+
+        // To avoid decimals reading and writing problems
+        setlocale(LC_NUMERIC, "C");
     }
 
     // Check for single instance
