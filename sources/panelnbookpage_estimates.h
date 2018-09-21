@@ -5,6 +5,16 @@
 
 #include <wx/listctrl.h>
 
+enum
+{
+    EI_COL_DATE_CREATION = 0,
+    EI_COL_CLIENT,
+    EI_COL_VALUE,
+    EI_COL_STATUS,
+    EI_COL_DATE_LIMIT,
+
+    EI_COLS_COUNT
+};
 extern const wxEventType wxEVT_CONVERT_ESTIM2BILL;
 
 class PanelNBookPage_Estimates : public PanelNBookPage
@@ -37,6 +47,7 @@ class PanelNBookPage_Estimates : public PanelNBookPage
         wxListView *m_lstEstimates;
         wxButton *m_btnAdd, *m_btnDel, *m_btnEdit, *m_btnSaveAs, *m_btnCopy, *m_btnBill;
         // Misc vars
+        int m_iMinWidth[EI_COLS_COUNT];
         bool m_bColOrderAsc[3];
 };
 

@@ -5,6 +5,18 @@
 
 #include <wx/listctrl.h>
 
+enum
+{
+    BI_COL_NUMBER = BSC_NUMBER,
+    BI_COL_DATE_CREATION = BSC_CREAT_DATE,
+    BI_COL_CLIENT = BSC_CLIENT,
+    BI_COL_VALUE = BSC_TOTAL,
+    BI_COL_STATUS = BSC_STATUS,
+    BI_COL_DATE_LIMIT = BSC_TERM_DATE,
+
+    BI_COLS_COUNT
+};
+
 class PanelNBookPage_Bills : public PanelNBookPage
 {
     public:
@@ -35,6 +47,7 @@ class PanelNBookPage_Bills : public PanelNBookPage
         wxListView *m_lstBills;
         wxButton *m_btnAdd, *m_btnDel, *m_btnEdit, *m_btnSaveAs, *m_btnCopy;
         // Misc vars
+        int m_iMinWidth[BI_COLS_COUNT];
         bool m_bColOrderAsc[3];
 };
 

@@ -1,18 +1,9 @@
 #include "panelnbookpage_estimates.h"
-// TODO (Xaviou#1#): See "Clients panel" to manage columns widths
+
 #include "main.h"
 #include "dlgaddeditestimate.h"
 
 #include <wx/mimetype.h>
-
-enum
-{
-    EI_COL_DATE_CREATION = 0,
-    EI_COL_CLIENT,
-    EI_COL_VALUE,
-    EI_COL_STATUS,
-    EI_COL_DATE_LIMIT
-};
 
 const wxEventType wxEVT_CONVERT_ESTIM2BILL = wxNewEventType();
 
@@ -89,6 +80,13 @@ void PanelNBookPage_Estimates::CreateControls()
     GetMainSizer()->Add(hszr, 1, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
 
     GetMainSizer()->AddSpacer(5);
+
+    // Get minimal columns widths
+    for (int i=0; i<EI_COLS_COUNT; ++i)
+    {
+        m_lstEstimates->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        m_iMinWidth[i] = m_lstEstimates->GetColumnWidth(i);
+    }
 }
 
 void PanelNBookPage_Estimates::ConnectControls()
@@ -181,11 +179,38 @@ long PanelNBookPage_Estimates::InsertEstimateItemToList(Estimate* item, long bef
     long lBefore=(before==wxID_ANY?m_lstEstimates->GetItemCount():before);
     long lRes=m_lstEstimates->InsertItem(lBefore, wxEmptyString);
 
-    m_lstEstimates->SetItem(lRes, EI_COL_DATE_CREATION, item->GetCreationDate().Format(_("%Y-%m-%d")));
-    m_lstEstimates->SetItem(lRes, EI_COL_CLIENT, m_DatasMngr.GetClientString(item->GetClient()));
-    m_lstEstimates->SetItem(lRes, EI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetTotalPrice()));
-    m_lstEstimates->SetItem(lRes, EI_COL_STATUS, item->IsLocked()?_("Finalized"):_("In progress"));
-    m_lstEstimates->SetItem(lRes, EI_COL_DATE_LIMIT, item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")):_T(""));
+    wxString sItem;
+
+    for (int i=0; i<EI_COLS_COUNT; ++i)
+    {
+        switch(i)
+        {
+            case EI_COL_DATE_CREATION:
+                sItem = item->GetCreationDate().Format(_("%Y-%m-%d"));
+                break;
+            case EI_COL_CLIENT:
+                sItem = m_DatasMngr.GetClientString(item->GetClient());
+                break;
+            case EI_COL_VALUE:
+                sItem = wxString::Format(_("%10.02f$"), item->GetTotalPrice());
+                break;
+            case EI_COL_STATUS:
+                sItem = item->IsLocked()?_("Finalized"):_("In progress");
+                break;
+            case EI_COL_DATE_LIMIT:
+                sItem = item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")):_T("");
+                break;
+        }
+        m_lstEstimates->SetItem(lRes, i, sItem);
+
+        if ((!sItem.IsEmpty()) && updateWidths)
+        {
+            m_lstEstimates->SetColumnWidth(i, wxLIST_AUTOSIZE);
+            int iWdth = m_lstEstimates->GetColumnWidth(i);
+            if (iWdth < m_iMinWidth[i])
+                m_lstEstimates->SetColumnWidth(i, m_iMinWidth[i]);
+        }
+    }
 
     m_lstEstimates->SetItemPtrData(lRes, wxUIntPtr(item));
 
@@ -194,13 +219,7 @@ long PanelNBookPage_Estimates::InsertEstimateItemToList(Estimate* item, long bef
         m_lstEstimates->EnsureVisible(lRes);
         m_lstEstimates->Select(lRes);
     }
-    if (updateWidths)
-    {
-        for (int i=0; i<m_lstEstimates->GetColumnCount(); ++i)
-        {
-            m_lstEstimates->SetColumnWidth(i, wxLIST_AUTOSIZE);
-        }
-    }
+
     return lRes;
 }
 
@@ -220,6 +239,9 @@ void PanelNBookPage_Estimates::RefreshEstimatesList()
         for (int i=0; i<m_lstEstimates->GetColumnCount(); ++i)
         {
             m_lstEstimates->SetColumnWidth(i, wxLIST_AUTOSIZE);
+            int iWdth = m_lstEstimates->GetColumnWidth(i);
+            if (iWdth < m_iMinWidth[i])
+                m_lstEstimates->SetColumnWidth(i, m_iMinWidth[i]);
         }
     }
 }

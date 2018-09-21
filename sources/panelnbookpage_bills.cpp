@@ -1,19 +1,9 @@
 #include "panelnbookpage_bills.h"
-// TODO (Xaviou#1#): See "Clients panel" to manage columns widths
+
 #include "main.h"
 #include "dlgaddeditbill.h"
 
 #include <wx/mimetype.h>
-
-enum
-{
-    BI_COL_NUMBER = BSC_NUMBER,
-    BI_COL_DATE_CREATION = BSC_CREAT_DATE,
-    BI_COL_CLIENT = BSC_CLIENT,
-    BI_COL_VALUE = BSC_TOTAL,
-    BI_COL_STATUS = BSC_STATUS,
-    BI_COL_DATE_LIMIT = BSC_TERM_DATE
-};
 
 PanelNBookPage_Bills::PanelNBookPage_Bills(wxWindow* parent) :
     PanelNBookPage(parent, PNBP_TYPE_BILLS)
@@ -85,6 +75,13 @@ void PanelNBookPage_Bills::CreateControls()
     GetMainSizer()->Add(hszr, 1, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
 
     GetMainSizer()->AddSpacer(5);
+
+    // Get minimal columns widths
+    for (int i=0; i<BI_COLS_COUNT; ++i)
+    {
+        m_lstBills->SetColumnWidth(i, wxLIST_AUTOSIZE_USEHEADER);
+        m_iMinWidth[i] = m_lstBills->GetColumnWidth(i);
+    }
 }
 
 void PanelNBookPage_Bills::ConnectControls()
@@ -176,12 +173,41 @@ long PanelNBookPage_Bills::InsertBillItemToList(Bill* item, long before, bool se
     long lBefore=(before==wxID_ANY?m_lstBills->GetItemCount():before);
     long lRes=m_lstBills->InsertItem(lBefore, wxEmptyString);
 
-    m_lstBills->SetItem(lRes, BI_COL_NUMBER, wxString::Format(_T("%04d"), item->GetBillNumber()));
-    m_lstBills->SetItem(lRes, BI_COL_DATE_CREATION, item->GetCreationDate().Format(_("%Y-%m-%d")));
-    m_lstBills->SetItem(lRes, BI_COL_CLIENT, m_DatasMngr.GetClientString(item->GetClientKey()));
-    m_lstBills->SetItem(lRes, BI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetTotalPrice()));
-    m_lstBills->SetItem(lRes, BI_COL_STATUS, item->IsLocked()?_("Paid"):_("Not paid"));
-    m_lstBills->SetItem(lRes, BI_COL_DATE_LIMIT, item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")):_T(""));
+    wxString sItem;
+
+    for (int i=0; i<BI_COLS_COUNT; ++i)
+    {
+        switch(i)
+        {
+            case BI_COL_NUMBER:
+                sItem = wxString::Format(_T("%04d"), item->GetBillNumber());
+                break;
+            case BI_COL_DATE_CREATION:
+                sItem = item->GetCreationDate().Format(_("%Y-%m-%d"));
+                break;
+            case BI_COL_CLIENT:
+                sItem = m_DatasMngr.GetClientString(item->GetClientKey());
+                break;
+            case BI_COL_VALUE:
+                sItem = wxString::Format(_("%10.02f$"), item->GetTotalPrice());
+                break;
+            case BI_COL_STATUS:
+                sItem = item->IsLocked()?_("Paid"):_("Not paid");
+                break;
+            case BI_COL_DATE_LIMIT:
+                sItem = item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")):_T("");
+                break;
+        }
+        m_lstBills->SetItem(lRes, i, sItem);
+
+        if ((!sItem.IsEmpty()) && updateWidths)
+        {
+            m_lstBills->SetColumnWidth(i, wxLIST_AUTOSIZE);
+            int iWdth = m_lstBills->GetColumnWidth(i);
+            if (iWdth < m_iMinWidth[i])
+                m_lstBills->SetColumnWidth(i, m_iMinWidth[i]);
+        }
+    }
 
     m_lstBills->SetItemPtrData(lRes, wxUIntPtr(item));
 
@@ -190,13 +216,7 @@ long PanelNBookPage_Bills::InsertBillItemToList(Bill* item, long before, bool se
         m_lstBills->EnsureVisible(lRes);
         m_lstBills->Select(lRes);
     }
-    if (updateWidths)
-    {
-        for (int i=0; i<m_lstBills->GetColumnCount(); ++i)
-        {
-            m_lstBills->SetColumnWidth(i, wxLIST_AUTOSIZE);
-        }
-    }
+
     return lRes;
 }
 
@@ -216,6 +236,9 @@ void PanelNBookPage_Bills::RefreshBillsList()
         for (int i=0; i<m_lstBills->GetColumnCount(); ++i)
         {
             m_lstBills->SetColumnWidth(i, wxLIST_AUTOSIZE);
+            int iWdth = m_lstBills->GetColumnWidth(i);
+            if (iWdth < m_iMinWidth[i])
+                m_lstBills->SetColumnWidth(i, m_iMinWidth[i]);
         }
     }
 }
