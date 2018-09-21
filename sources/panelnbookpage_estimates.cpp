@@ -5,7 +5,7 @@
 
 #include <wx/mimetype.h>
 
-const wxEventType wxEVT_CONVERT_ESTIM2BILL = wxNewEventType();
+wxDEFINE_EVENT(wxEVT_CONVERT_ESTIM2BILL, wxCommandEvent);
 
 PanelNBookPage_Estimates::PanelNBookPage_Estimates(wxWindow* parent) :
     PanelNBookPage(parent, PNBP_TYPE_ESTIMATES)

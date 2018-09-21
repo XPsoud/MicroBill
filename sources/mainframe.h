@@ -23,6 +23,7 @@ class MainFrame: public wxFrame
         void OnPrefsClicked(wxCommandEvent &event);
         void OnExitClicked(wxCommandEvent &event);
         void OnAboutClicked(wxCommandEvent &event);
+        void OnConvertEstim2Bill(wxCommandEvent &event);
         // Controls vars
         wxNotebook *m_nBook;
         PanelNBookPage* m_nbPage[PNBP_TYPE_COUNT];

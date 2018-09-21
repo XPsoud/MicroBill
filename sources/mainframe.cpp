@@ -3,6 +3,7 @@
 #include "main.h"
 #include "appversion.h"
 #include "dlgoptions.h"
+#include "dlgaddeditbill.h"
 #include "settingsmanager.h"
 #include "panelnbookpage_home.h"
 #include "panelnbookpage_bills.h"
@@ -128,6 +129,8 @@ void MainFrame::ConnectControls()
     Bind(wxEVT_MENU, &MainFrame::OnPrefsClicked, this, wxID_PREFERENCES);
     Bind(wxEVT_MENU, &MainFrame::OnExitClicked, this, wxID_EXIT);
     Bind(wxEVT_MENU, &MainFrame::OnAboutClicked, this, wxID_ABOUT);
+    // Misc events handlers
+    Bind(wxEVT_CONVERT_ESTIM2BILL, &MainFrame::OnConvertEstim2Bill, this);
 }
 
 void MainFrame::OnSize(wxSizeEvent& event)
@@ -181,4 +184,23 @@ void MainFrame::OnAboutClicked(wxCommandEvent& event)
     info.SetIcon(wxICON(appIcon));
 
     wxAboutBox(info);
+}
+
+void MainFrame::OnConvertEstim2Bill(wxCommandEvent& event)
+{
+    Estimate* eItem=(Estimate*)event.GetEventObject();
+    if (eItem==NULL) return;
+
+    DatasManager& datas=DatasManager::Get();
+
+    Bill* bItem=datas.AddNewBill(eItem);
+    DlgAddEditBill dlg(this, bItem);
+    if (dlg.ShowModal()!=wxID_OK)
+    {
+        datas.RemoveBill(bItem);
+        return;
+    }
+    PanelNBookPage_Bills* page=(PanelNBookPage_Bills*)m_nbPage[PNBP_TYPE_BILLS];
+    page->AddBillItem(bItem, true);
+    m_nBook->SetSelection(PNBP_TYPE_BILLS);
 }

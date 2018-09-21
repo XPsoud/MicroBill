@@ -15,7 +15,8 @@ enum
 
     EI_COLS_COUNT
 };
-extern const wxEventType wxEVT_CONVERT_ESTIM2BILL;
+
+wxDECLARE_EVENT(wxEVT_CONVERT_ESTIM2BILL, wxCommandEvent);
 
 class PanelNBookPage_Estimates : public PanelNBookPage
 {
