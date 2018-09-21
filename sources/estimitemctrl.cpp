@@ -64,13 +64,13 @@ void EstimItemCtrl::CreateControls()
 
     wxBoxSizer *szrMain=new wxBoxSizer(wxVERTICAL);
         wxBoxSizer *hszr=new wxBoxSizer(wxHORIZONTAL);
-            m_btnEdit=new wxButton(this, wxID_EDIT, _T("Éditer"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+            m_btnEdit=new wxButton(this, wxID_EDIT, wxGetStockLabel(wxID_EDIT, wxSTOCK_FOR_BUTTON), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
             hszr->Add(m_btnEdit, 0, wxALL|wxEXPAND, 0);
-            m_btnDelete=new wxButton(this, wxID_DELETE, _T("Supprimer"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+            m_btnDelete=new wxButton(this, wxID_DELETE, wxGetStockLabel(wxID_DELETE, wxSTOCK_FOR_BUTTON), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
             hszr->Add(m_btnDelete, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
-            m_btnMoveUp=new wxButton(this, wxID_UP, _T("Remonter"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+            m_btnMoveUp=new wxButton(this, wxID_UP, _("Move up"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
             hszr->Add(m_btnMoveUp, 0, wxALL|wxEXPAND, 0);
-            m_btnMoveDown=new wxButton(this, wxID_DOWN, _T("Descendre") , wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
+            m_btnMoveDown=new wxButton(this, wxID_DOWN, _("Move down"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
             hszr->Add(m_btnMoveDown, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
         szrMain->Add(hszr, 0, wxLEFT|wxRIGHT|wxTOP, 5);
         m_lblDescr=new wxStaticText(this, wxID_STATIC, _T("Description"), wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE);
@@ -120,10 +120,10 @@ void EstimItemCtrl::Update()
 {
     m_lblDescr->SetLabel(m_sDescr);
     m_lblComments->SetLabel(m_sComments);
-    wxString sPrice;
-    sPrice << wxString::Format(_T("P.U. : %6.02f€"), m_dUnitPrice);
-    sPrice << wxString::Format(_T("      Q. : %3d"), m_iQuantity);
-    sPrice << wxString::Format(_T("      Prix : %9.02f€"), double(m_dUnitPrice*m_iQuantity));
+    wxString sPrice = wxEmptyString;
+    sPrice << wxString::Format(_("Unit price : %6.02f$"), m_dUnitPrice);
+    sPrice << _T("      ") << wxString::Format(_("Q. : %3d"), m_iQuantity);
+    sPrice << _T("      ") << wxString::Format(_("Price : %9.02f$"), double(m_dUnitPrice*m_iQuantity));
 
     m_lblPrice->SetLabel(sPrice);
     GetSizer()->SetSizeHints(this);
