@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 21:08+0200\n"
-"PO-Revision-Date: 2018-09-18 21:13+0200\n"
+"POT-Creation-Date: 2018-09-21 19:16+0200\n"
+"PO-Revision-Date: 2018-09-21 19:23+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -22,6 +22,165 @@ msgstr ""
 #: sources/appversion.h:13
 msgid "MicroBill Application"
 msgstr "Application MicroBill"
+
+#: sources/billitemctrl.cpp:71 sources/estimitemctrl.cpp:71
+msgid "Move up"
+msgstr "Remonter"
+
+#: sources/billitemctrl.cpp:73 sources/estimitemctrl.cpp:73
+msgid "Move down"
+msgstr "Descendre"
+
+#: sources/billitemctrl.cpp:124 sources/estimitemctrl.cpp:124
+#, c-format
+msgid "Unit price : %6.02f$"
+msgstr "Prix unitaire : %6.02f€"
+
+#: sources/billitemctrl.cpp:125 sources/estimitemctrl.cpp:125
+#, c-format
+msgid "Q. : %3d"
+msgstr "Q. : %3d"
+
+#: sources/billitemctrl.cpp:126 sources/estimitemctrl.cpp:126
+#, c-format
+msgid "Price : %9.02f$"
+msgstr "Prix : %9.02f€"
+
+#: sources/dlgaddeditbill.cpp:21
+msgid "Creating a new bill"
+msgstr "Créer une nouvelle facture"
+
+#: sources/dlgaddeditbill.cpp:23
+msgid "Editing a bill"
+msgstr "Édition d'une facture"
+
+#: sources/dlgaddeditbill.cpp:49 sources/dlgaddeditestimate.cpp:46
+msgid "Creation date:"
+msgstr "Date de création :"
+
+#: sources/dlgaddeditbill.cpp:55
+msgid "Payment deadline:"
+msgstr "Date limite de paiement :"
+
+#: sources/dlgaddeditbill.cpp:62
+msgid "Nb:"
+msgstr "N° :"
+
+#: sources/dlgaddeditbill.cpp:67
+msgid "Client:"
+msgstr "Client :"
+
+#: sources/dlgaddeditbill.cpp:74 sources/dlgaddeditestimate.cpp:66
+msgid "Select"
+msgstr "Sélectionner"
+
+#: sources/dlgaddeditbill.cpp:91 sources/dlgaddeditestimate.cpp:84
+msgid "Lock/Unlock"
+msgstr "Verrouiller/Déverrouiller"
+
+#: sources/dlgaddeditbill.cpp:99 sources/dlgaddeditbill.cpp:121
+#: sources/dlgaddeditestimate.cpp:92 sources/dlgaddeditestimate.cpp:109
+msgid "Amount:   0.00$"
+msgstr "Montant :   0.00€"
+
+#: sources/dlgaddeditbill.cpp:103 sources/dlgaddeditestimate.cpp:96
+msgid "Total w/o VAT: 0.00$"
+msgstr "Total H.T.: 0.00€"
+
+#: sources/dlgaddeditbill.cpp:106
+msgid "Payment note:"
+msgstr "Note de paiement :"
+
+#: sources/dlgaddeditbill.cpp:112 sources/dlgaddeditestimate.cpp:100
+msgid "Add an entry"
+msgstr "Ajouter une entrée"
+
+#: sources/dlgaddeditbill.cpp:115 sources/dlgaddeditestimate.cpp:103
+msgid "Appy V.A.T.:"
+msgstr "Appliquer la T.V.A :"
+
+#: sources/dlgaddeditbill.cpp:125 sources/dlgaddeditestimate.cpp:113
+msgid "Total to pay:   0.00$"
+msgstr "Total à payer :   0.00€"
+
+#: sources/dlgaddeditbill.cpp:365 sources/dlgaddeditestimate.cpp:337
+msgid "Remove this entry ?"
+msgstr "Supprimer cette entrée ?"
+
+#: sources/dlgaddeditbill.cpp:365 sources/dlgaddeditestimate.cpp:337
+#: sources/panelnbookpage_bills.cpp:132 sources/panelnbookpage_clients.cpp:254
+#: sources/panelnbookpage_estimates.cpp:136
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: sources/dlgaddeditbill.cpp:427
+msgid "Mark as non paid"
+msgstr "Marquer comme non-payée"
+
+#: sources/dlgaddeditbill.cpp:429
+msgid "Mark as paid"
+msgstr "Marquer comme payée"
+
+#: sources/dlgaddeditbill.cpp:446 sources/dlgaddeditestimate.cpp:412
+#, c-format
+msgid "Total: %8.02f$"
+msgstr "Total : %8.02f€"
+
+#: sources/dlgaddeditbill.cpp:448 sources/dlgaddeditbill.cpp:452
+#: sources/dlgaddeditestimate.cpp:414 sources/dlgaddeditestimate.cpp:418
+#, c-format
+msgid "Amount: %8.02f$"
+msgstr "Total : %8.02f€"
+
+#: sources/dlgaddeditbill.cpp:450 sources/dlgaddeditestimate.cpp:416
+#, c-format
+msgid "Total w/o VAT: %8.02f$"
+msgstr "Total H.T.: %8.02f€"
+
+#: sources/dlgaddeditbill.cpp:454 sources/dlgaddeditestimate.cpp:420
+#, c-format
+msgid "Total to pay: %8.02f$"
+msgstr "Total à payer : %8.02f€"
+
+#: sources/dlgaddeditbill.cpp:464
+msgid ""
+"The client datas for this bill are obsoletes.\n"
+"They will be updated during the validation of this form."
+msgstr ""
+"Les données client de cette facture sont obsolètes.\n"
+"Elles seront mises à jour lors de la validation de ce formulaire."
+
+#: sources/dlgaddeditbillitem.cpp:5
+msgid "New bill entry"
+msgstr "Nouvelle entrée de facture"
+
+#: sources/dlgaddeditbillitem.cpp:31 sources/dlgaddeditestimitem.cpp:31
+msgid "Description:"
+msgstr "Description :"
+
+#: sources/dlgaddeditbillitem.cpp:37 sources/dlgaddeditestimitem.cpp:37
+msgid "Comments:"
+msgstr "Commentaires :"
+
+#: sources/dlgaddeditbillitem.cpp:44 sources/dlgaddeditestimitem.cpp:44
+msgid "Unit price:"
+msgstr "Prix unitaire :"
+
+#: sources/dlgaddeditbillitem.cpp:50 sources/dlgaddeditestimitem.cpp:50
+msgid "Quantity:"
+msgstr "Quantité :"
+
+#: sources/dlgaddeditbillitem.cpp:54
+msgid ""
+"(let the quantity on zero to not\n"
+"show any price on the bill)"
+msgstr ""
+"(laisser la quantité à zéro pour ne\n"
+"pas afficher de prix sur la facture)"
+
+#: sources/dlgaddeditbillitem.cpp:85
+msgid "Edit a bill entry"
+msgstr "Éditer une entrée de facture"
 
 #: sources/dlgaddeditclient.cpp:14
 msgid "Creating a new client"
@@ -75,118 +234,41 @@ msgstr "Ville :"
 msgid "Country:"
 msgstr "Pays :"
 
-#: sources/dlgaddeditestimate.cpp:21
+#: sources/dlgaddeditestimate.cpp:20
 msgid "Creating a new estimate"
 msgstr "Création d'un nouveau devis"
 
-#: sources/dlgaddeditestimate.cpp:23
+#: sources/dlgaddeditestimate.cpp:22
 msgid "Editing an estimate"
 msgstr "Édition d'un devis"
 
-#: sources/dlgaddeditestimate.cpp:47
-msgid "Creation date:"
-msgstr "Date de création :"
-
-#: sources/dlgaddeditestimate.cpp:53
+#: sources/dlgaddeditestimate.cpp:52
 msgid "Validity date:"
 msgstr "Date de validité :"
 
-#: sources/dlgaddeditestimate.cpp:60
+#: sources/dlgaddeditestimate.cpp:59
 msgid "Reference client:"
 msgstr "Client de référence :"
 
-#: sources/dlgaddeditestimate.cpp:67
-msgid "Select"
-msgstr "Sélectionner"
-
-#: sources/dlgaddeditestimate.cpp:81
+#: sources/dlgaddeditestimate.cpp:80
 msgid "Total: 0.00$"
 msgstr "Total : 0.00€"
 
-#: sources/dlgaddeditestimate.cpp:85
-msgid "Lock/Unlock"
-msgstr "Verrouiller/Déverrouiller"
-
-#: sources/dlgaddeditestimate.cpp:88
+#: sources/dlgaddeditestimate.cpp:87
 msgid "Discount (%):"
 msgstr "Remise (%):"
 
-#: sources/dlgaddeditestimate.cpp:93 sources/dlgaddeditestimate.cpp:110
-msgid "Amount:   0.00$"
-msgstr "Montant :   0.00€"
-
-#: sources/dlgaddeditestimate.cpp:97
-msgid "Total w/o VAT: 0.00$"
-msgstr "Total H.T.: 0.00€"
-
-#: sources/dlgaddeditestimate.cpp:101
-msgid "Add an entry"
-msgstr "Ajouter une entrée"
-
-#: sources/dlgaddeditestimate.cpp:104
-msgid "Appy V.A.T.:"
-msgstr "Appliquer la T.V.A :"
-
-#: sources/dlgaddeditestimate.cpp:114
-msgid "Total to pay:   0.00$"
-msgstr "Total à payer :   0.00€"
-
-#: sources/dlgaddeditestimate.cpp:338
-msgid "Remove this entry ?"
-msgstr "Supprimer cette entrée ?"
-
-#: sources/dlgaddeditestimate.cpp:338 sources/panelnbookpage_clients.cpp:254
-#: sources/panelnbookpage_estimates.cpp:136
-msgid "Confirmation"
-msgstr "Confirmation"
-
-#: sources/dlgaddeditestimate.cpp:395
+#: sources/dlgaddeditestimate.cpp:394
 msgid "Mark as not finalized"
 msgstr "Marquer comme non-finalisé"
 
-#: sources/dlgaddeditestimate.cpp:397
+#: sources/dlgaddeditestimate.cpp:396
 msgid "Mark as finalized"
 msgstr "Marquer comme finalisé"
-
-#: sources/dlgaddeditestimate.cpp:413
-#, c-format
-msgid "Total: %8.02f$"
-msgstr "Total : %8.02f€"
-
-#: sources/dlgaddeditestimate.cpp:415 sources/dlgaddeditestimate.cpp:419
-#, c-format
-msgid "Amount: %8.02f$"
-msgstr "Total : %8.02f€"
-
-#: sources/dlgaddeditestimate.cpp:417
-#, c-format
-msgid "Total w/o VAT: %8.02f$"
-msgstr "Total H.T.: %8.02f€"
-
-#: sources/dlgaddeditestimate.cpp:421
-#, c-format
-msgid "Total to pay: %8.02f$"
-msgstr "Total à payer : %8.02f€"
 
 #: sources/dlgaddeditestimitem.cpp:5
 msgid "New estimate entry"
 msgstr "Nouvelle entrée de devis"
-
-#: sources/dlgaddeditestimitem.cpp:31
-msgid "Description:"
-msgstr "Description :"
-
-#: sources/dlgaddeditestimitem.cpp:37
-msgid "Comments:"
-msgstr "Commentaires :"
-
-#: sources/dlgaddeditestimitem.cpp:44
-msgid "Unit price:"
-msgstr "Prix unitaire :"
-
-#: sources/dlgaddeditestimitem.cpp:50
-msgid "Quantity:"
-msgstr "Quantité :"
 
 #: sources/dlgaddeditestimitem.cpp:54
 msgid ""
@@ -324,27 +406,31 @@ msgstr "Adresse"
 msgid "Results:"
 msgstr "Résultats :"
 
-#: sources/main.cpp:54
+#: sources/main.cpp:57
 msgid "An other instance of this application is already running !"
 msgstr "Une autre instance de cette application est déjà en train de tourner !"
 
-#: sources/main.cpp:54
+#: sources/main.cpp:57
 msgid "Multiple instances forbidden"
 msgstr "Instances multiples interdites"
 
-#: sources/mainframe.cpp:96
+#: sources/mainframe.cpp:97
 msgid "Home"
 msgstr "Accueil"
 
-#: sources/mainframe.cpp:99
+#: sources/mainframe.cpp:100
 msgid "Clients"
 msgstr "Clients"
 
-#: sources/mainframe.cpp:102
+#: sources/mainframe.cpp:103
 msgid "Estimates"
 msgstr "Devis"
 
-#: sources/mainframe.cpp:160
+#: sources/mainframe.cpp:106
+msgid "Bills"
+msgstr "Factures"
+
+#: sources/mainframe.cpp:164
 msgid ""
 "You changed the translation settings.\n"
 "You must restart the application to see this in effect."
@@ -352,9 +438,99 @@ msgstr ""
 "Vous avez modifié les réglages de traduction.\n"
 "Vous devez redémarrer l'application pour que cela soit effectif."
 
-#: sources/mainframe.cpp:160
+#: sources/mainframe.cpp:164
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
+
+#: sources/panelnbookpage_bills.cpp:43 sources/panelnbookpage_estimates.cpp:43
+msgid "View:"
+msgstr "Affichage :"
+
+#: sources/panelnbookpage_bills.cpp:45
+msgid "All bills"
+msgstr "Toutes les factures"
+
+#: sources/panelnbookpage_bills.cpp:49
+msgid "Paid bills"
+msgstr "Factures payées"
+
+#: sources/panelnbookpage_bills.cpp:52
+msgid "Unpaid bills"
+msgstr "Factures non payées"
+
+#: sources/panelnbookpage_bills.cpp:59
+msgid "Num"
+msgstr "No"
+
+#: sources/panelnbookpage_bills.cpp:60 sources/panelnbookpage_estimates.cpp:59
+msgid "Date"
+msgstr "Date"
+
+#: sources/panelnbookpage_bills.cpp:61 sources/panelnbookpage_estimates.cpp:60
+msgid "Client"
+msgstr "Client"
+
+#: sources/panelnbookpage_bills.cpp:62 sources/panelnbookpage_estimates.cpp:61
+msgid "Amount"
+msgstr "Montant"
+
+#: sources/panelnbookpage_bills.cpp:63 sources/panelnbookpage_estimates.cpp:62
+msgid "Status"
+msgstr "État"
+
+#: sources/panelnbookpage_bills.cpp:64
+msgid "Deadline date"
+msgstr "Date limite"
+
+#: sources/panelnbookpage_bills.cpp:74 sources/panelnbookpage_clients.cpp:73
+#: sources/panelnbookpage_estimates.cpp:73
+msgid "Modify"
+msgstr "Modifier"
+
+#: sources/panelnbookpage_bills.cpp:78 sources/panelnbookpage_estimates.cpp:77
+msgid "Export"
+msgstr "Exporter"
+
+#: sources/panelnbookpage_bills.cpp:82 sources/panelnbookpage_estimates.cpp:81
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+#: sources/panelnbookpage_bills.cpp:132
+msgid "Remove the selected bill?"
+msgstr "Supprimer la facture sélectionnée ?"
+
+#: sources/panelnbookpage_bills.cpp:136
+msgid "An error occurred while removing the selected bill!"
+msgstr "Une erreur est survenue lors de la suppression de la facture sélectionnée !"
+
+#: sources/panelnbookpage_bills.cpp:136 sources/panelnbookpage_clients.cpp:258
+#: sources/panelnbookpage_estimates.cpp:140
+msgid "Error"
+msgstr "Erreur"
+
+#: sources/panelnbookpage_bills.cpp:181 sources/panelnbookpage_bills.cpp:185
+#: sources/panelnbookpage_bills.cpp:230 sources/panelnbookpage_bills.cpp:234
+#: sources/panelnbookpage_estimates.cpp:184
+#: sources/panelnbookpage_estimates.cpp:188
+#: sources/panelnbookpage_estimates.cpp:232
+#: sources/panelnbookpage_estimates.cpp:236
+msgid "%Y-%m-%d"
+msgstr "%d/%m/%Y"
+
+#: sources/panelnbookpage_bills.cpp:183 sources/panelnbookpage_bills.cpp:232
+#: sources/panelnbookpage_estimates.cpp:186
+#: sources/panelnbookpage_estimates.cpp:234
+#, c-format
+msgid "%10.02f$"
+msgstr "%10.02f€"
+
+#: sources/panelnbookpage_bills.cpp:184 sources/panelnbookpage_bills.cpp:233
+msgid "Paid"
+msgstr "Payée"
+
+#: sources/panelnbookpage_bills.cpp:184 sources/panelnbookpage_bills.cpp:233
+msgid "Not paid"
+msgstr "Non payée"
 
 #: sources/panelnbookpage_clients.cpp:32
 msgid "Search filter:"
@@ -375,11 +551,6 @@ msgstr "Tél. Fixe"
 #: sources/panelnbookpage_clients.cpp:64
 msgid "Cell. Number"
 msgstr "Tél. portable"
-
-#: sources/panelnbookpage_clients.cpp:73
-#: sources/panelnbookpage_estimates.cpp:73
-msgid "Modify"
-msgstr "Modifier"
 
 #: sources/panelnbookpage_clients.cpp:250
 msgid ""
@@ -405,15 +576,6 @@ msgstr "Supprimer le client sélectionné ?"
 msgid "An error occurred while removing the selected client!"
 msgstr "Une erreur est survenue lors de la suppression du client sélectionné !"
 
-#: sources/panelnbookpage_clients.cpp:258
-#: sources/panelnbookpage_estimates.cpp:140
-msgid "Error"
-msgstr "Erreur"
-
-#: sources/panelnbookpage_estimates.cpp:43
-msgid "View:"
-msgstr "Affichage :"
-
 #: sources/panelnbookpage_estimates.cpp:45
 msgid "All estimates"
 msgstr "Tous les devis"
@@ -426,33 +588,9 @@ msgstr "Devis finalisés"
 msgid "Non-finalized estimates"
 msgstr "Devis non finalisés"
 
-#: sources/panelnbookpage_estimates.cpp:59
-msgid "Date"
-msgstr "Date"
-
-#: sources/panelnbookpage_estimates.cpp:60
-msgid "Client"
-msgstr "Client"
-
-#: sources/panelnbookpage_estimates.cpp:61
-msgid "Amount"
-msgstr "Montant"
-
-#: sources/panelnbookpage_estimates.cpp:62
-msgid "Status"
-msgstr "État"
-
 #: sources/panelnbookpage_estimates.cpp:63
 msgid "Validity"
 msgstr "Validité"
-
-#: sources/panelnbookpage_estimates.cpp:77
-msgid "Export"
-msgstr "Exporter"
-
-#: sources/panelnbookpage_estimates.cpp:81
-msgid "Duplicate"
-msgstr "Dupliquer"
 
 #: sources/panelnbookpage_estimates.cpp:85
 msgid "Invoice"
@@ -465,19 +603,6 @@ msgstr "Supprimer le devis sélectionné ?"
 #: sources/panelnbookpage_estimates.cpp:140
 msgid "An error occurred while removing the selected estimate!"
 msgstr "Une erreur est survenue lors de la suppression du devis sélectionné !"
-
-#: sources/panelnbookpage_estimates.cpp:184
-#: sources/panelnbookpage_estimates.cpp:188
-#: sources/panelnbookpage_estimates.cpp:232
-#: sources/panelnbookpage_estimates.cpp:236
-msgid "%Y-%m-%d"
-msgstr "%d/%m/%Y"
-
-#: sources/panelnbookpage_estimates.cpp:186
-#: sources/panelnbookpage_estimates.cpp:234
-#, c-format
-msgid "%10.02f$"
-msgstr "%10.02f€"
 
 #: sources/panelnbookpage_estimates.cpp:187
 #: sources/panelnbookpage_estimates.cpp:235
@@ -492,8 +617,3 @@ msgstr "En cours"
 #: sources/panelnbookpage_home.cpp:39
 msgid "Your micro entreprise billing software"
 msgstr "Le logiciel de facturation de votre micro entreprise"
-
-#, fuzzy
-#~| msgid "Total: %8.02f$"
-#~ msgid "Total H.T.: %8.02f$"
-#~ msgstr "Total : %8.02f€"

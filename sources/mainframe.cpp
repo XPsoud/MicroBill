@@ -5,6 +5,7 @@
 #include "dlgoptions.h"
 #include "settingsmanager.h"
 #include "panelnbookpage_home.h"
+#include "panelnbookpage_bills.h"
 #include "panelnbookpage_clients.h"
 #include "panelnbookpage_estimates.h"
 
@@ -100,6 +101,9 @@ void MainFrame::CreateControls()
     // Page "Estimates"
     m_nbPage[PNBP_TYPE_ESTIMATES]=new PanelNBookPage_Estimates(m_nBook);
     m_nBook->AddPage(m_nbPage[PNBP_TYPE_ESTIMATES], _("Estimates"));
+    // Page "Bills"
+    m_nbPage[PNBP_TYPE_BILLS]=new PanelNBookPage_Bills(m_nBook);
+    m_nBook->AddPage(m_nbPage[PNBP_TYPE_BILLS], _("Bills"));
 
     // Menu bar
     wxMenuBar* mbar = new wxMenuBar();

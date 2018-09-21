@@ -16,6 +16,8 @@ class DatasManager
         void ClearDatas();
         // Accessors
         bool IsModified();
+        // Last used bill number
+        int GetLastBillNumber() { return m_iLastBillNumber; }
         // Clients management
         int GetClientsCount() { return m_clients.size(); }
         Client* AddNewClient();

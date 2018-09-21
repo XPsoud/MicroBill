@@ -309,6 +309,12 @@
 		<Unit filename="../sources/bill.h">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
+		<Unit filename="../sources/billitemctrl.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/billitemctrl.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
 		<Unit filename="../sources/client.cpp">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
@@ -320,6 +326,18 @@
 		</Unit>
 		<Unit filename="../sources/datasmanager.h">
 			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditbill.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditbill.h">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditbillitem.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgaddeditbillitem.h">
+			<Option virtualFolder="Dialogs/" />
 		</Unit>
 		<Unit filename="../sources/dlgaddeditclient.cpp">
 			<Option virtualFolder="Dialogs/" />
@@ -385,6 +403,12 @@
 			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_bills.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/panelnbookpage_bills.h">
 			<Option virtualFolder="Interface/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage_clients.cpp">
