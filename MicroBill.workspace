@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="µBill">
-		<Project filename="build/MicroBill.cbp" />
+		<Project filename="build/wxPdfDoc.cbp" />
+		<Project filename="build/MicroBill.cbp">
+			<Depends filename="build/wxPdfDoc.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>
