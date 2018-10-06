@@ -1,6 +1,7 @@
 #include "panelnbookpage_estimates.h"
 
 #include "main.h"
+#include "estimatepdfdoc.h"
 #include "dlgaddeditestimate.h"
 
 #include <wx/mimetype.h>
@@ -192,7 +193,7 @@ long PanelNBookPage_Estimates::InsertEstimateItemToList(Estimate* item, long bef
                 sItem = m_DatasMngr.GetClientString(item->GetClient());
                 break;
             case EI_COL_VALUE:
-                sItem = wxString::Format(_("%10.02f$"), item->GetTotalPrice());
+                sItem = wxString::Format(_("%10.02f$"), item->GetFinalPrice());
                 break;
             case EI_COL_STATUS:
                 sItem = item->IsLocked()?_("Finalized"):_("In progress");
@@ -253,7 +254,7 @@ void PanelNBookPage_Estimates::UpdateEstimateItem(long lItem)
     if (item==NULL) return;
     m_lstEstimates->SetItem(lItem, EI_COL_DATE_CREATION, item->GetCreationDate().Format(_("%Y-%m-%d")));
     m_lstEstimates->SetItem(lItem, EI_COL_CLIENT, m_DatasMngr.GetClientString(item->GetClient()));
-    m_lstEstimates->SetItem(lItem, EI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetTotalPrice()));
+    m_lstEstimates->SetItem(lItem, EI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetFinalPrice()));
     m_lstEstimates->SetItem(lItem, EI_COL_STATUS, item->IsLocked()?_("Finalized"):_("In progress"));
     m_lstEstimates->SetItem(lItem, EI_COL_DATE_LIMIT, item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")):_T(""));
 
@@ -265,7 +266,33 @@ void PanelNBookPage_Estimates::UpdateEstimateItem(long lItem)
 
 void PanelNBookPage_Estimates::OnBtnSaveAsClicked(wxCommandEvent& event)
 {
-    // TODO (Xaviou#1#): Implement this using wxPdfDocument
+    // Retreive the selected Estimate item and its associated client
+    long lItem = m_lstEstimates->GetFirstSelected();
+    if (lItem==wxNOT_FOUND) return;
+    Estimate* item = (Estimate*)m_lstEstimates->GetItemData(lItem);
+    if (item==NULL) return;
+    Client* cl = m_DatasMngr.GetClient(item->GetClient());
+    if (cl==NULL) return;
+    // TODO (Xaviou#1#): If we don't reach here, inform the user with the reason
+
+    // Create the pdf file name
+    wxString sFName = _("Estimate");
+    sFName << _T("-") << item->GetCreationDate().Format(_T("%Y%m%d%H%M"));
+    sFName << _T("-") << m_DatasMngr.GetClientString(cl) << _T(".pdf");
+
+    // Show the "Save as" dialog box
+    wxFileDialog fdlg(wxTheApp->GetTopWindow(), _("Save the estimate"),
+                      wxEmptyString, sFName, _("Pdf files (*.pdf)|*.pdf|All files (*.*)|*.*"),
+                      wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    if (fdlg.ShowModal() != wxID_OK)
+        return;
+
+    // Create the pdf document
+    EstimatePdfDoc *doc=new EstimatePdfDoc(item);
+    doc->DoCreateDocument();
+
+    doc->SaveAsFile(fdlg.GetPath());
+    delete doc;
 }
 
 void PanelNBookPage_Estimates::OnBtnCopyClicked(wxCommandEvent& event)

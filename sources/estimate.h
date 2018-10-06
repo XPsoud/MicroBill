@@ -39,7 +39,8 @@ class Estimate
         int GetItemQuantity(size_t index);
         void SetDiscount(double value);
         double GetDiscount() { return m_dDiscount; }
-        double GetTotalPrice() const;
+        double GetInitialPrice() const;
+        double GetFinalPrice() const;
         void SetVAT(double vat);
         double GetVAT() { return m_dVAT; }
         // Sorting callbacks

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 19:16+0200\n"
-"PO-Revision-Date: 2018-09-21 19:23+0200\n"
+"POT-Creation-Date: 2018-10-06 21:28+0200\n"
+"PO-Revision-Date: 2018-10-06 21:28+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -45,6 +45,69 @@ msgstr "Q. : %3d"
 #, c-format
 msgid "Price : %9.02f$"
 msgstr "Prix : %9.02f€"
+
+#: sources/billpdfdoc.cpp:22
+#, c-format
+msgid "Bill #%s-%04d"
+msgstr "Facture N° %s-%04d"
+
+#: sources/billpdfdoc.cpp:26
+msgid "Bill #_ _ _ _ _ _ _ _ _ _ _ _"
+msgstr "Facture N° _ _ _ _ _ _ _ _ _ _ _ _"
+
+#: sources/billpdfdoc.cpp:94 sources/billpdfdoc.cpp:96
+#: sources/billpdfdoc.cpp:128 sources/estimatepdfdoc.cpp:93
+#: sources/estimatepdfdoc.cpp:95 sources/estimatepdfdoc.cpp:125
+#, c-format
+msgid "%.02f$"
+msgstr "%.02f€"
+
+#: sources/billpdfdoc.cpp:132 sources/billpdfdoc.cpp:151
+#: sources/billpdfdoc.cpp:166 sources/estimatepdfdoc.cpp:128
+#: sources/estimatepdfdoc.cpp:147 sources/estimatepdfdoc.cpp:162
+msgid "Total to pay:"
+msgstr "Total à payer :"
+
+#: sources/billpdfdoc.cpp:138 sources/estimatepdfdoc.cpp:134
+msgid "Sub-total:"
+msgstr "Sous-total :"
+
+#: sources/billpdfdoc.cpp:139 sources/estimatepdfdoc.cpp:135
+#, c-format
+msgid "Discount (%0.2f%%)"
+msgstr "Remise (%0.2f%%)"
+
+#: sources/billpdfdoc.cpp:141 sources/billpdfdoc.cpp:143
+#: sources/billpdfdoc.cpp:149 sources/billpdfdoc.cpp:152
+#: sources/billpdfdoc.cpp:164 sources/billpdfdoc.cpp:167
+#: sources/estimatepdfdoc.cpp:137 sources/estimatepdfdoc.cpp:139
+#: sources/estimatepdfdoc.cpp:145 sources/estimatepdfdoc.cpp:148
+#: sources/estimatepdfdoc.cpp:160 sources/estimatepdfdoc.cpp:163
+#, c-format
+msgid "%0.2f$"
+msgstr "%0.2f€"
+
+#: sources/billpdfdoc.cpp:146 sources/estimatepdfdoc.cpp:142
+msgid "Total w/o VAT"
+msgstr "Total H.T."
+
+#: sources/billpdfdoc.cpp:147 sources/billpdfdoc.cpp:162
+#: sources/estimatepdfdoc.cpp:143 sources/estimatepdfdoc.cpp:158
+#, c-format
+msgid "VAT (%0.1f%%)"
+msgstr "T.V.A. (%0.1f%%)"
+
+#: sources/billpdfdoc.cpp:156 sources/estimatepdfdoc.cpp:152
+msgid "Total w/o VAT to pay:"
+msgstr "Total H.T. à payer :"
+
+#: sources/billpdfdoc.cpp:161 sources/estimatepdfdoc.cpp:157
+msgid "Total w/o VAT:"
+msgstr "Total H.T.:"
+
+#: sources/billpdfdoc.cpp:182 sources/estimatepdfdoc.cpp:178
+msgid "V.A.T. non-applicable"
+msgstr "TVA non applicable (art. 293 B du CGI)"
 
 #: sources/dlgaddeditbill.cpp:21
 msgid "Creating a new bill"
@@ -108,8 +171,8 @@ msgid "Remove this entry ?"
 msgstr "Supprimer cette entrée ?"
 
 #: sources/dlgaddeditbill.cpp:365 sources/dlgaddeditestimate.cpp:337
-#: sources/panelnbookpage_bills.cpp:132 sources/panelnbookpage_clients.cpp:254
-#: sources/panelnbookpage_estimates.cpp:136
+#: sources/panelnbookpage_bills.cpp:129 sources/panelnbookpage_clients.cpp:254
+#: sources/panelnbookpage_estimates.cpp:135
 msgid "Confirmation"
 msgstr "Confirmation"
 
@@ -406,6 +469,15 @@ msgstr "Adresse"
 msgid "Results:"
 msgstr "Résultats :"
 
+#: sources/estimatepdfdoc.cpp:22
+#, c-format
+msgid "Estimate #%s"
+msgstr "Devis N° %s"
+
+#: sources/estimatepdfdoc.cpp:26
+msgid "Estimate #_ _ _ _ _ _ _ _ _ _ _ _"
+msgstr "Devis N° _ _ _ _ _ _ _ _ _ _ _ _"
+
 #: sources/main.cpp:57
 msgid "An other instance of this application is already running !"
 msgstr "Une autre instance de cette application est déjà en train de tourner !"
@@ -414,23 +486,23 @@ msgstr "Une autre instance de cette application est déjà en train de tourner !
 msgid "Multiple instances forbidden"
 msgstr "Instances multiples interdites"
 
-#: sources/mainframe.cpp:97
+#: sources/mainframe.cpp:98
 msgid "Home"
 msgstr "Accueil"
 
-#: sources/mainframe.cpp:100
+#: sources/mainframe.cpp:101
 msgid "Clients"
 msgstr "Clients"
 
-#: sources/mainframe.cpp:103
+#: sources/mainframe.cpp:104
 msgid "Estimates"
 msgstr "Devis"
 
-#: sources/mainframe.cpp:106
+#: sources/mainframe.cpp:107
 msgid "Bills"
 msgstr "Factures"
 
-#: sources/mainframe.cpp:164
+#: sources/mainframe.cpp:167
 msgid ""
 "You changed the translation settings.\n"
 "You must restart the application to see this in effect."
@@ -438,99 +510,133 @@ msgstr ""
 "Vous avez modifié les réglages de traduction.\n"
 "Vous devez redémarrer l'application pour que cela soit effectif."
 
-#: sources/mainframe.cpp:164
+#: sources/mainframe.cpp:167
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
-#: sources/panelnbookpage_bills.cpp:43 sources/panelnbookpage_estimates.cpp:43
+#: sources/microbillpdfdoc.cpp:43
+msgid "Description"
+msgstr "Description"
+
+#: sources/microbillpdfdoc.cpp:44
+msgid "Unit Price"
+msgstr "P. U."
+
+#: sources/microbillpdfdoc.cpp:45
+msgid "Qty"
+msgstr "Qté"
+
+#: sources/microbillpdfdoc.cpp:46
+msgid "Total"
+msgstr "Total"
+
+#: sources/microbillpdfdoc.cpp:61
+#, c-format
+msgid "Page %d on {nb}"
+msgstr "Page %d / {nb}"
+
+#: sources/panelnbookpage_bills.cpp:33 sources/panelnbookpage_estimates.cpp:35
 msgid "View:"
 msgstr "Affichage :"
 
-#: sources/panelnbookpage_bills.cpp:45
+#: sources/panelnbookpage_bills.cpp:35
 msgid "All bills"
 msgstr "Toutes les factures"
 
-#: sources/panelnbookpage_bills.cpp:49
+#: sources/panelnbookpage_bills.cpp:39
 msgid "Paid bills"
 msgstr "Factures payées"
 
-#: sources/panelnbookpage_bills.cpp:52
+#: sources/panelnbookpage_bills.cpp:42
 msgid "Unpaid bills"
 msgstr "Factures non payées"
 
-#: sources/panelnbookpage_bills.cpp:59
+#: sources/panelnbookpage_bills.cpp:49
 msgid "Num"
 msgstr "No"
 
-#: sources/panelnbookpage_bills.cpp:60 sources/panelnbookpage_estimates.cpp:59
+#: sources/panelnbookpage_bills.cpp:50 sources/panelnbookpage_estimates.cpp:51
 msgid "Date"
 msgstr "Date"
 
-#: sources/panelnbookpage_bills.cpp:61 sources/panelnbookpage_estimates.cpp:60
+#: sources/panelnbookpage_bills.cpp:51 sources/panelnbookpage_estimates.cpp:52
 msgid "Client"
 msgstr "Client"
 
-#: sources/panelnbookpage_bills.cpp:62 sources/panelnbookpage_estimates.cpp:61
+#: sources/panelnbookpage_bills.cpp:52 sources/panelnbookpage_estimates.cpp:53
 msgid "Amount"
 msgstr "Montant"
 
-#: sources/panelnbookpage_bills.cpp:63 sources/panelnbookpage_estimates.cpp:62
+#: sources/panelnbookpage_bills.cpp:53 sources/panelnbookpage_estimates.cpp:54
 msgid "Status"
 msgstr "État"
 
-#: sources/panelnbookpage_bills.cpp:64
+#: sources/panelnbookpage_bills.cpp:54
 msgid "Deadline date"
 msgstr "Date limite"
 
-#: sources/panelnbookpage_bills.cpp:74 sources/panelnbookpage_clients.cpp:73
-#: sources/panelnbookpage_estimates.cpp:73
+#: sources/panelnbookpage_bills.cpp:64 sources/panelnbookpage_clients.cpp:73
+#: sources/panelnbookpage_estimates.cpp:65
 msgid "Modify"
 msgstr "Modifier"
 
-#: sources/panelnbookpage_bills.cpp:78 sources/panelnbookpage_estimates.cpp:77
+#: sources/panelnbookpage_bills.cpp:68 sources/panelnbookpage_estimates.cpp:69
 msgid "Export"
 msgstr "Exporter"
 
-#: sources/panelnbookpage_bills.cpp:82 sources/panelnbookpage_estimates.cpp:81
+#: sources/panelnbookpage_bills.cpp:72 sources/panelnbookpage_estimates.cpp:73
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: sources/panelnbookpage_bills.cpp:132
+#: sources/panelnbookpage_bills.cpp:129
 msgid "Remove the selected bill?"
 msgstr "Supprimer la facture sélectionnée ?"
 
-#: sources/panelnbookpage_bills.cpp:136
+#: sources/panelnbookpage_bills.cpp:133
 msgid "An error occurred while removing the selected bill!"
 msgstr "Une erreur est survenue lors de la suppression de la facture sélectionnée !"
 
-#: sources/panelnbookpage_bills.cpp:136 sources/panelnbookpage_clients.cpp:258
-#: sources/panelnbookpage_estimates.cpp:140
+#: sources/panelnbookpage_bills.cpp:133 sources/panelnbookpage_clients.cpp:258
+#: sources/panelnbookpage_estimates.cpp:139
 msgid "Error"
 msgstr "Erreur"
 
-#: sources/panelnbookpage_bills.cpp:181 sources/panelnbookpage_bills.cpp:185
-#: sources/panelnbookpage_bills.cpp:230 sources/panelnbookpage_bills.cpp:234
-#: sources/panelnbookpage_estimates.cpp:184
-#: sources/panelnbookpage_estimates.cpp:188
-#: sources/panelnbookpage_estimates.cpp:232
-#: sources/panelnbookpage_estimates.cpp:236
+#: sources/panelnbookpage_bills.cpp:187 sources/panelnbookpage_bills.cpp:199
+#: sources/panelnbookpage_bills.cpp:253 sources/panelnbookpage_bills.cpp:257
+#: sources/panelnbookpage_estimates.cpp:190
+#: sources/panelnbookpage_estimates.cpp:202
+#: sources/panelnbookpage_estimates.cpp:255
+#: sources/panelnbookpage_estimates.cpp:259
 msgid "%Y-%m-%d"
 msgstr "%d/%m/%Y"
 
-#: sources/panelnbookpage_bills.cpp:183 sources/panelnbookpage_bills.cpp:232
-#: sources/panelnbookpage_estimates.cpp:186
-#: sources/panelnbookpage_estimates.cpp:234
+#: sources/panelnbookpage_bills.cpp:193 sources/panelnbookpage_bills.cpp:255
+#: sources/panelnbookpage_estimates.cpp:196
+#: sources/panelnbookpage_estimates.cpp:257
 #, c-format
 msgid "%10.02f$"
 msgstr "%10.02f€"
 
-#: sources/panelnbookpage_bills.cpp:184 sources/panelnbookpage_bills.cpp:233
+#: sources/panelnbookpage_bills.cpp:196 sources/panelnbookpage_bills.cpp:256
 msgid "Paid"
 msgstr "Payée"
 
-#: sources/panelnbookpage_bills.cpp:184 sources/panelnbookpage_bills.cpp:233
+#: sources/panelnbookpage_bills.cpp:196 sources/panelnbookpage_bills.cpp:256
 msgid "Not paid"
 msgstr "Non payée"
+
+#: sources/panelnbookpage_bills.cpp:278
+msgid "Bill"
+msgstr "Facture"
+
+#: sources/panelnbookpage_bills.cpp:283
+msgid "Save the bill"
+msgstr "Enregistrer la facture"
+
+#: sources/panelnbookpage_bills.cpp:284
+#: sources/panelnbookpage_estimates.cpp:285
+msgid "Pdf files (*.pdf)|*.pdf|All files (*.*)|*.*"
+msgstr "Fichiers pdf (*.pdf)|*.pdf|Tous les fichiers (*.*)|*.*"
 
 #: sources/panelnbookpage_clients.cpp:32
 msgid "Search filter:"
@@ -576,43 +682,51 @@ msgstr "Supprimer le client sélectionné ?"
 msgid "An error occurred while removing the selected client!"
 msgstr "Une erreur est survenue lors de la suppression du client sélectionné !"
 
-#: sources/panelnbookpage_estimates.cpp:45
+#: sources/panelnbookpage_estimates.cpp:37
 msgid "All estimates"
 msgstr "Tous les devis"
 
-#: sources/panelnbookpage_estimates.cpp:49
+#: sources/panelnbookpage_estimates.cpp:41
 msgid "Finalized estimates"
 msgstr "Devis finalisés"
 
-#: sources/panelnbookpage_estimates.cpp:52
+#: sources/panelnbookpage_estimates.cpp:44
 msgid "Non-finalized estimates"
 msgstr "Devis non finalisés"
 
-#: sources/panelnbookpage_estimates.cpp:63
+#: sources/panelnbookpage_estimates.cpp:55
 msgid "Validity"
 msgstr "Validité"
 
-#: sources/panelnbookpage_estimates.cpp:85
+#: sources/panelnbookpage_estimates.cpp:77
 msgid "Invoice"
 msgstr "Facture"
 
-#: sources/panelnbookpage_estimates.cpp:136
+#: sources/panelnbookpage_estimates.cpp:135
 msgid "Remove the selected estimate?"
 msgstr "Supprimer le devis sélectionné ?"
 
-#: sources/panelnbookpage_estimates.cpp:140
+#: sources/panelnbookpage_estimates.cpp:139
 msgid "An error occurred while removing the selected estimate!"
 msgstr "Une erreur est survenue lors de la suppression du devis sélectionné !"
 
-#: sources/panelnbookpage_estimates.cpp:187
-#: sources/panelnbookpage_estimates.cpp:235
+#: sources/panelnbookpage_estimates.cpp:199
+#: sources/panelnbookpage_estimates.cpp:258
 msgid "Finalized"
 msgstr "Finalisé"
 
-#: sources/panelnbookpage_estimates.cpp:187
-#: sources/panelnbookpage_estimates.cpp:235
+#: sources/panelnbookpage_estimates.cpp:199
+#: sources/panelnbookpage_estimates.cpp:258
 msgid "In progress"
 msgstr "En cours"
+
+#: sources/panelnbookpage_estimates.cpp:279
+msgid "Estimate"
+msgstr "Devis"
+
+#: sources/panelnbookpage_estimates.cpp:284
+msgid "Save the estimate"
+msgstr "Enregistrer le devis"
 
 #: sources/panelnbookpage_home.cpp:39
 msgid "Your micro entreprise billing software"

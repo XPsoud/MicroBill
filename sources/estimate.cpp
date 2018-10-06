@@ -327,13 +327,20 @@ void Estimate::SetVAT(double vat)
     }
 }
 
-double Estimate::GetTotalPrice() const
+double Estimate::GetInitialPrice() const
 {
     double dTotal=0;
     for (int i=0; i<GetItemsCount(); ++i)
     {
         dTotal += m_ardUnitPrice[i] * m_ariQuantity[i];
     }
+
+    return dTotal;
+}
+
+double Estimate::GetFinalPrice() const
+{
+    double dTotal = GetInitialPrice();
     double dDisc=1.-(m_dDiscount/100.);
     dTotal *=dDisc;
     if (m_dVAT!=0.)
@@ -372,7 +379,7 @@ int Estimate::SortEstimateByClientAscCallback(const Estimate** e1, const Estimat
 int Estimate::SortEstimateByTotalAscCallback(const Estimate** e1, const Estimate** e2)
 {
     const Estimate *pe1=*e1, *pe2=*e2;
-    double d1=pe1->GetTotalPrice(), d2=pe2->GetTotalPrice();
+    double d1=pe1->GetFinalPrice(), d2=pe2->GetFinalPrice();
     if (d1<d2)
         return -1;
     else

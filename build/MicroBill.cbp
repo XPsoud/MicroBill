@@ -4,7 +4,7 @@
 	<Project>
 		<Option title="µBill" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Graphx/;Misc/;Interface/;Datas-Options/;Dialogs/" />
+		<Option virtualFolders="Graphx/;Misc/;Interface/;Datas-Options/;Dialogs/;PdfDocs/" />
 		<Build>
 			<Target title="Release32">
 				<Option platforms="Windows;" />
@@ -29,6 +29,7 @@
 					<Add option="-D__WXMSW__" />
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
 					<Add directory="$(WX_DIR)/include" />
+					<Add directory="sources" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
@@ -74,6 +75,7 @@
 					<Add option="-D__WXMSW__" />
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
 					<Add directory="$(WX_DIR)/include" />
+					<Add directory="sources" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
@@ -117,6 +119,7 @@
 					<Add option="-D__WXMSW__" />
 					<Add directory="$(WX_DIR)/lib/gcc_lib$(ARCHI)/mswu$(DBG_FLG)" />
 					<Add directory="$(WX_DIR)/include" />
+					<Add directory="sources" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(WX_DIR)/lib/gcc_lib$(ARCHI)/mswu$(DBG_FLG)" />
@@ -178,6 +181,7 @@
 					<Add option="-D__WXMSW__" />
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
 					<Add directory="$(WX_DIR)/include" />
+					<Add directory="sources" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
@@ -222,6 +226,7 @@
 					<Add option="-D__WXMSW__" />
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
 					<Add directory="$(WX_DIR)/include" />
+					<Add directory="sources" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(WX_DIR)/lib/gcc_dll$(ARCHI)/mswu$(DBG_FLG)" />
@@ -264,6 +269,7 @@
 					<Add option="-D__WXMSW__" />
 					<Add directory="$(WX_DIR)/lib/gcc_lib$(ARCHI)/mswu$(DBG_FLG)" />
 					<Add directory="$(WX_DIR)/include" />
+					<Add directory="sources" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(WX_DIR)/lib/gcc_lib$(ARCHI)/mswu$(DBG_FLG)" />
@@ -327,6 +333,12 @@
 		<Unit filename="../sources/billitemctrl.h">
 			<Option virtualFolder="Interface/" />
 		</Unit>
+		<Unit filename="../sources/billpdfdoc.cpp">
+			<Option virtualFolder="PdfDocs/" />
+		</Unit>
+		<Unit filename="../sources/billpdfdoc.h">
+			<Option virtualFolder="PdfDocs/" />
+		</Unit>
 		<Unit filename="../sources/client.cpp">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
@@ -387,6 +399,12 @@
 		<Unit filename="../sources/estimate.h">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
+		<Unit filename="../sources/estimatepdfdoc.cpp">
+			<Option virtualFolder="PdfDocs/" />
+		</Unit>
+		<Unit filename="../sources/estimatepdfdoc.h">
+			<Option virtualFolder="PdfDocs/" />
+		</Unit>
 		<Unit filename="../sources/estimitemctrl.cpp">
 			<Option virtualFolder="Interface/" />
 		</Unit>
@@ -410,6 +428,12 @@
 		</Unit>
 		<Unit filename="../sources/microbill.png.h">
 			<Option virtualFolder="Graphx/" />
+		</Unit>
+		<Unit filename="../sources/microbillpdfdoc.cpp">
+			<Option virtualFolder="PdfDocs/" />
+		</Unit>
+		<Unit filename="../sources/microbillpdfdoc.h">
+			<Option virtualFolder="PdfDocs/" />
 		</Unit>
 		<Unit filename="../sources/panelnbookpage.cpp">
 			<Option virtualFolder="Interface/" />

@@ -476,13 +476,21 @@ void Bill::SetPayNote(const wxString& note)
     }
 }
 
-double Bill::GetTotalPrice() const
+double Bill::GetInitialPrice() const
 {
     double dTotal=0;
+
     for (int i=0; i<GetItemsCount(); ++i)
     {
         dTotal += m_ardUnitPrice[i] * m_ariQuantity[i];
     }
+
+    return dTotal;
+}
+
+double Bill::GetFinalPrice() const
+{
+    double dTotal = GetInitialPrice();
     double dDisc=1.-(m_dDiscount/100.);
     dTotal *=dDisc;
     if (m_dVAT!=0.)
@@ -539,7 +547,7 @@ int Bill::SortBillByClientAscCallback(const Bill** b1, const Bill** b2)
 int Bill::SortBillByTotalAscCallback(const Bill** b1, const Bill** b2)
 {
     const Bill *pb1=*b1, *pb2=*b2;
-    double d1=pb1->GetTotalPrice(), d2=pb2->GetTotalPrice();
+    double d1=pb1->GetFinalPrice(), d2=pb2->GetFinalPrice();
     if (d1<d2)
         return -1;
     else

@@ -1,6 +1,7 @@
 #include "panelnbookpage_bills.h"
 
 #include "main.h"
+#include "billpdfdoc.h"
 #include "dlgaddeditbill.h"
 
 #include <wx/mimetype.h>
@@ -189,7 +190,7 @@ long PanelNBookPage_Bills::InsertBillItemToList(Bill* item, long before, bool se
                 sItem = m_DatasMngr.GetClientString(item->GetClientKey());
                 break;
             case BI_COL_VALUE:
-                sItem = wxString::Format(_("%10.02f$"), item->GetTotalPrice());
+                sItem = wxString::Format(_("%10.02f$"), item->GetFinalPrice());
                 break;
             case BI_COL_STATUS:
                 sItem = item->IsLocked()?_("Paid"):_("Not paid");
@@ -251,7 +252,7 @@ void PanelNBookPage_Bills::UpdateBillItem(long lItem)
     m_lstBills->SetItem(lItem, BI_COL_NUMBER, wxString::Format(_T("%04d"), item->GetBillNumber()));
     m_lstBills->SetItem(lItem, BI_COL_DATE_CREATION, item->GetCreationDate().Format(_("%Y-%m-%d")));
     m_lstBills->SetItem(lItem, BI_COL_CLIENT, m_DatasMngr.GetClientString(item->GetClientKey()));
-    m_lstBills->SetItem(lItem, BI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetTotalPrice()));
+    m_lstBills->SetItem(lItem, BI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetFinalPrice()));
     m_lstBills->SetItem(lItem, BI_COL_STATUS, item->IsLocked()?_("Paid"):_("Not paid"));
     m_lstBills->SetItem(lItem, BI_COL_DATE_LIMIT, item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")): _T(""));
 
@@ -263,7 +264,34 @@ void PanelNBookPage_Bills::UpdateBillItem(long lItem)
 
 void PanelNBookPage_Bills::OnBtnSaveAsClicked(wxCommandEvent& event)
 {
-    // TODO (Xaviou#1#): Implement this using wxPdfDocument
+    // Retreive the selected Bill item and its associated client
+    long lItem = m_lstBills->GetFirstSelected();
+    if (lItem==wxNOT_FOUND) return;
+    Bill* item = (Bill*)m_lstBills->GetItemData(lItem);
+    if (item==NULL) return;
+    Client* cl=m_DatasMngr.GetClient(item->GetClientKey());
+    if (cl==NULL) return;
+    // TODO (Xaviou#1#): If we don't reach here, inform the user with the reason
+
+    // Create the pdf file name
+    wxString sFName = wxString::Format(_T("%04d "), item->GetBillNumber());
+    sFName << _("Bill");
+    sFName << _T("-") << item->GetCreationDate().Format(_T("%Y%m%d%H%M"));
+    sFName << _T("-") << m_DatasMngr.GetClientString(cl) << _T(".pdf");
+
+    // Show the "Save as" dialog box
+    wxFileDialog fdlg(wxTheApp->GetTopWindow(), _("Save the bill"),
+                      wxEmptyString, sFName, _("Pdf files (*.pdf)|*.pdf|All files (*.*)|*.*"),
+                      wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    if (fdlg.ShowModal() != wxID_OK)
+        return;
+
+    // Create the pdf document
+    BillPdfDoc *doc=new BillPdfDoc(item);
+    doc->DoCreateDocument();
+
+    doc->SaveAsFile(fdlg.GetPath());
+    delete doc;
 }
 
 void PanelNBookPage_Bills::OnBtnCopyClicked(wxCommandEvent& event)
