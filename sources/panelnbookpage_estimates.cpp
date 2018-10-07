@@ -193,7 +193,7 @@ long PanelNBookPage_Estimates::InsertEstimateItemToList(Estimate* item, long bef
                 sItem = m_DatasMngr.GetClientString(item->GetClient());
                 break;
             case EI_COL_VALUE:
-                sItem = wxString::Format(_("%10.02f$"), item->GetFinalPrice());
+                sItem = m_SettingsMngr.GetFormatedMoneyValue(item->GetFinalPrice(), _T("%10.02f"));
                 break;
             case EI_COL_STATUS:
                 sItem = item->IsLocked()?_("Finalized"):_("In progress");
@@ -254,7 +254,7 @@ void PanelNBookPage_Estimates::UpdateEstimateItem(long lItem)
     if (item==NULL) return;
     m_lstEstimates->SetItem(lItem, EI_COL_DATE_CREATION, item->GetCreationDate().Format(_("%Y-%m-%d")));
     m_lstEstimates->SetItem(lItem, EI_COL_CLIENT, m_DatasMngr.GetClientString(item->GetClient()));
-    m_lstEstimates->SetItem(lItem, EI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetFinalPrice()));
+    m_lstEstimates->SetItem(lItem, EI_COL_VALUE, m_SettingsMngr.GetFormatedMoneyValue(item->GetFinalPrice(), _T("%10.02f")));
     m_lstEstimates->SetItem(lItem, EI_COL_STATUS, item->IsLocked()?_("Finalized"):_("In progress"));
     m_lstEstimates->SetItem(lItem, EI_COL_DATE_LIMIT, item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")):_T(""));
 

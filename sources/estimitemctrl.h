@@ -3,6 +3,8 @@
 
 #include <wx/wx.h>
 
+class SettingsManager;
+
 class EstimItemCtrl : public wxPanel
 {
     public:
@@ -36,6 +38,7 @@ class EstimItemCtrl : public wxPanel
         double m_dUnitPrice;
         int m_iQuantity, m_iIndex;
         bool m_bBackgroundChanged;
+        SettingsManager& m_options;
 };
 
 #endif // __ESTIMITEMCTRL_H_INCLUDED__

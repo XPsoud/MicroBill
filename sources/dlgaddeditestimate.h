@@ -7,6 +7,7 @@
 #include <wx/spinctrl.h>
 
 class Estimate;
+class SettingsManager;
 
 class DlgAddEditEstimate : public wxDialog
 {
@@ -49,6 +50,7 @@ class DlgAddEditEstimate : public wxDialog
         wxCheckBox *m_chkShowVAT;
         wxPanel *m_pnlBottom;
         // Misc vars
+        SettingsManager& m_options;
         Estimate* m_Estimate;
         wxString m_sClient;
         bool m_bLocked;

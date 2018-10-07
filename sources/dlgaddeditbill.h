@@ -7,6 +7,7 @@
 #include <wx/spinctrl.h>
 
 class Bill;
+class SettingsManager;
 
 class DlgAddEditBill : public wxDialog
 {
@@ -52,6 +53,7 @@ class DlgAddEditBill : public wxDialog
         wxCheckBox *m_chkShowVAT, *m_chkPayNote;
         wxPanel *m_pnlBottom;
         // Misc vars
+        SettingsManager& m_options;
         Bill* m_Bill;
         wxString m_sClientKey;
         bool m_bLocked;

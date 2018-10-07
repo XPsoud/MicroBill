@@ -1,13 +1,14 @@
 #include "estimitemctrl.h"
 
-#include <wx/settings.h>
+#include "settingsmanager.h"
 
 wxFont EstimItemCtrl::m_fntDescr=wxNullFont;
 wxFont EstimItemCtrl::m_fntFixed=wxNullFont;
 wxColour EstimItemCtrl::m_colHiglight=wxNullColour;
 wxColour EstimItemCtrl::m_colNormal=wxNullColour;
 
-EstimItemCtrl::EstimItemCtrl(wxWindow *parent) : wxPanel(parent)
+EstimItemCtrl::EstimItemCtrl(wxWindow *parent) : wxPanel(parent),
+    m_options(SettingsManager::Get())
 {
 #ifdef __WXDEBUG__
     wxPrintf(_T("Creating a \"EstimItemCtrl\" object\n"));
@@ -121,9 +122,9 @@ void EstimItemCtrl::Update()
     m_lblDescr->SetLabel(m_sDescr);
     m_lblComments->SetLabel(m_sComments);
     wxString sPrice = wxEmptyString;
-    sPrice << wxString::Format(_("Unit price : %6.02f$"), m_dUnitPrice);
+    sPrice << _("Unit price:") << _T(" ") << m_options.GetFormatedMoneyValue(m_dUnitPrice, _T("%6.02f"));
     sPrice << _T("      ") << wxString::Format(_("Q. : %3d"), m_iQuantity);
-    sPrice << _T("      ") << wxString::Format(_("Price : %9.02f$"), double(m_dUnitPrice*m_iQuantity));
+    sPrice << _T("      ") << _("Price:") << _T(" ") << m_options.GetFormatedMoneyValue(double(m_dUnitPrice*m_iQuantity), _T("%9.02f"));
 
     m_lblPrice->SetLabel(sPrice);
     GetSizer()->SetSizeHints(this);

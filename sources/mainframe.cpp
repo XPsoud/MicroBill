@@ -158,6 +158,9 @@ void MainFrame::OnPrefsClicked(wxCommandEvent &event)
 {
     // Save the "KeepLang" state
     bool bOldLng=m_settings.GetProhibitI18N();
+    // Save the Money sign and position settins
+    int iSignPos = m_settings.GetMoneySignPos();
+    wxString sSign = m_settings.GetMonetarySign();
 
     DlgOptions dlg(this);
     dlg.ShowModal();
@@ -165,6 +168,12 @@ void MainFrame::OnPrefsClicked(wxCommandEvent &event)
     if (m_settings.GetProhibitI18N()!=bOldLng)
     {
         wxMessageBox(_("You changed the translation settings.\nYou must restart the application to see this in effect."), _("Restart needed"), wxICON_INFORMATION|wxCENTER|wxOK);
+    }
+    if ((m_settings.GetMoneySignPos() != iSignPos) ||
+        (m_settings.GetMonetarySign() != sSign) )
+    {
+        m_nbPage[PNBP_TYPE_ESTIMATES]->RefreshDatasLists();
+        m_nbPage[PNBP_TYPE_BILLS]->RefreshDatasLists();
     }
 }
 

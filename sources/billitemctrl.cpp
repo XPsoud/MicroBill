@@ -1,13 +1,14 @@
 #include "billitemctrl.h"
 
-#include <wx/settings.h>
+#include "settingsmanager.h"
 
 wxFont BillItemCtrl::m_fntDescr=wxNullFont;
 wxFont BillItemCtrl::m_fntFixed=wxNullFont;
 wxColour BillItemCtrl::m_colHiglight=wxNullColour;
 wxColour BillItemCtrl::m_colNormal=wxNullColour;
 
-BillItemCtrl::BillItemCtrl(wxWindow *parent) : wxPanel(parent)
+BillItemCtrl::BillItemCtrl(wxWindow *parent) : wxPanel(parent),
+    m_options(SettingsManager::Get())
 {
 #ifdef __WXDEBUG__
     wxPrintf(_T("Creating a \"BillItemCtrl\" object\n"));
@@ -121,9 +122,9 @@ void BillItemCtrl::Update()
     m_lblDescr->SetLabel(m_sDescr);
     m_lblComments->SetLabel(m_sComments);
     wxString sPrice = wxEmptyString;
-    sPrice << wxString::Format(_("Unit price : %6.02f$"), m_dUnitPrice);
+    sPrice << _("Unit price:") << _T(" ") << m_options.GetFormatedMoneyValue(m_dUnitPrice, _T("%6.02f"));
     sPrice << _T("      ") << wxString::Format(_("Q. : %3d"), m_iQuantity);
-    sPrice << _T("      ") << wxString::Format(_("Price : %9.02f$"), double(m_dUnitPrice*m_iQuantity));
+    sPrice << _T("      ") << _("Price:") << _T(" ") << m_options.GetFormatedMoneyValue(double(m_dUnitPrice*m_iQuantity), _T("%9.02f"));
 
     m_lblPrice->SetLabel(sPrice);
     GetSizer()->SetSizeHints(this);

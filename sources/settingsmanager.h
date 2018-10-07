@@ -33,6 +33,13 @@ class SettingsManager
         // Prohibit translations and transaltions related stuff
         bool GetProhibitI18N() { return m_bProhibI18N; }
         void SetProhibitI18N(bool value);
+        // Monetary sign
+        const wxArrayString& GetMoneySigns() { return m_arsMoneySigns; }
+        const wxString GetMonetarySign() { return m_sMoneySign; }
+        void SetMonetarySign(const wxString& value);
+        int GetMoneySignPos() { return m_iMoneySignPos; }
+        void SetMoneySignPos(int pos);
+        wxString GetFormatedMoneyValue(double value, const wxString& format);
     protected:
     private:
         SettingsManager();
@@ -46,12 +53,15 @@ class SettingsManager
         bool m_bInitialized, m_bModified;
         wxString m_sAppPath, m_sSettingsPath;
         static const wxChar* m_szSettingsFName;
+        wxArrayString m_arsMoneySigns;
         // Settings vars
         bool m_bCompSettings;
         int m_iStartPos;
         wxPoint m_ptStartPos;
         wxSize m_szStartSize;
         bool m_bSingleInstance, m_bProhibI18N;
+        wxString m_sMoneySign;
+        int m_iMoneySignPos;
 };
 
 #endif // __SETTINGSMANAGER_H_INCLUDED__

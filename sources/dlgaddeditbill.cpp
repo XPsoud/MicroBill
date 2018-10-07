@@ -5,10 +5,12 @@
 #include "bill.h"
 #include "datasmanager.h"
 #include "billitemctrl.h"
+#include "settingsmanager.h"
 #include "dlgselectclient.h"
 #include "dlgaddeditbillitem.h"
 
-DlgAddEditBill::DlgAddEditBill(wxWindow *parent, Bill* item) : wxDialog(parent, -1, _T("Add-Edit client"))
+DlgAddEditBill::DlgAddEditBill(wxWindow *parent, Bill* item) : wxDialog(parent, -1, _T("Add-Edit client")),
+    m_options(SettingsManager::Get())
 {
 #ifdef __WXDEBUG__
     wxPrintf(_T("Creating a \"DlgAddEditBill\" object\n"));
@@ -42,6 +44,7 @@ void DlgAddEditBill::CreateControls()
 {
     wxBoxSizer *szrMain, *hszr, *vszr;
     wxStaticText *label;
+    wxString sText;
     BillItemCtrl bic(this);
 
     szrMain=new wxBoxSizer(wxVERTICAL);
@@ -84,7 +87,9 @@ void DlgAddEditBill::CreateControls()
             wxBoxSizer *s=new wxBoxSizer(wxVERTICAL);
                 m_pnlBottom=new wxPanel(m_scwItems);
                     vszr=new wxBoxSizer(wxVERTICAL);
-                        m_lblTotal=new wxStaticText(m_pnlBottom, wxID_STATIC, _T("Total: 0.00$"), wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_RIGHT);
+                        sText = _("Total:");
+                        sText << _T(" ") << m_options.GetFormatedMoneyValue(0., _T("%2.02f"));
+                        m_lblTotal=new wxStaticText(m_pnlBottom, wxID_STATIC, sText, wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_RIGHT);
                             m_lblTotal->SetFont(BillItemCtrl::GetFixedFont());
                         vszr->Add(m_lblTotal, 0, wxALL|wxEXPAND, 5);
                         hszr=new wxBoxSizer(wxHORIZONTAL);
@@ -96,11 +101,15 @@ void DlgAddEditBill::CreateControls()
                             m_scdDiscount=new wxSpinCtrlDouble(m_pnlBottom, -1, _T("0.00"), wxDefaultPosition, wxSize(60, -1));
                                 m_scdDiscount->SetDigits(2);
                             hszr->Add(m_scdDiscount, 0, wxLEFT, 5);
-                            m_lblDiscount=new wxStaticText(m_pnlBottom, wxID_STATIC, _("Amount:   0.00$"));
+                            sText = _("Amount:");
+                            sText << _T(" ") << m_options.GetFormatedMoneyValue(0., _T("%3.02f"));
+                            m_lblDiscount=new wxStaticText(m_pnlBottom, wxID_STATIC, sText);
                                 m_lblDiscount->SetFont(BillItemCtrl::GetFixedFont());
                             hszr->Add(m_lblDiscount, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
                         vszr->Add(hszr, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
-                        m_lblTotalDisc=new wxStaticText(m_pnlBottom, wxID_STATIC, _("Total w/o VAT: 0.00$"), wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_RIGHT);
+                        sText = _("Total w/o VAT:");
+                        sText << _T(" ") << m_options.GetFormatedMoneyValue(0., _T("%3.02f"));
+                        m_lblTotalDisc=new wxStaticText(m_pnlBottom, wxID_STATIC, sText, wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_RIGHT);
                         vszr->Add(m_lblTotalDisc, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
                         hszr=new wxBoxSizer(wxHORIZONTAL);
                             m_chkPayNote=new wxCheckBox(m_pnlBottom, -1, _("Payment note:"));
@@ -118,11 +127,15 @@ void DlgAddEditBill::CreateControls()
                             m_scdVAT=new wxSpinCtrlDouble(m_pnlBottom, -1, _T("20.00"), wxDefaultPosition, wxSize(60, -1));
                                 m_scdVAT->SetDigits(2);
                             hszr->Add(m_scdVAT, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
-                            m_lblVAT=new wxStaticText(m_pnlBottom, wxID_STATIC, _("Amount:   0.00$"));
+                            sText = _("Amount:");
+                            sText << _T(" ") << m_options.GetFormatedMoneyValue(0., _T("%3.02f"));
+                            m_lblVAT=new wxStaticText(m_pnlBottom, wxID_STATIC, sText);
                                 m_lblVAT->SetFont(BillItemCtrl::GetFixedFont());
                             hszr->Add(m_lblVAT, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
                         vszr->Add(hszr, 0, wxALL|wxEXPAND, 5);
-                        m_lblTaxIncl=new wxStaticText(m_pnlBottom, wxID_STATIC, _("Total to pay:   0.00$"));
+                        sText = _("Total to pay:");
+                        sText << _T(" ") << m_options.GetFormatedMoneyValue(0., _T("%3.02f"));
+                        m_lblTaxIncl=new wxStaticText(m_pnlBottom, wxID_STATIC, sText);
                             m_lblTaxIncl->SetFont(BillItemCtrl::GetFixedFont());
                         vszr->Add(m_lblTaxIncl, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_RIGHT, 5);
                     m_pnlBottom->SetSizer(vszr);
@@ -443,15 +456,25 @@ void DlgAddEditBill::Update()
         itm->SetItemIndex(i);
         dTotal += itm->GetQuantity() * itm->GetUnitPrice();
     }
-    m_lblTotal->SetLabel(wxString::Format(_("Total: %8.02f$"), dTotal));
+    wxString sText = _("Total:");
+    sText << _T(" ") << m_options.GetFormatedMoneyValue(dTotal, _T("%8.02f"));
+    m_lblTotal->SetLabel(sText);
     double dDiscount=(m_scdDiscount->GetValue()/100.)*dTotal;
-    m_lblDiscount->SetLabel(wxString::Format(_("Amount: %8.02f$"), dDiscount));
+    sText = _("Amount:");
+    sText << _T(" ") << m_options.GetFormatedMoneyValue(dDiscount, _T("%8.02f"));
+    m_lblDiscount->SetLabel(sText);
     dTotal -= dDiscount;
-    m_lblTotalDisc->SetLabel(wxString::Format(_("Total w/o VAT: %8.02f$"), dTotal));
+    sText = _("Total w/o VAT:");
+    sText << _T(" ") << m_options.GetFormatedMoneyValue(dTotal, _T("%8.02f"));
+    m_lblTotalDisc->SetLabel(sText);
     double dVat=(m_scdVAT->GetValue()/100.)*dTotal;
-    m_lblVAT->SetLabel(wxString::Format(_("Amount: %8.02f$"), dVat));
+    sText = _("Amount:");
+    sText << _T(" ") << m_options.GetFormatedMoneyValue(dVat, _T("%8.02f"));
+    m_lblVAT->SetLabel(sText);
     dTotal += dVat;
-    m_lblTaxIncl->SetLabel(wxString::Format(_("Total to pay: %8.02f$"), dTotal));
+    sText = _("Total to pay:");
+    sText << _T(" ") << m_options.GetFormatedMoneyValue(dTotal, _T("%8.02f"));
+    m_lblTaxIncl->SetLabel(sText);
     m_pnlBottom->GetSizer()->Layout();
 }
 

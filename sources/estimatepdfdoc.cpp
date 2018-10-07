@@ -90,9 +90,9 @@ void EstimatePdfDoc::WriteItem(int itmIdx)
     {
         SetFont(_T("Courier"), _T("B"), 12);
         SetXY(135, iY);
-        Cell(25, iHght, wxString::Format(_("%.02f$"), dPrice), wxPDF_BORDER_NONE, 0, wxPDF_ALIGN_RIGHT);
+        Cell(25, iHght, m_options.GetFormatedMoneyValue(dPrice, _T("%.02f")), wxPDF_BORDER_NONE, 0, wxPDF_ALIGN_RIGHT);
         Cell(15, iHght, wxString::Format(_T("%0d"), iQty), wxPDF_BORDER_NONE, 0, wxPDF_ALIGN_CENTER);
-        Cell(25, iHght, wxString::Format(_("%.02f$"), dPrice*iQty), wxPDF_BORDER_NONE, 0, wxPDF_ALIGN_RIGHT);
+        Cell(25, iHght, m_options.GetFormatedMoneyValue(dPrice*iQty, _T("%.02f")), wxPDF_BORDER_NONE, 0, wxPDF_ALIGN_RIGHT);
     }
     SetXY(10, iY+iHght);
 }
@@ -122,7 +122,7 @@ void EstimatePdfDoc::Finalize()
     }
 
     double dTotal = m_estimate->GetInitialPrice();
-    wxString sTotal, sPrice = wxString::Format(_("%.02f$"), dTotal);
+    wxString sTotal, sPrice = m_options.GetFormatedMoneyValue(dTotal, _T("%.02f"));
     if ((m_estimate->GetDiscount()==0.) && (m_estimate->GetVAT()==0.))
     {
         sTotal = _("Total to pay:");
@@ -134,18 +134,18 @@ void EstimatePdfDoc::Finalize()
             sTotal = _("Sub-total:");
             sTotal << _T("\n") << wxString::Format(_("Discount (%0.2f%%)"), m_estimate->GetDiscount());
             double dDisc=dTotal*(m_estimate->GetDiscount()/100.);
-            sPrice << _T("\n") << wxString::Format(_("%0.2f$"), dDisc);
+            sPrice << _T("\n") << m_options.GetFormatedMoneyValue(dDisc, _T("%0.2f"));
             dTotal -= dDisc;
-            sPrice << _T("\n") << wxString::Format(_("%0.2f$"), dTotal);
+            sPrice << _T("\n") << m_options.GetFormatedMoneyValue(dTotal, _T("%0.2f"));
             if (m_estimate->GetVAT()!=0.)
             {
                 sTotal << _T("\n") << _("Total w/o VAT");
                 sTotal << _T("\n") << wxString::Format(_("VAT (%0.1f%%)"), m_estimate->GetVAT());
                 double dVAT=dTotal*m_estimate->GetVAT()/100.;
-                sPrice << _T("\n") << wxString::Format(_("%0.2f$"), dVAT);
+                sPrice << _T("\n") << m_options.GetFormatedMoneyValue(dVAT, _T("%0.2f"));
                 dTotal += dVAT;
                 sTotal << _T("\n") << _("Total to pay:");
-                sPrice << _T("\n") << wxString::Format(_("%0.2f$"), dTotal);
+                sPrice << _T("\n") << m_options.GetFormatedMoneyValue(dTotal, _T("%0.2f"));
             }
             else
             {
@@ -157,10 +157,10 @@ void EstimatePdfDoc::Finalize()
             sTotal = _("Total w/o VAT:");
             sTotal << _T("\n") << wxString::Format(_("VAT (%0.1f%%)"), m_estimate->GetVAT());
             double dVAT=dTotal*m_estimate->GetVAT()/100.;
-            sPrice << _T("\n") << wxString::Format(_("%0.2f$"), dVAT);
+            sPrice << _T("\n") << m_options.GetFormatedMoneyValue(dVAT, _T("%0.2f"));
             dTotal += dVAT;
             sTotal << _T("\n") << _("Total to pay:");
-            sPrice << _T("\n") << wxString::Format(_("%0.2f$"), dTotal);
+            sPrice << _T("\n") << m_options.GetFormatedMoneyValue(dTotal, _T("%0.2f"));
         }
     }
     SetFont(_T("Helvetica"), _T("B"), 12);

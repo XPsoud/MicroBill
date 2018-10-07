@@ -1,6 +1,7 @@
 #include "microbillpdfdoc.h"
 
-MicroBillPdfDoc::MicroBillPdfDoc() : wxPdfDocument(wxPORTRAIT, _T("mm"), wxPAPER_A4)
+MicroBillPdfDoc::MicroBillPdfDoc() : wxPdfDocument(wxPORTRAIT, _T("mm"), wxPAPER_A4),
+    m_options(SettingsManager::Get())
 {
     // Constructor
 }

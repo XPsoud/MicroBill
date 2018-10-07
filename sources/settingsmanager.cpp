@@ -63,6 +63,14 @@ void SettingsManager::Initialize()
     m_bSingleInstance=true;
     m_bProhibI18N=false;
     m_bCompSettings=false;
+    m_arsMoneySigns.Clear();
+    m_arsMoneySigns.Add(_T("\u20AC"));
+    m_arsMoneySigns.Add(_T("$"));
+    m_arsMoneySigns.Add(_T("\u00A3"));
+    m_arsMoneySigns.Add(_T("F"));
+    m_arsMoneySigns.Add(_T("\u00a5"));
+    m_sMoneySign = _T("\u20AC");
+    m_iMoneySignPos = wxRIGHT;
 
     m_bInitialized=true;
 }
@@ -143,6 +151,13 @@ bool SettingsManager::ReadSettings()
             // Allowed ?
             m_bProhibI18N=(node->GetAttribute(_T("Allowed"), _T("Yes"))!=_T("Yes"));
         }
+        // Monetary sign
+        if (nodName==_T("MoneySign"))
+        {
+            SetMonetarySign(node->GetAttribute(_T("Value")));
+            node->GetAttribute(_T("Pos")).ToLong(&lVal);
+            SetMoneySignPos(lVal);
+        }
 
         node = node->GetNext();
     }
@@ -204,6 +219,12 @@ bool SettingsManager::SaveSettings()
     node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("Translation")));
     node = node->GetNext();
     node->AddAttribute(_T("Allowed"), (m_bProhibI18N?_T("No"):_T("Yes")));
+
+    // Monetary sign
+    node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("MoneySign")));
+    node = node->GetNext();
+    node->AddAttribute(_T("Value"), m_sMoneySign);
+    node->AddAttribute(_T("Pos"), wxString::Format(_T("%d"), m_iMoneySignPos));
 
     wxXmlDocument doc;
     doc.SetRoot(root);
@@ -321,5 +342,47 @@ void SettingsManager::SetProhibitI18N(bool value)
     {
         m_bProhibI18N=value;
         m_bModified=true;
+    }
+}
+
+void SettingsManager::SetMonetarySign(const wxString& value)
+{
+    if (value == m_sMoneySign)
+        return;
+    for (size_t i=0; i<m_arsMoneySigns.Count(); ++i)
+    {
+        if (value == m_arsMoneySigns[i])
+        {
+            m_bModified = true;
+            m_sMoneySign = value;
+            return;
+        }
+    }
+}
+
+void SettingsManager::SetMoneySignPos(int pos)
+{
+    if ((pos == wxLEFT)||(pos == wxRIGHT))
+    {
+        if (pos != m_iMoneySignPos)
+        {
+            m_bModified = true;
+            m_iMoneySignPos = pos;
+        }
+    }
+}
+
+wxString SettingsManager::GetFormatedMoneyValue(double value, const wxString& format)
+{
+    wxString sFormat = wxEmptyString;
+    if (m_iMoneySignPos == wxLEFT)
+    {
+        sFormat << _T("%s") << format;
+        return wxString::Format(sFormat, m_sMoneySign, value);
+    }
+    else
+    {
+        sFormat << format << _T("%s");
+        return wxString::Format(sFormat, value, m_sMoneySign);
     }
 }

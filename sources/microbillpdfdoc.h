@@ -4,6 +4,8 @@
 #include <wx/wx.h>
 #include <wx/pdfdoc.h>
 
+#include "settingsmanager.h"
+
 class MicroBillPdfDoc : public wxPdfDocument
 {
     public:
@@ -16,6 +18,7 @@ class MicroBillPdfDoc : public wxPdfDocument
         virtual void WriteTitle() = 0;
         virtual void WriteItems() = 0;
         virtual void Finalize() = 0;
+        SettingsManager& m_options;
     private:
 };
 

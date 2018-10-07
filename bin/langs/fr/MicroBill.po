@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-06 21:28+0200\n"
-"PO-Revision-Date: 2018-10-06 21:28+0200\n"
+"POT-Creation-Date: 2018-10-07 20:09+0200\n"
+"PO-Revision-Date: 2018-10-07 20:09+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -23,28 +23,27 @@ msgstr ""
 msgid "MicroBill Application"
 msgstr "Application MicroBill"
 
-#: sources/billitemctrl.cpp:71 sources/estimitemctrl.cpp:71
+#: sources/billitemctrl.cpp:72 sources/estimitemctrl.cpp:72
 msgid "Move up"
 msgstr "Remonter"
 
-#: sources/billitemctrl.cpp:73 sources/estimitemctrl.cpp:73
+#: sources/billitemctrl.cpp:74 sources/estimitemctrl.cpp:74
 msgid "Move down"
 msgstr "Descendre"
 
-#: sources/billitemctrl.cpp:124 sources/estimitemctrl.cpp:124
-#, c-format
-msgid "Unit price : %6.02f$"
-msgstr "Prix unitaire : %6.02f€"
+#: sources/billitemctrl.cpp:125 sources/dlgaddeditbillitem.cpp:44
+#: sources/dlgaddeditestimitem.cpp:44 sources/estimitemctrl.cpp:125
+msgid "Unit price:"
+msgstr "Prix unitaire :"
 
-#: sources/billitemctrl.cpp:125 sources/estimitemctrl.cpp:125
+#: sources/billitemctrl.cpp:126 sources/estimitemctrl.cpp:126
 #, c-format
 msgid "Q. : %3d"
 msgstr "Q. : %3d"
 
-#: sources/billitemctrl.cpp:126 sources/estimitemctrl.cpp:126
-#, c-format
-msgid "Price : %9.02f$"
-msgstr "Prix : %9.02f€"
+#: sources/billitemctrl.cpp:127 sources/estimitemctrl.cpp:127
+msgid "Price:"
+msgstr "Prix :"
 
 #: sources/billpdfdoc.cpp:22
 #, c-format
@@ -55,15 +54,10 @@ msgstr "Facture N° %s-%04d"
 msgid "Bill #_ _ _ _ _ _ _ _ _ _ _ _"
 msgstr "Facture N° _ _ _ _ _ _ _ _ _ _ _ _"
 
-#: sources/billpdfdoc.cpp:94 sources/billpdfdoc.cpp:96
-#: sources/billpdfdoc.cpp:128 sources/estimatepdfdoc.cpp:93
-#: sources/estimatepdfdoc.cpp:95 sources/estimatepdfdoc.cpp:125
-#, c-format
-msgid "%.02f$"
-msgstr "%.02f€"
-
 #: sources/billpdfdoc.cpp:132 sources/billpdfdoc.cpp:151
-#: sources/billpdfdoc.cpp:166 sources/estimatepdfdoc.cpp:128
+#: sources/billpdfdoc.cpp:166 sources/dlgaddeditbill.cpp:136
+#: sources/dlgaddeditbill.cpp:475 sources/dlgaddeditestimate.cpp:124
+#: sources/dlgaddeditestimate.cpp:441 sources/estimatepdfdoc.cpp:128
 #: sources/estimatepdfdoc.cpp:147 sources/estimatepdfdoc.cpp:162
 msgid "Total to pay:"
 msgstr "Total à payer :"
@@ -76,16 +70,6 @@ msgstr "Sous-total :"
 #, c-format
 msgid "Discount (%0.2f%%)"
 msgstr "Remise (%0.2f%%)"
-
-#: sources/billpdfdoc.cpp:141 sources/billpdfdoc.cpp:143
-#: sources/billpdfdoc.cpp:149 sources/billpdfdoc.cpp:152
-#: sources/billpdfdoc.cpp:164 sources/billpdfdoc.cpp:167
-#: sources/estimatepdfdoc.cpp:137 sources/estimatepdfdoc.cpp:139
-#: sources/estimatepdfdoc.cpp:145 sources/estimatepdfdoc.cpp:148
-#: sources/estimatepdfdoc.cpp:160 sources/estimatepdfdoc.cpp:163
-#, c-format
-msgid "%0.2f$"
-msgstr "%0.2f€"
 
 #: sources/billpdfdoc.cpp:146 sources/estimatepdfdoc.cpp:142
 msgid "Total w/o VAT"
@@ -101,7 +85,9 @@ msgstr "T.V.A. (%0.1f%%)"
 msgid "Total w/o VAT to pay:"
 msgstr "Total H.T. à payer :"
 
-#: sources/billpdfdoc.cpp:161 sources/estimatepdfdoc.cpp:157
+#: sources/billpdfdoc.cpp:161 sources/dlgaddeditbill.cpp:110
+#: sources/dlgaddeditbill.cpp:467 sources/dlgaddeditestimate.cpp:103
+#: sources/dlgaddeditestimate.cpp:433 sources/estimatepdfdoc.cpp:157
 msgid "Total w/o VAT:"
 msgstr "Total H.T.:"
 
@@ -109,103 +95,81 @@ msgstr "Total H.T.:"
 msgid "V.A.T. non-applicable"
 msgstr "TVA non applicable (art. 293 B du CGI)"
 
-#: sources/dlgaddeditbill.cpp:21
+#: sources/dlgaddeditbill.cpp:23
 msgid "Creating a new bill"
 msgstr "Créer une nouvelle facture"
 
-#: sources/dlgaddeditbill.cpp:23
+#: sources/dlgaddeditbill.cpp:25
 msgid "Editing a bill"
 msgstr "Édition d'une facture"
 
-#: sources/dlgaddeditbill.cpp:49 sources/dlgaddeditestimate.cpp:46
+#: sources/dlgaddeditbill.cpp:52 sources/dlgaddeditestimate.cpp:49
 msgid "Creation date:"
 msgstr "Date de création :"
 
-#: sources/dlgaddeditbill.cpp:55
+#: sources/dlgaddeditbill.cpp:58
 msgid "Payment deadline:"
 msgstr "Date limite de paiement :"
 
-#: sources/dlgaddeditbill.cpp:62
+#: sources/dlgaddeditbill.cpp:65
 msgid "Nb:"
 msgstr "N° :"
 
-#: sources/dlgaddeditbill.cpp:67
+#: sources/dlgaddeditbill.cpp:70
 msgid "Client:"
 msgstr "Client :"
 
-#: sources/dlgaddeditbill.cpp:74 sources/dlgaddeditestimate.cpp:66
+#: sources/dlgaddeditbill.cpp:77 sources/dlgaddeditestimate.cpp:69
 msgid "Select"
 msgstr "Sélectionner"
 
-#: sources/dlgaddeditbill.cpp:91 sources/dlgaddeditestimate.cpp:84
+#: sources/dlgaddeditbill.cpp:90 sources/dlgaddeditbill.cpp:459
+#: sources/dlgaddeditestimate.cpp:83 sources/dlgaddeditestimate.cpp:425
+msgid "Total:"
+msgstr "Total :"
+
+#: sources/dlgaddeditbill.cpp:96 sources/dlgaddeditestimate.cpp:89
 msgid "Lock/Unlock"
 msgstr "Verrouiller/Déverrouiller"
 
-#: sources/dlgaddeditbill.cpp:99 sources/dlgaddeditbill.cpp:121
-#: sources/dlgaddeditestimate.cpp:92 sources/dlgaddeditestimate.cpp:109
-msgid "Amount:   0.00$"
-msgstr "Montant :   0.00€"
+#: sources/dlgaddeditbill.cpp:104 sources/dlgaddeditbill.cpp:130
+#: sources/dlgaddeditbill.cpp:463 sources/dlgaddeditbill.cpp:471
+#: sources/dlgaddeditestimate.cpp:97 sources/dlgaddeditestimate.cpp:118
+#: sources/dlgaddeditestimate.cpp:429 sources/dlgaddeditestimate.cpp:437
+msgid "Amount:"
+msgstr "Montant :"
 
-#: sources/dlgaddeditbill.cpp:103 sources/dlgaddeditestimate.cpp:96
-msgid "Total w/o VAT: 0.00$"
-msgstr "Total H.T.: 0.00€"
-
-#: sources/dlgaddeditbill.cpp:106
+#: sources/dlgaddeditbill.cpp:115
 msgid "Payment note:"
 msgstr "Note de paiement :"
 
-#: sources/dlgaddeditbill.cpp:112 sources/dlgaddeditestimate.cpp:100
+#: sources/dlgaddeditbill.cpp:121 sources/dlgaddeditestimate.cpp:109
 msgid "Add an entry"
 msgstr "Ajouter une entrée"
 
-#: sources/dlgaddeditbill.cpp:115 sources/dlgaddeditestimate.cpp:103
+#: sources/dlgaddeditbill.cpp:124 sources/dlgaddeditestimate.cpp:112
 msgid "Appy V.A.T.:"
 msgstr "Appliquer la T.V.A :"
 
-#: sources/dlgaddeditbill.cpp:125 sources/dlgaddeditestimate.cpp:113
-msgid "Total to pay:   0.00$"
-msgstr "Total à payer :   0.00€"
-
-#: sources/dlgaddeditbill.cpp:365 sources/dlgaddeditestimate.cpp:337
+#: sources/dlgaddeditbill.cpp:378 sources/dlgaddeditestimate.cpp:350
 msgid "Remove this entry ?"
 msgstr "Supprimer cette entrée ?"
 
-#: sources/dlgaddeditbill.cpp:365 sources/dlgaddeditestimate.cpp:337
+#: sources/dlgaddeditbill.cpp:378 sources/dlgaddeditestimate.cpp:350
 #: sources/panelnbookpage_bills.cpp:129 sources/panelnbookpage_clients.cpp:254
 #: sources/panelnbookpage_estimates.cpp:135
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: sources/dlgaddeditbill.cpp:427
+#: sources/dlgaddeditbill.cpp:440
 msgid "Mark as non paid"
 msgstr "Marquer comme non-payée"
 
-#: sources/dlgaddeditbill.cpp:429
+#: sources/dlgaddeditbill.cpp:442
 msgid "Mark as paid"
 msgstr "Marquer comme payée"
 
-#: sources/dlgaddeditbill.cpp:446 sources/dlgaddeditestimate.cpp:412
-#, c-format
-msgid "Total: %8.02f$"
-msgstr "Total : %8.02f€"
-
-#: sources/dlgaddeditbill.cpp:448 sources/dlgaddeditbill.cpp:452
-#: sources/dlgaddeditestimate.cpp:414 sources/dlgaddeditestimate.cpp:418
-#, c-format
-msgid "Amount: %8.02f$"
-msgstr "Total : %8.02f€"
-
-#: sources/dlgaddeditbill.cpp:450 sources/dlgaddeditestimate.cpp:416
-#, c-format
-msgid "Total w/o VAT: %8.02f$"
-msgstr "Total H.T.: %8.02f€"
-
-#: sources/dlgaddeditbill.cpp:454 sources/dlgaddeditestimate.cpp:420
-#, c-format
-msgid "Total to pay: %8.02f$"
-msgstr "Total à payer : %8.02f€"
-
-#: sources/dlgaddeditbill.cpp:464
+#: sources/dlgaddeditbill.cpp:487
 msgid ""
 "The client datas for this bill are obsoletes.\n"
 "They will be updated during the validation of this form."
@@ -224,10 +188,6 @@ msgstr "Description :"
 #: sources/dlgaddeditbillitem.cpp:37 sources/dlgaddeditestimitem.cpp:37
 msgid "Comments:"
 msgstr "Commentaires :"
-
-#: sources/dlgaddeditbillitem.cpp:44 sources/dlgaddeditestimitem.cpp:44
-msgid "Unit price:"
-msgstr "Prix unitaire :"
 
 #: sources/dlgaddeditbillitem.cpp:50 sources/dlgaddeditestimitem.cpp:50
 msgid "Quantity:"
@@ -297,35 +257,31 @@ msgstr "Ville :"
 msgid "Country:"
 msgstr "Pays :"
 
-#: sources/dlgaddeditestimate.cpp:20
+#: sources/dlgaddeditestimate.cpp:22
 msgid "Creating a new estimate"
 msgstr "Création d'un nouveau devis"
 
-#: sources/dlgaddeditestimate.cpp:22
+#: sources/dlgaddeditestimate.cpp:24
 msgid "Editing an estimate"
 msgstr "Édition d'un devis"
 
-#: sources/dlgaddeditestimate.cpp:52
+#: sources/dlgaddeditestimate.cpp:55
 msgid "Validity date:"
 msgstr "Date de validité :"
 
-#: sources/dlgaddeditestimate.cpp:59
+#: sources/dlgaddeditestimate.cpp:62
 msgid "Reference client:"
 msgstr "Client de référence :"
 
-#: sources/dlgaddeditestimate.cpp:80
-msgid "Total: 0.00$"
-msgstr "Total : 0.00€"
-
-#: sources/dlgaddeditestimate.cpp:87
+#: sources/dlgaddeditestimate.cpp:92
 msgid "Discount (%):"
 msgstr "Remise (%):"
 
-#: sources/dlgaddeditestimate.cpp:394
+#: sources/dlgaddeditestimate.cpp:407
 msgid "Mark as not finalized"
 msgstr "Marquer comme non-finalisé"
 
-#: sources/dlgaddeditestimate.cpp:396
+#: sources/dlgaddeditestimate.cpp:409
 msgid "Mark as finalized"
 msgstr "Marquer comme finalisé"
 
@@ -410,16 +366,48 @@ msgid "Allow only one instance of the application"
 msgstr "N'autoriser qu'une seule instance de l'application"
 
 #: sources/dlgoptions.cpp:78
-msgid "Keep the interface language in English (restart needed)"
-msgstr "Conserver l'interface en anglais (redémarrage nécessaire)"
-
-#: sources/dlgoptions.cpp:80
 msgid "Compress settings file (for size and privacy)"
 msgstr "Compresser le fichier des paramètres (pour la taille et la confidentialité)"
 
-#: sources/dlgoptions.cpp:85
+#: sources/dlgoptions.cpp:83
 msgid "General"
 msgstr "Général"
+
+#: sources/dlgoptions.cpp:89
+msgid "Interface language:"
+msgstr "Langue de l'interface :"
+
+#: sources/dlgoptions.cpp:90
+msgid "Keep the interface language in English (restart needed)"
+msgstr "Conserver l'interface en anglais (redémarrage nécessaire)"
+
+#: sources/dlgoptions.cpp:94
+msgid "Monetary sign:"
+msgstr "Signe monétaire :"
+
+#: sources/dlgoptions.cpp:96
+msgid "Monetary sign to use:"
+msgstr "Signe monétaire à utiliser :"
+
+#: sources/dlgoptions.cpp:100
+msgid "Placed"
+msgstr "Placé"
+
+#: sources/dlgoptions.cpp:102
+msgid "before"
+msgstr "avant"
+
+#: sources/dlgoptions.cpp:104
+msgid "after"
+msgstr "après"
+
+#: sources/dlgoptions.cpp:106
+msgid "the value"
+msgstr "la valeur"
+
+#: sources/dlgoptions.cpp:112
+msgid "Language"
+msgstr "Langue"
 
 #: sources/dlgselectclient.cpp:8
 msgid "Selecting a client"
@@ -514,23 +502,23 @@ msgstr ""
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
-#: sources/microbillpdfdoc.cpp:43
+#: sources/microbillpdfdoc.cpp:44
 msgid "Description"
 msgstr "Description"
 
-#: sources/microbillpdfdoc.cpp:44
+#: sources/microbillpdfdoc.cpp:45
 msgid "Unit Price"
 msgstr "P. U."
 
-#: sources/microbillpdfdoc.cpp:45
+#: sources/microbillpdfdoc.cpp:46
 msgid "Qty"
 msgstr "Qté"
 
-#: sources/microbillpdfdoc.cpp:46
+#: sources/microbillpdfdoc.cpp:47
 msgid "Total"
 msgstr "Total"
 
-#: sources/microbillpdfdoc.cpp:61
+#: sources/microbillpdfdoc.cpp:62
 #, c-format
 msgid "Page %d on {nb}"
 msgstr "Page %d / {nb}"
@@ -609,13 +597,6 @@ msgstr "Erreur"
 #: sources/panelnbookpage_estimates.cpp:259
 msgid "%Y-%m-%d"
 msgstr "%d/%m/%Y"
-
-#: sources/panelnbookpage_bills.cpp:193 sources/panelnbookpage_bills.cpp:255
-#: sources/panelnbookpage_estimates.cpp:196
-#: sources/panelnbookpage_estimates.cpp:257
-#, c-format
-msgid "%10.02f$"
-msgstr "%10.02f€"
 
 #: sources/panelnbookpage_bills.cpp:196 sources/panelnbookpage_bills.cpp:256
 msgid "Paid"

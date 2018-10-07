@@ -190,7 +190,7 @@ long PanelNBookPage_Bills::InsertBillItemToList(Bill* item, long before, bool se
                 sItem = m_DatasMngr.GetClientString(item->GetClientKey());
                 break;
             case BI_COL_VALUE:
-                sItem = wxString::Format(_("%10.02f$"), item->GetFinalPrice());
+                sItem = m_SettingsMngr.GetFormatedMoneyValue(item->GetFinalPrice(), _T("%10.02f"));
                 break;
             case BI_COL_STATUS:
                 sItem = item->IsLocked()?_("Paid"):_("Not paid");
@@ -252,7 +252,7 @@ void PanelNBookPage_Bills::UpdateBillItem(long lItem)
     m_lstBills->SetItem(lItem, BI_COL_NUMBER, wxString::Format(_T("%04d"), item->GetBillNumber()));
     m_lstBills->SetItem(lItem, BI_COL_DATE_CREATION, item->GetCreationDate().Format(_("%Y-%m-%d")));
     m_lstBills->SetItem(lItem, BI_COL_CLIENT, m_DatasMngr.GetClientString(item->GetClientKey()));
-    m_lstBills->SetItem(lItem, BI_COL_VALUE, wxString::Format(_("%10.02f$"), item->GetFinalPrice()));
+    m_lstBills->SetItem(lItem, BI_COL_VALUE, m_SettingsMngr.GetFormatedMoneyValue(item->GetFinalPrice(), _T("%10.02f")));
     m_lstBills->SetItem(lItem, BI_COL_STATUS, item->IsLocked()?_("Paid"):_("Not paid"));
     m_lstBills->SetItem(lItem, BI_COL_DATE_LIMIT, item->GetTermDate().IsValid()?item->GetTermDate().Format(_("%Y-%m-%d")): _T(""));
 
