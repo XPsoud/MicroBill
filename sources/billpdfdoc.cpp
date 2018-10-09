@@ -26,6 +26,44 @@ void BillPdfDoc::WriteTitle()
         Cell(190, 15, _("Bill #_ _ _ _ _ _ _ _ _ _ _ _"), wxPDF_BORDER_NONE, 2, wxPDF_ALIGN_CENTER);
     }
     Line(10, 60, 200, 60);
+    SetFont(_T("Helvetica"), _T(""), 12);
+    int y=GetY(), iNbLines=0;
+    SetY(y+2);
+    if (m_bill!=NULL)
+    {
+        wxString sTmp=wxString::Format(_("Edited on %s"), m_bill->GetCreationDate().Format(_("%Y/%m/%d")));
+        if (m_bill->GetTermDate().IsValid())
+        {
+            sTmp << _T("\n") << _("To be paid before:") << m_bill->GetTermDate().Format(_("%Y/%m/%d"));
+        }
+        MultiCell(95, 5, sTmp);
+        wxString sClient=m_bill->GetClientFullString();
+        if (!sClient.IsEmpty())
+        {
+            wxStringTokenizer stk(sClient, _T("\n"));
+            iNbLines += stk.CountTokens();
+            SetXY(105, y);
+            MultiCell(95, 6, sClient, wxPDF_BORDER_FRAME);
+            y+=iNbLines*6;
+        }
+        else
+        {
+            SetXY(105, y);
+            MultiCell(95, 6, _T(" \n \n \n "), wxPDF_BORDER_FRAME);
+            y+=24;
+        }
+    }
+    else
+    {
+        wxString sTmp = _("Edited on _ _ _ _ / _ _ / _ _");
+        sTmp << _T("\n") << _("To be paid before: _ _ _ _ / _ _ / _ _");
+        MultiCell(95, 8, sTmp);
+        SetXY(105, y);
+        MultiCell(95, 6, _T(" \n \n \n "), wxPDF_BORDER_FRAME);
+        y+=24;
+    }
+    Line(10, y, 200, y);
+    SetXY(10, y);
 }
 
 void BillPdfDoc::WriteItems()

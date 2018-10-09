@@ -1,6 +1,7 @@
 #include "estimatepdfdoc.h"
 
 #include "estimate.h"
+#include "datasmanager.h"
 
 #include <wx/tokenzr.h>
 
@@ -26,6 +27,58 @@ void EstimatePdfDoc::WriteTitle()
         Cell(190, 15, _("Estimate #_ _ _ _ _ _ _ _ _ _ _ _"), wxPDF_BORDER_NONE, 2, wxPDF_ALIGN_CENTER);
     }
     Line(10, 60, 200, 60);
+    SetFont(_T("Helvetica"), _T(""), 12);
+    int y=GetY(), iNbLines=0;
+    SetY(y+2);
+    if (m_estimate!=NULL)
+    {
+        wxString sTmp=wxString::Format(_("Edited on %s"), m_estimate->GetCreationDate().Format(_("%Y/%m/%d")));
+        if (m_estimate->GetTermDate().IsValid())
+        {
+            sTmp << _T("\n") << _("Estimate valid until:") << m_estimate->GetTermDate().Format(_("%Y/%m/%d"));
+        }
+        MultiCell(95, 5, sTmp);
+        Client *c=DatasManager::Get().GetClient(m_estimate->GetClient());
+        if (c!=NULL)
+        {
+            wxString sClient=c->GetAttribute(_T("Company"));
+            if (!sClient.IsEmpty()) sClient << _T(" - ");
+            sClient << c->GetAttribute(_T("LastName")) << _T(" ") << c->GetAttribute(_T("FirstName"));
+            iNbLines++;
+            if (!c->GetAttribute(_T("Addr1")).IsEmpty())
+            {
+                sClient << _T("\n") << c->GetAttribute(_T("Addr1"));
+                iNbLines++;
+            }
+            if (!c->GetAttribute(_T("Addr2")).IsEmpty())
+            {
+                sClient << _T("\n") << c->GetAttribute(_T("Addr2"));
+                iNbLines++;
+            }
+            sClient << _T("\n") << c->GetAttribute(_T("ZipCode")) << _T(" ") << c->GetAttribute(_T("City"));
+            iNbLines++;
+            SetXY(105, y);
+            MultiCell(95, 6, sClient, wxPDF_BORDER_FRAME);
+            y+=iNbLines*6;
+        }
+        else
+        {
+            SetXY(105, y);
+            MultiCell(95, 6, _T(" \n \n \n "), wxPDF_BORDER_FRAME);
+            y+=24;
+        }
+    }
+    else
+    {
+        wxString sTmp = _("Edited on _ _ _ _ / _ _ / _ _");
+        sTmp << _T("\n") << _("Estimate valid until: _ _ _ _ / _ _ / _ _");
+        MultiCell(95, 8, sTmp);
+        SetXY(105, y);
+        MultiCell(95, 6, _T(" \n \n \n "), wxPDF_BORDER_FRAME);
+        y+=24;
+    }
+    Line(10, y, 200, y);
+    SetXY(10, y);
 }
 
 void EstimatePdfDoc::WriteItems()

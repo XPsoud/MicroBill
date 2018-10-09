@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-07 20:09+0200\n"
-"PO-Revision-Date: 2018-10-07 20:09+0200\n"
+"POT-Creation-Date: 2018-10-09 17:27+0200\n"
+"PO-Revision-Date: 2018-10-09 17:28+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -54,44 +54,66 @@ msgstr "Facture N° %s-%04d"
 msgid "Bill #_ _ _ _ _ _ _ _ _ _ _ _"
 msgstr "Facture N° _ _ _ _ _ _ _ _ _ _ _ _"
 
-#: sources/billpdfdoc.cpp:132 sources/billpdfdoc.cpp:151
-#: sources/billpdfdoc.cpp:166 sources/dlgaddeditbill.cpp:136
+#: sources/billpdfdoc.cpp:34 sources/estimatepdfdoc.cpp:35
+#, c-format
+msgid "Edited on %s"
+msgstr "Édité le %s"
+
+#: sources/billpdfdoc.cpp:34 sources/billpdfdoc.cpp:37
+#: sources/estimatepdfdoc.cpp:35 sources/estimatepdfdoc.cpp:38
+msgid "%Y/%m/%d"
+msgstr "%d/%m/%Y"
+
+#: sources/billpdfdoc.cpp:37
+msgid "To be paid before:"
+msgstr "À payer avant le :"
+
+#: sources/billpdfdoc.cpp:58 sources/estimatepdfdoc.cpp:73
+msgid "Edited on _ _ _ _ / _ _ / _ _"
+msgstr "Édité le _ _ / _ _ / _ _ _ _"
+
+#: sources/billpdfdoc.cpp:59
+msgid "To be paid before: _ _ _ _ / _ _ / _ _"
+msgstr "À payer avant le : _ _ / _ _ / _ _ _ _"
+
+#: sources/billpdfdoc.cpp:170 sources/billpdfdoc.cpp:189
+#: sources/billpdfdoc.cpp:204 sources/dlgaddeditbill.cpp:136
 #: sources/dlgaddeditbill.cpp:475 sources/dlgaddeditestimate.cpp:124
-#: sources/dlgaddeditestimate.cpp:441 sources/estimatepdfdoc.cpp:128
-#: sources/estimatepdfdoc.cpp:147 sources/estimatepdfdoc.cpp:162
+#: sources/dlgaddeditestimate.cpp:441 sources/estimatepdfdoc.cpp:181
+#: sources/estimatepdfdoc.cpp:200 sources/estimatepdfdoc.cpp:215
 msgid "Total to pay:"
 msgstr "Total à payer :"
 
-#: sources/billpdfdoc.cpp:138 sources/estimatepdfdoc.cpp:134
+#: sources/billpdfdoc.cpp:176 sources/estimatepdfdoc.cpp:187
 msgid "Sub-total:"
 msgstr "Sous-total :"
 
-#: sources/billpdfdoc.cpp:139 sources/estimatepdfdoc.cpp:135
+#: sources/billpdfdoc.cpp:177 sources/estimatepdfdoc.cpp:188
 #, c-format
 msgid "Discount (%0.2f%%)"
 msgstr "Remise (%0.2f%%)"
 
-#: sources/billpdfdoc.cpp:146 sources/estimatepdfdoc.cpp:142
+#: sources/billpdfdoc.cpp:184 sources/estimatepdfdoc.cpp:195
 msgid "Total w/o VAT"
 msgstr "Total H.T."
 
-#: sources/billpdfdoc.cpp:147 sources/billpdfdoc.cpp:162
-#: sources/estimatepdfdoc.cpp:143 sources/estimatepdfdoc.cpp:158
+#: sources/billpdfdoc.cpp:185 sources/billpdfdoc.cpp:200
+#: sources/estimatepdfdoc.cpp:196 sources/estimatepdfdoc.cpp:211
 #, c-format
 msgid "VAT (%0.1f%%)"
 msgstr "T.V.A. (%0.1f%%)"
 
-#: sources/billpdfdoc.cpp:156 sources/estimatepdfdoc.cpp:152
+#: sources/billpdfdoc.cpp:194 sources/estimatepdfdoc.cpp:205
 msgid "Total w/o VAT to pay:"
 msgstr "Total H.T. à payer :"
 
-#: sources/billpdfdoc.cpp:161 sources/dlgaddeditbill.cpp:110
+#: sources/billpdfdoc.cpp:199 sources/dlgaddeditbill.cpp:110
 #: sources/dlgaddeditbill.cpp:467 sources/dlgaddeditestimate.cpp:103
-#: sources/dlgaddeditestimate.cpp:433 sources/estimatepdfdoc.cpp:157
+#: sources/dlgaddeditestimate.cpp:433 sources/estimatepdfdoc.cpp:210
 msgid "Total w/o VAT:"
 msgstr "Total H.T.:"
 
-#: sources/billpdfdoc.cpp:182 sources/estimatepdfdoc.cpp:178
+#: sources/billpdfdoc.cpp:220 sources/estimatepdfdoc.cpp:231
 msgid "V.A.T. non-applicable"
 msgstr "TVA non applicable (art. 293 B du CGI)"
 
@@ -457,14 +479,22 @@ msgstr "Adresse"
 msgid "Results:"
 msgstr "Résultats :"
 
-#: sources/estimatepdfdoc.cpp:22
+#: sources/estimatepdfdoc.cpp:23
 #, c-format
 msgid "Estimate #%s"
 msgstr "Devis N° %s"
 
-#: sources/estimatepdfdoc.cpp:26
+#: sources/estimatepdfdoc.cpp:27
 msgid "Estimate #_ _ _ _ _ _ _ _ _ _ _ _"
 msgstr "Devis N° _ _ _ _ _ _ _ _ _ _ _ _"
+
+#: sources/estimatepdfdoc.cpp:38
+msgid "Estimate valid until:"
+msgstr "Devis valide jusqu’au :"
+
+#: sources/estimatepdfdoc.cpp:74
+msgid "Estimate valid until: _ _ _ _ / _ _ / _ _"
+msgstr "Devis valide jusqu’au  : _ _ / _ _ / _ _ _ _"
 
 #: sources/main.cpp:57
 msgid "An other instance of this application is already running !"
@@ -490,7 +520,7 @@ msgstr "Devis"
 msgid "Bills"
 msgstr "Factures"
 
-#: sources/mainframe.cpp:167
+#: sources/mainframe.cpp:170
 msgid ""
 "You changed the translation settings.\n"
 "You must restart the application to see this in effect."
@@ -498,7 +528,7 @@ msgstr ""
 "Vous avez modifié les réglages de traduction.\n"
 "Vous devez redémarrer l'application pour que cela soit effectif."
 
-#: sources/mainframe.cpp:167
+#: sources/mainframe.cpp:170
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
