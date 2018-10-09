@@ -1,5 +1,7 @@
 #include "microbillpdfdoc.h"
 
+#include "main.h"
+
 MicroBillPdfDoc::MicroBillPdfDoc() : wxPdfDocument(wxPORTRAIT, _T("mm"), wxPAPER_A4),
     m_options(SettingsManager::Get())
 {
@@ -54,6 +56,14 @@ void MicroBillPdfDoc::Footer()
 {
     // Backup current text colour
     wxPdfColour curTxtCol=GetTextColour();
+
+    // Created with MicroBill
+    wxString sMBill = _T("\u00B5Bill (v");
+    sMBill << wxGetApp().GetVersionNumString(false) << _T(")");
+    SetXY(180, -12);
+    SetFont(_T("Helvetica"), _T("I"), 8);
+    SetTextColour(*wxBLUE);
+    Cell(20, 4, wxString::Format(_("Created with %s"), sMBill) , wxPDF_BORDER_NONE, 2, wxPDF_ALIGN_RIGHT);
 
     // Page number
     SetXY(180, -8);

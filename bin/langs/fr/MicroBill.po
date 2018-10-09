@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-09 17:27+0200\n"
-"PO-Revision-Date: 2018-10-09 17:28+0200\n"
+"POT-Creation-Date: 2018-10-09 17:49+0200\n"
+"PO-Revision-Date: 2018-10-09 17:49+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -532,23 +532,28 @@ msgstr ""
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
-#: sources/microbillpdfdoc.cpp:44
+#: sources/microbillpdfdoc.cpp:46
 msgid "Description"
 msgstr "Description"
 
-#: sources/microbillpdfdoc.cpp:45
+#: sources/microbillpdfdoc.cpp:47
 msgid "Unit Price"
 msgstr "P. U."
 
-#: sources/microbillpdfdoc.cpp:46
+#: sources/microbillpdfdoc.cpp:48
 msgid "Qty"
 msgstr "Qté"
 
-#: sources/microbillpdfdoc.cpp:47
+#: sources/microbillpdfdoc.cpp:49
 msgid "Total"
 msgstr "Total"
 
-#: sources/microbillpdfdoc.cpp:62
+#: sources/microbillpdfdoc.cpp:66
+#, c-format
+msgid "Created with %s"
+msgstr "Créé avec %s"
+
+#: sources/microbillpdfdoc.cpp:72
 #, c-format
 msgid "Page %d on {nb}"
 msgstr "Page %d / {nb}"
