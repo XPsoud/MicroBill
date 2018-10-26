@@ -8,6 +8,8 @@
 extern const wxChar* g_szStdXmlFileHeader1;
 extern const wxChar* g_szStdXmlFileHeader2;
 
+#define szDefaultHeaderImgSize wxSize(710, 120)
+
 class SettingsManager
 {
     public:
@@ -40,6 +42,15 @@ class SettingsManager
         int GetMoneySignPos() { return m_iMoneySignPos; }
         void SetMoneySignPos(int pos);
         wxString GetFormatedMoneyValue(double value, const wxString& format);
+        // Header image for pdf documents
+        wxImage GetHeaderImage();
+        bool SetHeaderImage(wxImage* img);
+        bool HasCustomHeaderImage() { return (m_imgHeader!=NULL); }
+        wxImage GetDefaultHeaderImage();
+        // Custom texts for pdf documents
+        void SetCompanyLocation(const wxString& value);
+        wxString GetCompanyLocation() { return m_sLocation; }
+        bool HasCompanyLocation() { return !m_sLocation.IsEmpty(); }
     protected:
     private:
         SettingsManager();
@@ -52,7 +63,7 @@ class SettingsManager
         // Misc vars
         bool m_bInitialized, m_bModified;
         wxString m_sAppPath, m_sSettingsPath;
-        static const wxChar* m_szSettingsFName;
+        static const wxChar *m_szSettingsFName, *m_szCustHeaderImgFName;
         wxArrayString m_arsMoneySigns;
         // Settings vars
         bool m_bCompSettings;
@@ -62,6 +73,8 @@ class SettingsManager
         bool m_bSingleInstance, m_bProhibI18N;
         wxString m_sMoneySign;
         int m_iMoneySignPos;
+        wxImage *m_imgHeader;
+        wxString m_sLocation;
 };
 
 #endif // __SETTINGSMANAGER_H_INCLUDED__

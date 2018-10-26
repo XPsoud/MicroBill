@@ -31,7 +31,15 @@ void BillPdfDoc::WriteTitle()
     SetY(y+2);
     if (m_bill!=NULL)
     {
-        wxString sTmp=wxString::Format(_("Edited on %s"), m_bill->GetCreationDate().Format(_("%Y/%m/%d")));
+        wxString sTmp;
+        if (m_options.HasCompanyLocation())
+        {
+            sTmp=wxString::Format(_("Edited in %s on %s"), m_options.GetCompanyLocation(), m_bill->GetCreationDate().Format(_("%Y/%m/%d")));
+        }
+        else
+        {
+            sTmp=wxString::Format(_("Edited on %s"), m_bill->GetCreationDate().Format(_("%Y/%m/%d")));
+        }
         if (m_bill->GetTermDate().IsValid())
         {
             sTmp << _T("\n") << _("To be paid before:") << m_bill->GetTermDate().Format(_("%Y/%m/%d"));

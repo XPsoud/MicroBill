@@ -28,14 +28,15 @@ void MicroBillPdfDoc::Header()
     // Backup current text colour
     wxPdfColour curTxtCol=GetTextColour();
 
-    // Bordezr all around the page
+    // Border all around the page
     wxPdfArrayDouble dash;
     wxPdfLineStyle lstyle(0.5, wxPDF_LINECAP_BUTT, wxPDF_LINEJOIN_MITER, dash, 0., wxColour(0, 0, 0));
     SetLineStyle(lstyle);
     Rect(10, 10, 190, 274, wxPDF_STYLE_DRAW);
 
     // Header image
-// TODO (Xaviou#1#): Get the image using the settings manager or datas manager and write it on the document
+    wxImage imgHeader = m_options.GetHeaderImage();
+    Image(_T("Logo"), imgHeader, 11, 11, 188, 33);
 
     Line(10, 45, 200, 45);
 

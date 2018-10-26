@@ -17,11 +17,16 @@ class DlgOptions : public wxDialog
     void FillControls();
     void ConnectControls();
     bool ApplySettings();
+    void SetHeaderImage(const wxImage& img);
     // Events handlers
     void OnStartupPosTypeChanged(wxCommandEvent &event);
     void OnSomethingHasChanged(wxCommandEvent &event);
     void OnBtnApplyClicked(wxCommandEvent &event);
     void OnBtnOkClicked(wxCommandEvent &event);
+    void OnBtnSelectImgClicked(wxCommandEvent &event);
+    void OnBtnRemoveImgClicked(wxCommandEvent &event);
+    void OnBtnImgInfosClicked(wxCommandEvent &event);
+    void OnUpdateUI_BtnClearImg(wxUpdateUIEvent &event);
     // "General" tab controls vars
     wxRadioButton *m_optStartType[2], *m_optDefPos[9];
     wxStaticBox *m_stbPos;
@@ -30,11 +35,17 @@ class DlgOptions : public wxDialog
     wxCheckBox *m_chkKeepLang;
     wxChoice *m_cmbSign;
     wxRadioButton *m_optSignPos[2];
+    // "Customization" tab controls vars
+    wxTextCtrl *m_txtLocation;
+    wxStaticBitmap *m_stbHeaderImg;
+    wxButton *m_btnSelectImg, *m_btnClearImg, *m_btnImgInfos;
     // Main dialog box controls
     wxNotebook *m_nBook;
     wxButton *m_btnApply;
     // Misc vars
     SettingsManager& m_options;
+    wxImage m_imgHeader;
+    bool m_bHeaderImageChanged, m_bImageHeaderDefault;
 };
 
 #endif // __DLGOPTIONS_H_INCLUDED__

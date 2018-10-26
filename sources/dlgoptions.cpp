@@ -6,6 +6,8 @@
 #include <wx/filename.h>
 #include <wx/statline.h>
 #include <wx/notebook.h>
+#include <wx/stdpaths.h>
+#include <wx/richtooltip.h>
 
 DlgOptions::DlgOptions(wxWindow *parent)
     : wxDialog(parent, -1, wxGetStockLabel(wxID_PREFERENCES, wxSTOCK_NOFLAGS)),
@@ -40,6 +42,7 @@ void DlgOptions::CreateControls()
         wxStaticBoxSizer *box, *box2;
         wxFlexGridSizer *flxszr;
         wxStaticText *label;
+        wxString sText;
 
         // "General" tab
         page=new wxPanel(m_nBook, -1);
@@ -111,6 +114,41 @@ void DlgOptions::CreateControls()
             page->SetSizer(pageszr);
         m_nBook->AddPage(page, _("Language"));
 
+        // "Customization" tab
+        page=new wxPanel(m_nBook, -1);
+            pageszr=new wxBoxSizer(wxVERTICAL);
+
+                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Location of your entreprise:"));
+                    sText = _("Enter the town in witch your company is located.");
+                    sText << _T("\n") << _("It will be placed near the edition date of each pdf documents.");
+                    label = new wxStaticText(page, wxID_STATIC, sText);
+                    box->Add(label, 0, wxALL, 5);
+                    lnszr=new wxBoxSizer(wxHORIZONTAL);
+                        label = new wxStaticText(page, wxID_STATIC, _("Location:"));
+                        lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+                        m_txtLocation = new wxTextCtrl(page, -1, wxEmptyString);
+                        lnszr->Add(m_txtLocation, 1, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                    box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, 5);
+                pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
+
+                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Header image:"));
+                    label = new wxStaticText(page, wxID_STATIC, _("Image that will be placed on top of pdf documents:"));
+                    box->Add(label, 0, wxALL, 5);
+                    m_stbHeaderImg = new wxStaticBitmap(page, wxID_STATIC, wxBitmap(m_imgHeader));
+                    box->Add(m_stbHeaderImg, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL, 5);
+                    lnszr = new wxBoxSizer(wxHORIZONTAL);
+                        m_btnSelectImg = new wxButton(page, -1, _("Select an image"));
+                        lnszr->Add(m_btnSelectImg, 0, wxALL, 0);
+                        m_btnClearImg = new wxButton(page, -1, _("Remove custom image"));
+                        lnszr->Add(m_btnClearImg, 0, wxLEFT, 5);
+                        m_btnImgInfos = new wxButton(page, -1, _("Infos"));
+                        lnszr->Add(m_btnImgInfos, 0, wxLEFT, 5);
+                    box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL, 5);
+                pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
+
+            page->SetSizer(pageszr);
+        m_nBook->AddPage(page, _("Customization"));
+
 
         szrMain->Add(m_nBook, 1, wxALL|wxEXPAND, 0);
 
@@ -139,6 +177,11 @@ void DlgOptions::ConnectControls()
     Bind(wxEVT_TEXT, &DlgOptions::OnSomethingHasChanged, this);
     Bind(wxEVT_RADIOBUTTON, &DlgOptions::OnSomethingHasChanged, this);
     Bind(wxEVT_CHOICE, &DlgOptions::OnSomethingHasChanged, this);
+
+    m_btnSelectImg->Bind(wxEVT_BUTTON, &DlgOptions::OnBtnSelectImgClicked, this);
+    m_btnClearImg->Bind(wxEVT_BUTTON, &DlgOptions::OnBtnRemoveImgClicked, this);
+    m_btnClearImg->Bind(wxEVT_UPDATE_UI, &DlgOptions::OnUpdateUI_BtnClearImg, this);
+    m_btnImgInfos->Bind(wxEVT_BUTTON, &DlgOptions::OnBtnImgInfosClicked, this);
 }
 
 void DlgOptions::FillControls()
@@ -181,6 +224,12 @@ void DlgOptions::FillControls()
     int iIndex = (m_options.GetMoneySignPos()==wxLEFT)?0:1;
     m_optSignPos[iIndex]->SetValue(true);
 
+    m_txtLocation->ChangeValue(m_options.GetCompanyLocation());
+    SetHeaderImage(m_options.GetHeaderImage());
+    m_bHeaderImageChanged = false;
+    m_bImageHeaderDefault = !m_options.HasCustomHeaderImage();
+    m_nBook->GetPage(2)->GetSizer()->Layout();
+
     m_btnApply->Disable();
 }
 
@@ -221,8 +270,32 @@ bool DlgOptions::ApplySettings()
     m_options.SetMonetarySign(m_cmbSign->GetStringSelection());
     m_options.SetMoneySignPos(m_optSignPos[0]->GetValue()?wxLEFT:wxRIGHT);
 
+    m_options.SetCompanyLocation(m_txtLocation->GetValue());
+
+    if (m_bHeaderImageChanged)
+    {
+        if (m_bImageHeaderDefault)
+        {
+            m_options.SetHeaderImage(NULL);
+        }
+        else
+        {
+            m_options.SetHeaderImage(&m_imgHeader);
+        }
+    }
+
     m_btnApply->Disable();
     return true;
+}
+
+void DlgOptions::SetHeaderImage(const wxImage& img)
+{
+    double dHght = 50.;
+    double dWdth = szDefaultHeaderImgSize.GetWidth()*dHght/szDefaultHeaderImgSize.GetHeight();
+    m_imgHeader = img;
+    wxImage tmpImg(img);
+    tmpImg.Rescale(dWdth, dHght, wxIMAGE_QUALITY_HIGH);
+    m_stbHeaderImg->SetBitmap(wxBitmap(tmpImg));
 }
 
 void DlgOptions::OnStartupPosTypeChanged(wxCommandEvent& event)
@@ -250,4 +323,60 @@ void DlgOptions::OnBtnOkClicked(wxCommandEvent& event)
 {
     if (ApplySettings())
         EndModal(wxID_OK);
+}
+
+void DlgOptions::OnBtnSelectImgClicked(wxCommandEvent& event)
+{
+    wxString sDir = wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Pictures);
+    wxString sWldcrd = _("All images files|*.png;*.jpg");
+    sWldcrd << _T("|") << _("Png images files (*.png)|*.png");
+    sWldcrd << _T("|") << _("Jpeg images files (*.jpg)|*.jpg");
+    sWldcrd << _T("|") << _("All files (*.*)|*.*");
+
+    wxString sImg = wxFileSelector(_("Select an image file"),
+                                    sDir, wxEmptyString, wxEmptyString,
+                                    sWldcrd,
+                                    wxFD_OPEN|wxFD_FILE_MUST_EXIST);
+    if (sImg.IsEmpty())
+        return;
+    // Try to load the selected image file
+    wxImage img;
+    if (!img.LoadFile(sImg))
+    {
+        wxMessageBox(_("The selected image file can't be loaded !"), _("Error"), wxICON_EXCLAMATION|wxCENTER|wxOK);
+        return;
+    }
+
+    SetHeaderImage(img);
+    m_bImageHeaderDefault = false;
+    m_bHeaderImageChanged = true;
+
+    // The image has been changed : enable the "Apply" button
+    m_btnApply->Enable();
+}
+
+void DlgOptions::OnBtnRemoveImgClicked(wxCommandEvent& event)
+{
+    SetHeaderImage(m_options.GetDefaultHeaderImage());
+    m_bImageHeaderDefault = true;
+    m_bHeaderImageChanged = true;
+
+    // The image has been changed : enable the "Apply" button
+    m_btnApply->Enable();
+}
+
+void DlgOptions::OnBtnImgInfosClicked(wxCommandEvent& event)
+{
+    wxString sTitle = _("Custom image size");
+    wxString sMsg = wxString::Format(_("The selected image must respect the ratio of %d x %d pixels."), szDefaultHeaderImgSize.GetWidth(), szDefaultHeaderImgSize.GetHeight());
+    sMsg << _T("\n") << _("It will be resized to these values on pdf documents.");
+
+    wxRichToolTip tip(sTitle, sMsg);
+    tip.SetIcon(wxICON_INFORMATION);
+    tip.ShowFor(m_btnImgInfos);
+}
+
+void DlgOptions::OnUpdateUI_BtnClearImg(wxUpdateUIEvent& event)
+{
+    event.Enable(!m_bImageHeaderDefault);
 }

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-09 17:49+0200\n"
-"PO-Revision-Date: 2018-10-09 17:49+0200\n"
+"POT-Creation-Date: 2018-10-26 18:59+0200\n"
+"PO-Revision-Date: 2018-10-26 18:59+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -54,66 +54,72 @@ msgstr "Facture N° %s-%04d"
 msgid "Bill #_ _ _ _ _ _ _ _ _ _ _ _"
 msgstr "Facture N° _ _ _ _ _ _ _ _ _ _ _ _"
 
-#: sources/billpdfdoc.cpp:34 sources/estimatepdfdoc.cpp:35
+#: sources/billpdfdoc.cpp:37 sources/estimatepdfdoc.cpp:38
+#, c-format
+msgid "Edited in %s on %s"
+msgstr "Édité à %s le %s"
+
+#: sources/billpdfdoc.cpp:37 sources/billpdfdoc.cpp:41
+#: sources/billpdfdoc.cpp:45 sources/estimatepdfdoc.cpp:38
+#: sources/estimatepdfdoc.cpp:42 sources/estimatepdfdoc.cpp:46
+msgid "%Y/%m/%d"
+msgstr "%d/%m/%Y"
+
+#: sources/billpdfdoc.cpp:41 sources/estimatepdfdoc.cpp:42
 #, c-format
 msgid "Edited on %s"
 msgstr "Édité le %s"
 
-#: sources/billpdfdoc.cpp:34 sources/billpdfdoc.cpp:37
-#: sources/estimatepdfdoc.cpp:35 sources/estimatepdfdoc.cpp:38
-msgid "%Y/%m/%d"
-msgstr "%d/%m/%Y"
-
-#: sources/billpdfdoc.cpp:37
+#: sources/billpdfdoc.cpp:45
 msgid "To be paid before:"
 msgstr "À payer avant le :"
 
-#: sources/billpdfdoc.cpp:58 sources/estimatepdfdoc.cpp:73
+#: sources/billpdfdoc.cpp:66 sources/estimatepdfdoc.cpp:81
 msgid "Edited on _ _ _ _ / _ _ / _ _"
 msgstr "Édité le _ _ / _ _ / _ _ _ _"
 
-#: sources/billpdfdoc.cpp:59
+#: sources/billpdfdoc.cpp:67
 msgid "To be paid before: _ _ _ _ / _ _ / _ _"
 msgstr "À payer avant le : _ _ / _ _ / _ _ _ _"
 
-#: sources/billpdfdoc.cpp:170 sources/billpdfdoc.cpp:189
-#: sources/billpdfdoc.cpp:204 sources/dlgaddeditbill.cpp:136
+#: sources/billpdfdoc.cpp:178 sources/billpdfdoc.cpp:197
+#: sources/billpdfdoc.cpp:212 sources/dlgaddeditbill.cpp:136
 #: sources/dlgaddeditbill.cpp:475 sources/dlgaddeditestimate.cpp:124
-#: sources/dlgaddeditestimate.cpp:441 sources/estimatepdfdoc.cpp:181
-#: sources/estimatepdfdoc.cpp:200 sources/estimatepdfdoc.cpp:215
+#: sources/dlgaddeditestimate.cpp:441 sources/estimatepdfdoc.cpp:189
+#: sources/estimatepdfdoc.cpp:208 sources/estimatepdfdoc.cpp:223
 msgid "Total to pay:"
 msgstr "Total à payer :"
 
-#: sources/billpdfdoc.cpp:176 sources/estimatepdfdoc.cpp:187
+#: sources/billpdfdoc.cpp:184 sources/estimatepdfdoc.cpp:195
 msgid "Sub-total:"
 msgstr "Sous-total :"
 
-#: sources/billpdfdoc.cpp:177 sources/estimatepdfdoc.cpp:188
+#: sources/billpdfdoc.cpp:185 sources/estimatepdfdoc.cpp:196
 #, c-format
 msgid "Discount (%0.2f%%)"
 msgstr "Remise (%0.2f%%)"
 
-#: sources/billpdfdoc.cpp:184 sources/estimatepdfdoc.cpp:195
+#: sources/billpdfdoc.cpp:192 sources/estimatepdfdoc.cpp:203
 msgid "Total w/o VAT"
 msgstr "Total H.T."
 
-#: sources/billpdfdoc.cpp:185 sources/billpdfdoc.cpp:200
-#: sources/estimatepdfdoc.cpp:196 sources/estimatepdfdoc.cpp:211
+#: sources/billpdfdoc.cpp:193 sources/billpdfdoc.cpp:208
+#: sources/estimatepdfdoc.cpp:204 sources/estimatepdfdoc.cpp:219
 #, c-format
 msgid "VAT (%0.1f%%)"
 msgstr "T.V.A. (%0.1f%%)"
 
-#: sources/billpdfdoc.cpp:194 sources/estimatepdfdoc.cpp:205
+#: sources/billpdfdoc.cpp:202 sources/estimatepdfdoc.cpp:213
 msgid "Total w/o VAT to pay:"
 msgstr "Total H.T. à payer :"
 
-#: sources/billpdfdoc.cpp:199 sources/dlgaddeditbill.cpp:110
+#: sources/billpdfdoc.cpp:207 sources/dlgaddeditbill.cpp:110
 #: sources/dlgaddeditbill.cpp:467 sources/dlgaddeditestimate.cpp:103
-#: sources/dlgaddeditestimate.cpp:433 sources/estimatepdfdoc.cpp:210
+#: sources/dlgaddeditestimate.cpp:433 sources/estimatepdfdoc.cpp:218
 msgid "Total w/o VAT:"
 msgstr "Total H.T.:"
 
-#: sources/billpdfdoc.cpp:220 sources/estimatepdfdoc.cpp:231
+#: sources/billpdfdoc.cpp:228 sources/estimatepdfdoc.cpp:239
 msgid "V.A.T. non-applicable"
 msgstr "TVA non applicable (art. 293 B du CGI)"
 
@@ -323,113 +329,196 @@ msgstr ""
 msgid "Edit an estimate entry"
 msgstr "Éditer une entrée de devis"
 
-#: sources/dlgoptions.cpp:48
+#: sources/dlgoptions.cpp:51
 msgid "Position of the main window:"
 msgstr "Position de la fenêtre principale :"
 
-#: sources/dlgoptions.cpp:49
+#: sources/dlgoptions.cpp:52
 msgid "Position of the main window at application startup"
 msgstr "Position de la fenêtre principale au démarrage de l'application"
 
-#: sources/dlgoptions.cpp:52
+#: sources/dlgoptions.cpp:55
 msgid "Predefined position"
 msgstr "Position prédéfinie"
 
-#: sources/dlgoptions.cpp:54
+#: sources/dlgoptions.cpp:57
 msgid "Last registered position"
 msgstr "Dernière position enregistrée"
 
-#: sources/dlgoptions.cpp:58
+#: sources/dlgoptions.cpp:61
 msgid "Predefined positions:"
 msgstr "Positions prédéfinies :"
 
-#: sources/dlgoptions.cpp:59
+#: sources/dlgoptions.cpp:62
 msgid "Top-Left"
 msgstr "Haut-Gauche"
 
-#: sources/dlgoptions.cpp:59
+#: sources/dlgoptions.cpp:62
 msgid "Top-Center"
 msgstr "Centre-Haut"
 
-#: sources/dlgoptions.cpp:59
+#: sources/dlgoptions.cpp:62
 msgid "Top-Right"
 msgstr "Haut-Droit"
 
-#: sources/dlgoptions.cpp:60
+#: sources/dlgoptions.cpp:63
 msgid "Middle-Left"
 msgstr "Milieu-Gauche"
 
-#: sources/dlgoptions.cpp:60
+#: sources/dlgoptions.cpp:63
 msgid "Center-Screen"
 msgstr "Centre-Écran"
 
-#: sources/dlgoptions.cpp:60
+#: sources/dlgoptions.cpp:63
 msgid "Middle-Right"
 msgstr "Milieu-Droit"
 
-#: sources/dlgoptions.cpp:61
+#: sources/dlgoptions.cpp:64
 msgid "Bottom-Left"
 msgstr "Bas-Gauche"
 
-#: sources/dlgoptions.cpp:61
+#: sources/dlgoptions.cpp:64
 msgid "Bottom-Center"
 msgstr "Centre-Bas"
 
-#: sources/dlgoptions.cpp:61
+#: sources/dlgoptions.cpp:64
 msgid "Bottom-Right"
 msgstr "Bas-Droit"
 
-#: sources/dlgoptions.cpp:75
+#: sources/dlgoptions.cpp:78
 msgid "Misc :"
 msgstr "Divers :"
 
-#: sources/dlgoptions.cpp:76
+#: sources/dlgoptions.cpp:79
 msgid "Allow only one instance of the application"
 msgstr "N'autoriser qu'une seule instance de l'application"
 
-#: sources/dlgoptions.cpp:78
+#: sources/dlgoptions.cpp:81
 msgid "Compress settings file (for size and privacy)"
 msgstr "Compresser le fichier des paramètres (pour la taille et la confidentialité)"
 
-#: sources/dlgoptions.cpp:83
+#: sources/dlgoptions.cpp:86
 msgid "General"
 msgstr "Général"
 
-#: sources/dlgoptions.cpp:89
+#: sources/dlgoptions.cpp:92
 msgid "Interface language:"
 msgstr "Langue de l'interface :"
 
-#: sources/dlgoptions.cpp:90
+#: sources/dlgoptions.cpp:93
 msgid "Keep the interface language in English (restart needed)"
 msgstr "Conserver l'interface en anglais (redémarrage nécessaire)"
 
-#: sources/dlgoptions.cpp:94
+#: sources/dlgoptions.cpp:97
 msgid "Monetary sign:"
 msgstr "Signe monétaire :"
 
-#: sources/dlgoptions.cpp:96
+#: sources/dlgoptions.cpp:99
 msgid "Monetary sign to use:"
 msgstr "Signe monétaire à utiliser :"
 
-#: sources/dlgoptions.cpp:100
+#: sources/dlgoptions.cpp:103
 msgid "Placed"
 msgstr "Placé"
 
-#: sources/dlgoptions.cpp:102
+#: sources/dlgoptions.cpp:105
 msgid "before"
 msgstr "avant"
 
-#: sources/dlgoptions.cpp:104
+#: sources/dlgoptions.cpp:107
 msgid "after"
 msgstr "après"
 
-#: sources/dlgoptions.cpp:106
+#: sources/dlgoptions.cpp:109
 msgid "the value"
 msgstr "la valeur"
 
-#: sources/dlgoptions.cpp:112
+#: sources/dlgoptions.cpp:115
 msgid "Language"
 msgstr "Langue"
+
+#: sources/dlgoptions.cpp:121
+msgid "Location of your entreprise:"
+msgstr "Emplacement de votre entreprise :"
+
+#: sources/dlgoptions.cpp:122
+msgid "Enter the town in witch your company is located."
+msgstr "Entrez la ville dans laquelle est située votre entreprise."
+
+#: sources/dlgoptions.cpp:123
+msgid "It will be placed near the edition date of each pdf documents."
+msgstr "Elle sera placée près de la date d'édition de chaque document pdf."
+
+#: sources/dlgoptions.cpp:127
+msgid "Location:"
+msgstr "Emplacement :"
+
+#: sources/dlgoptions.cpp:134
+msgid "Header image:"
+msgstr "Image d'en-tête :"
+
+#: sources/dlgoptions.cpp:135
+msgid "Image that will be placed on top of pdf documents:"
+msgstr "Image qui sera placée au sommet des documents pdf :"
+
+#: sources/dlgoptions.cpp:140
+msgid "Select an image"
+msgstr "Sélectionner une image"
+
+#: sources/dlgoptions.cpp:142
+msgid "Remove custom image"
+msgstr "Enlever l'image personnalisée"
+
+#: sources/dlgoptions.cpp:144
+msgid "Infos"
+msgstr "Infos"
+
+#: sources/dlgoptions.cpp:150
+msgid "Customization"
+msgstr "Personnalisation"
+
+#: sources/dlgoptions.cpp:331
+msgid "All images files|*.png;*.jpg"
+msgstr "Tous les fichiers images|*.png;*.jpg"
+
+#: sources/dlgoptions.cpp:332
+msgid "Png images files (*.png)|*.png"
+msgstr "Fichiers images Png (*.png)|*.png"
+
+#: sources/dlgoptions.cpp:333
+msgid "Jpeg images files (*.jpg)|*.jpg"
+msgstr "Fichiers images Jpeg (*.jpg)|*.jpg"
+
+#: sources/dlgoptions.cpp:334
+msgid "All files (*.*)|*.*"
+msgstr "Tous les fichiers (*.*)|*.*"
+
+#: sources/dlgoptions.cpp:336
+msgid "Select an image file"
+msgstr "Sélectionner un fichier image"
+
+#: sources/dlgoptions.cpp:346
+msgid "The selected image file can't be loaded !"
+msgstr "Le fichier image sélectionné ne peut pas être chargé !"
+
+#: sources/dlgoptions.cpp:346 sources/panelnbookpage_bills.cpp:133
+#: sources/panelnbookpage_clients.cpp:258
+#: sources/panelnbookpage_estimates.cpp:139
+msgid "Error"
+msgstr "Erreur"
+
+#: sources/dlgoptions.cpp:370
+msgid "Custom image size"
+msgstr "Taille de l'image personnalisée"
+
+#: sources/dlgoptions.cpp:371
+#, c-format
+msgid "The selected image must respect the ratio of %d x %d pixels."
+msgstr "L'image sélectionnée doit respecter le rapport de %d x %d pixels."
+
+#: sources/dlgoptions.cpp:372
+msgid "It will be resized to these values on pdf documents."
+msgstr "Elle sera redimensionnée à ces valeurs sur les documents pdf."
 
 #: sources/dlgselectclient.cpp:8
 msgid "Selecting a client"
@@ -488,11 +577,11 @@ msgstr "Devis N° %s"
 msgid "Estimate #_ _ _ _ _ _ _ _ _ _ _ _"
 msgstr "Devis N° _ _ _ _ _ _ _ _ _ _ _ _"
 
-#: sources/estimatepdfdoc.cpp:38
+#: sources/estimatepdfdoc.cpp:46
 msgid "Estimate valid until:"
 msgstr "Devis valide jusqu’au :"
 
-#: sources/estimatepdfdoc.cpp:74
+#: sources/estimatepdfdoc.cpp:82
 msgid "Estimate valid until: _ _ _ _ / _ _ / _ _"
 msgstr "Devis valide jusqu’au  : _ _ / _ _ / _ _ _ _"
 
@@ -532,28 +621,28 @@ msgstr ""
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
-#: sources/microbillpdfdoc.cpp:46
+#: sources/microbillpdfdoc.cpp:47
 msgid "Description"
 msgstr "Description"
 
-#: sources/microbillpdfdoc.cpp:47
+#: sources/microbillpdfdoc.cpp:48
 msgid "Unit Price"
 msgstr "P. U."
 
-#: sources/microbillpdfdoc.cpp:48
+#: sources/microbillpdfdoc.cpp:49
 msgid "Qty"
 msgstr "Qté"
 
-#: sources/microbillpdfdoc.cpp:49
+#: sources/microbillpdfdoc.cpp:50
 msgid "Total"
 msgstr "Total"
 
-#: sources/microbillpdfdoc.cpp:66
+#: sources/microbillpdfdoc.cpp:67
 #, c-format
 msgid "Created with %s"
 msgstr "Créé avec %s"
 
-#: sources/microbillpdfdoc.cpp:72
+#: sources/microbillpdfdoc.cpp:73
 #, c-format
 msgid "Page %d on {nb}"
 msgstr "Page %d / {nb}"
@@ -618,11 +707,6 @@ msgstr "Supprimer la facture sélectionnée ?"
 #: sources/panelnbookpage_bills.cpp:133
 msgid "An error occurred while removing the selected bill!"
 msgstr "Une erreur est survenue lors de la suppression de la facture sélectionnée !"
-
-#: sources/panelnbookpage_bills.cpp:133 sources/panelnbookpage_clients.cpp:258
-#: sources/panelnbookpage_estimates.cpp:139
-msgid "Error"
-msgstr "Erreur"
 
 #: sources/panelnbookpage_bills.cpp:187 sources/panelnbookpage_bills.cpp:199
 #: sources/panelnbookpage_bills.cpp:253 sources/panelnbookpage_bills.cpp:257

@@ -4,6 +4,9 @@ const wxChar* g_szStdXmlFileHeader1=_T("<?xml version=\"1.0\" encoding=\"UTF-8\"
 const wxChar* g_szStdXmlFileHeader2=_T("<?xml version='1.0' encoding='UTF-8'?>");
 
 const wxChar* SettingsManager::m_szSettingsFName=_T("Settings.µBill");
+const wxChar* SettingsManager::m_szCustHeaderImgFName = _T("CustHeaderImg.png");
+
+#include "microbill.png.h"
 
 #include <wx/dir.h>
 #include <wx/zstream.h>
@@ -71,6 +74,8 @@ void SettingsManager::Initialize()
     m_arsMoneySigns.Add(_T("\u00a5"));
     m_sMoneySign = _T("\u20AC");
     m_iMoneySignPos = wxRIGHT;
+    m_imgHeader = NULL;
+    m_sLocation = wxEmptyString;
 
     m_bInitialized=true;
 }
@@ -158,8 +163,24 @@ bool SettingsManager::ReadSettings()
             node->GetAttribute(_T("Pos")).ToLong(&lVal);
             SetMoneySignPos(lVal);
         }
+        // Company location
+        if (nodName==_T("Location"))
+        {
+            m_sLocation = node->GetNodeContent();
+        }
 
         node = node->GetNext();
+    }
+
+    wxString sImgFName = m_sSettingsPath;
+    sImgFName << m_szCustHeaderImgFName;
+    if (wxFileExists(sImgFName))
+    {
+        if (m_imgHeader != NULL) // Who knows....
+        {
+            delete m_imgHeader;
+        }
+        m_imgHeader = new wxImage(sImgFName, wxBITMAP_TYPE_PNG);
     }
 
     m_bModified=false;
@@ -225,6 +246,14 @@ bool SettingsManager::SaveSettings()
     node = node->GetNext();
     node->AddAttribute(_T("Value"), m_sMoneySign);
     node->AddAttribute(_T("Pos"), wxString::Format(_T("%d"), m_iMoneySignPos));
+
+    // Company location
+    if (!m_sLocation.IsEmpty())
+    {
+        node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("Location")));
+        node = node->GetNext();
+        node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), m_sLocation));
+    }
 
     wxXmlDocument doc;
     doc.SetRoot(root);
@@ -386,3 +415,68 @@ wxString SettingsManager::GetFormatedMoneyValue(double value, const wxString& fo
         return wxString::Format(sFormat, value, m_sMoneySign);
     }
 }
+
+wxImage SettingsManager::GetHeaderImage()
+{
+    if (m_imgHeader == NULL)
+    {
+        return GetDefaultHeaderImage();
+    }
+    else
+    {
+        return *m_imgHeader;
+    }
+}
+
+wxImage SettingsManager::GetDefaultHeaderImage()
+{
+    wxImage imgHeader = wxGet_MicroBill_png_Bitmap().ConvertToImage();
+    double zX = double(szDefaultHeaderImgSize.GetWidth())/imgHeader.GetWidth();
+    double zY = double(szDefaultHeaderImgSize.GetHeight())/imgHeader.GetHeight();
+    wxSize szImg = imgHeader.GetSize();
+    if (zX < zY)
+    {
+        szImg.SetHeight(imgHeader.GetHeight()/zX);
+    }
+    else
+    {
+        szImg.SetWidth(imgHeader.GetWidth()/zY);
+    }
+    imgHeader.Resize(szImg, wxPoint(0, 0));
+    return imgHeader;
+}
+
+bool SettingsManager::SetHeaderImage(wxImage* img)
+{
+    // Delete the current image if any
+    if (m_imgHeader != NULL)
+    {
+        delete m_imgHeader;
+        m_imgHeader = NULL;
+    }
+    wxString sImgFName = m_sSettingsPath;
+    sImgFName << m_szCustHeaderImgFName;
+    // In any case, we should remove the actual file
+    if (wxFileExists(sImgFName))
+        wxRemoveFile(sImgFName);
+    if (img != NULL)
+    {
+        m_imgHeader = new wxImage(*img);
+        m_imgHeader->SaveFile(sImgFName, wxBITMAP_TYPE_PNG);
+    }
+    return true;
+}
+
+void SettingsManager::SetCompanyLocation(const wxString& value)
+{
+    // Remove extra spaces at the begining and at the end
+    wxString sValue = value;
+    sValue.Trim(true);
+    sValue.Trim(false);
+    if (sValue != m_sLocation)
+    {
+        m_sLocation = sValue;
+        m_bModified = true;
+    }
+}
+

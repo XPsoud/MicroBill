@@ -32,7 +32,15 @@ void EstimatePdfDoc::WriteTitle()
     SetY(y+2);
     if (m_estimate!=NULL)
     {
-        wxString sTmp=wxString::Format(_("Edited on %s"), m_estimate->GetCreationDate().Format(_("%Y/%m/%d")));
+        wxString sTmp;
+        if (m_options.HasCompanyLocation())
+        {
+            sTmp=wxString::Format(_("Edited in %s on %s"), m_options.GetCompanyLocation(), m_estimate->GetCreationDate().Format(_("%Y/%m/%d")));
+        }
+        else
+        {
+            sTmp=wxString::Format(_("Edited on %s"), m_estimate->GetCreationDate().Format(_("%Y/%m/%d")));
+        }
         if (m_estimate->GetTermDate().IsValid())
         {
             sTmp << _T("\n") << _("Estimate valid until:") << m_estimate->GetTermDate().Format(_("%Y/%m/%d"));
