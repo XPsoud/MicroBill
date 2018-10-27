@@ -15,7 +15,7 @@
 #include <wx/aboutdlg.h>
 
 #ifndef __WXMSW__
-    #include "../graphx/wxwin.xpm"
+    #include "../graphx/microbill.xpm"
 #endif // __WXMSW__
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, -1, title),

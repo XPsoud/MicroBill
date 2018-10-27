@@ -1,4 +1,4 @@
-appIcon ICON "../graphx/wxwin.ico"
+appIcon ICON "../graphx/microbill.ico"
 
 #include <windows.h>
 #include "wx/msw/rcdefs.h"
