@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+DH_VERBOSE = 1
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	$(MAKE) locales
+	install -D -m 0755 $$(pwd)/bin/MicroBill $$(pwd)/debian/microbill/usr/bin/MicroBill
+	install -D -m 0755 $$(pwd)/debian/microbill.desktop $$(pwd)/debian/microbill/usr/share/applications/microbill.desktop
+	install -D $$(pwd)/debian/microbill.png $$(pwd)/debian/microbill/usr/share/microbill/icons/microbill.png
+	install -D $$(pwd)/bin/langs/fr/MicroBill.mo $$(pwd)/debian/microbill/usr/share/MicroBill/langs/fr/MicroBill.mo
+	install -D $$(pwd)/bin/langs/fr/wxstd.mo $$(pwd)/debian/microbill/usr/share/MicroBill/langs/fr/wxstd.mo

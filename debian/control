@@ -1,0 +1,13 @@
+Source: microbill
+Section: misc
+Priority: optional
+Maintainer: Xaviou <x.psoud@gmail.com>
+Build-Depends: debhelper (>= 7.4.11~)
+Homepage: https://wxstuff.xaviou.fr
+Standards-Version: 3.9.8
+
+Package: microbill
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Micro billing software for small entreprises
+

@@ -35,13 +35,11 @@ bool MicroBillApp::OnInit()
 
     if (bI18N)
     {
-#ifdef __WXMAC__
-        wxString sDir=wxStandardPaths::Get().GetResourcesDir();
+        wxString sDir=settings.GetAppPath();
+        if (!wxDirExists(sDir + _T("langs")))
+            sDir=wxStandardPaths::Get().GetResourcesDir();
         if (!sDir.EndsWith(wxFileName::GetPathSeparator()))
             sDir.Append(wxFileName::GetPathSeparator());
-#else
-        wxString sDir=settings.GetAppPath();
-#endif // __WXMAC__
         sDir.Append(_T("langs"));
         m_locale.AddCatalogLookupPathPrefix(sDir);
         m_locale.Init(wxLANGUAGE_DEFAULT, wxLOCALE_LOAD_DEFAULT);

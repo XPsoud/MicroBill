@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=MicroBill
+GenericName=MicroBill application
+Exec=MicroBill
+Icon=/usr/share/microbill/icons/microbill.png
+Terminal=false
+X-MultipleArgs=false
+Categories=Misc;
+StartupNotify=false
+Comment=Micro billing software for small entreprises
+Comment[fr]=Logiciel de facturation pour petites entreprises
+Name[fr]=MicroBill
