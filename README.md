@@ -18,4 +18,5 @@ MicroBill is a simple billing application for small entreprises.
 
  - Make the Linux and Mac OS port
  - Export datas and/or settings for backup
+ - Password protected access to the application
  - ...

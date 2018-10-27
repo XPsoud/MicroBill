@@ -475,6 +475,12 @@
 		<Unit filename="../sources/settingsmanager.h">
 			<Option virtualFolder="Datas-Options/" />
 		</Unit>
+		<Unit filename="../sources/splashscreen.cpp">
+			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/splashscreen.h">
+			<Option virtualFolder="Interface/" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

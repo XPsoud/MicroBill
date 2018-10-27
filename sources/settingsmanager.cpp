@@ -65,6 +65,7 @@ void SettingsManager::Initialize()
     // Other default settings
     m_bSingleInstance=true;
     m_bProhibI18N=false;
+    m_bShowSplashScreen=true;
     m_bCompSettings=false;
     m_arsMoneySigns.Clear();
     m_arsMoneySigns.Add(_T("\u20AC"));
@@ -147,6 +148,11 @@ bool SettingsManager::ReadSettings()
         {
             // Only one instance allowed ?
             m_bSingleInstance=(node->GetNodeContent()!=_T("Allowed"));
+        }
+        if (nodName==_T("ShowSplashScreen"))
+        {
+            // Show the splash screen at startup ? ?
+            m_bShowSplashScreen=(node->GetNodeContent()!=_T("No"));
         }
         if (nodName==_T("CompressSettingsFile"))
         {
@@ -248,6 +254,11 @@ bool SettingsManager::SaveSettings()
     node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("Translation")));
     node = node->GetNext();
     node->AddAttribute(_T("Allowed"), (m_bProhibI18N?_T("No"):_T("Yes")));
+
+    // Show the splash screen at startup ?
+    node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("ShowSplashScreen")));
+    node = node->GetNext();
+    node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), (m_bShowSplashScreen?_T("Yes"):_T("No"))));
 
     // Monetary sign
     node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("MoneySign")));
@@ -388,6 +399,15 @@ void SettingsManager::SetProhibitI18N(bool value)
     {
         m_bProhibI18N=value;
         m_bModified=true;
+    }
+}
+
+void SettingsManager::SetShowSplashScreen(bool value)
+{
+    if (value != m_bShowSplashScreen)
+    {
+        m_bShowSplashScreen = value;
+        m_bModified = true;
     }
 }
 

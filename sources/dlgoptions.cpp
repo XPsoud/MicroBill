@@ -82,6 +82,8 @@ void DlgOptions::CreateControls()
                     box->Add(m_chkSingleInstance, 0, wxALL, 5);
                     m_chkCompSettings=new wxCheckBox(box->GetStaticBox(), -1, _("Compress settings file (for size and privacy)"));
                     box->Add(m_chkCompSettings, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
+                    m_chkSplashScreen=new wxCheckBox(box->GetStaticBox(), -1, _("Show the splash screen at application startup"));
+                    box->Add(m_chkSplashScreen, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
                 pageszr->Add(box, 0, wxALL|wxEXPAND, 5);
 
             page->SetSizer(pageszr);
@@ -240,6 +242,7 @@ void DlgOptions::FillControls()
 
     m_chkSingleInstance->SetValue(m_options.GetMultipleInstancesAllowed()==false);
     m_chkCompSettings->SetValue(m_options.GetCompressSettings());
+    m_chkSplashScreen->SetValue(m_options.GetShowSplashScreen());
 
     m_chkKeepLang->SetValue(m_options.GetProhibitI18N());
     const wxArrayString& arsMoneySigns = m_options.GetMoneySigns();
@@ -302,6 +305,7 @@ bool DlgOptions::ApplySettings()
 
     m_options.SetMultipleInstancesAllowed(m_chkSingleInstance->IsChecked()==false);
     m_options.SetCompressSettings(m_chkCompSettings->IsChecked());
+    m_options.SetShowSplashScreen(m_chkSplashScreen->IsChecked());
 
     m_options.SetProhibitI18N(m_chkKeepLang->IsChecked());
     m_options.SetMonetarySign(m_cmbSign->GetStringSelection());

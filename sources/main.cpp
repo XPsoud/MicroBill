@@ -2,6 +2,7 @@
 
 #include "mainframe.h"
 #include "appversion.h"
+#include "splashscreen.h"
 #include "datasmanager.h"
 #include "settingsmanager.h"
 
@@ -46,6 +47,16 @@ bool MicroBillApp::OnInit()
         setlocale(LC_NUMERIC, "C");
     }
 
+    // Create and show the splashscreen if needed
+    SplashScreen *splash = NULL;
+    if (settings.GetShowSplashScreen())
+    {
+        splash = new SplashScreen();
+        splash->CenterOnScreen();
+        splash->ShowWithEffect(wxSHOW_EFFECT_BLEND, 1000);
+        wxMilliSleep(500);
+    }
+
     // Check for single instance
     m_pSnglInstChkr=NULL;
     if (!settings.GetMultipleInstancesAllowed())
@@ -70,6 +81,9 @@ bool MicroBillApp::OnInit()
     SetTopWindow(frame);
     frame->Show();
     frame->Raise();
+
+    // Delete the splashscreen if it has been created
+    wxDELETE(splash);
 
     return true;
 }

@@ -35,6 +35,9 @@ class SettingsManager
         // Prohibit translations and transaltions related stuff
         bool GetProhibitI18N() { return m_bProhibI18N; }
         void SetProhibitI18N(bool value);
+        // Splash screen
+        bool GetShowSplashScreen() { return m_bShowSplashScreen; }
+        void SetShowSplashScreen(bool value=true);
         // Monetary sign
         const wxArrayString& GetMoneySigns() { return m_arsMoneySigns; }
         const wxString GetMonetarySign() { return m_sMoneySign; }
@@ -73,7 +76,7 @@ class SettingsManager
         int m_iStartPos;
         wxPoint m_ptStartPos;
         wxSize m_szStartSize;
-        bool m_bSingleInstance, m_bProhibI18N;
+        bool m_bSingleInstance, m_bProhibI18N, m_bShowSplashScreen;
         wxString m_sMoneySign;
         int m_iMoneySignPos;
         wxImage *m_imgHeader;
