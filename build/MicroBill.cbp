@@ -160,6 +160,7 @@
 				</Environment>
 			</Target>
 			<Target title="Release64">
+				<Option platforms="Windows;" />
 				<Option output="../bin/MicroBill$(ARCHI)$(DBG_FLG)" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
 				<Option object_output="../build/Release$(ARCHI)" />
@@ -205,6 +206,7 @@
 				</Environment>
 			</Target>
 			<Target title="Debug64">
+				<Option platforms="Windows;" />
 				<Option output="../bin/MicroBill$(ARCHI)$(DBG_FLG)" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
 				<Option object_output="../build/Debug$(ARCHI)" />
@@ -249,6 +251,7 @@
 				</Environment>
 			</Target>
 			<Target title="Release64S">
+				<Option platforms="Windows;" />
 				<Option output="../bin/MicroBill$(ARCHI)$(DBG_FLG)S" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
 				<Option object_output="../build/Release$(ARCHI)S" />
@@ -309,8 +312,49 @@
 					<Variable name="WX_VERSION" value="31" />
 				</Environment>
 			</Target>
+			<Target title="Release-Linux">
+				<Option platforms="Unix;" />
+				<Option output="../bin/MicroBill" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../bin" />
+				<Option object_output="./ReleaseLx/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config --cflags`" />
+					<Add directory="../sources" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="./ReleaseLx/libwxPdfDoc.a" />
+					<Add option="`wx-config --libs base, core, adv, xml`" />
+					<Add option="-no-pie" />
+				</Linker>
+			</Target>
+			<Target title="Debug-Linux">
+				<Option platforms="Unix;" />
+				<Option output="../bin/MicroBillD" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../bin" />
+				<Option object_output="./DebugLx/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="`wx-config --cflags`" />
+					<Add directory="../sources" />
+				</Compiler>
+				<Linker>
+					<Add option="./DebugLx/libwxPdfDocD.a" />
+					<Add option="`wx-config --libs base, core, adv, xml`" />
+					<Add option="-no-pie" />
+				</Linker>
+			</Target>
 			<Environment>
-				<Variable name="WX_DIR" value="C:\wx$(WX_VERSION)" />
+				<Variable name="WX_DIR" value="C:/wx$(WX_VERSION)" />
 			</Environment>
 		</Build>
 		<Compiler>
@@ -480,6 +524,12 @@
 		<Unit filename="../sources/resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option virtualFolder="Misc/" />
+			<Option target="Release32" />
+			<Option target="Debug32" />
+			<Option target="Release32S" />
+			<Option target="Release64" />
+			<Option target="Debug64" />
+			<Option target="Release64S" />
 		</Unit>
 		<Unit filename="../sources/settingsmanager.cpp">
 			<Option virtualFolder="Datas-Options/" />

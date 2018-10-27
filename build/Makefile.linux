@@ -1,0 +1,69 @@
+CFLAGS = `wx-config --cppflags` -DwxDEBUG_LEVEL=0
+WX_REL = $(shell wx-config --release)
+BASE_SRCDIR = .
+CPP_SRCDIR = sources
+PDF_SRCDIR = wxpdfdoc
+OUTPUT_DIR = bin
+
+EXEC_NAME = $(BASE_SRCDIR)/$(OUTPUT_DIR)/MicroBill
+INCLUDES = -I$(BASE_SRCDIR)/$(PDF_SRCDIR)/include
+
+BASE_OBJDIR = build/wx-$(WX_REL)
+wxPdfDocLib = $(BASE_OBJDIR)/libPdfDocument.a
+SRC_OBJDIR = $(BASE_OBJDIR)/$(CPP_SRCDIR)
+PDF_OBJDIR = $(BASE_OBJDIR)/$(PDF_SRCDIR)
+
+CPP_SRC_FILES = $(wildcard $(BASE_SRCDIR)/$(CPP_SRCDIR)/*.cpp)
+OBJ_SRC_FILES = $(CPP_SRC_FILES:$(BASE_SRCDIR)/$(CPP_SRCDIR)/%.cpp=$(BASE_OBJDIR)/$(CPP_SRCDIR)/%.o)
+DEP_SRC_FILES = $(OBJ_SRC_FILES:$(BASE_OBJDIR)/$(CPP_SRCDIR)/%.o=$(BASE_OBJDIR)/$(CPP_SRCDIR)/%.d)
+
+CPP_PDF_FILES = $(wildcard $(BASE_SRCDIR)/$(PDF_SRCDIR)/src/*.cpp)
+OBJ_PDF_FILES = $(CPP_PDF_FILES:$(BASE_SRCDIR)/$(PDF_SRCDIR)/src/%.cpp=$(BASE_OBJDIR)/$(PDF_SRCDIR)/%.o)
+
+LNG_SRC_FILES = $(wildcard ./bin/langs/*/*.po)
+LNG_CMP_FILES = $(LNG_SRC_FILES:%.po=%.mo)
+
+LIBS = `wx-config --libs` -lfontconfig
+
+all : $(EXEC_NAME)
+
+clean :
+	rm -rf $(BASE_OBJDIR)/$(CPP_SRCDIR)
+	rm -rf $(BASE_OBJDIR)/$(PDF_SRCDIR)
+	rm -f $(EXEC_NAME)
+
+minclean :
+	rm -rf $(BASE_OBJDIR)/$(CPP_SRCDIR)
+	rm -f $(EXEC_NAME)
+
+prebuild :
+	@mkdir -p $(BASE_OBJDIR)/$(CPP_SRCDIR)
+	@mkdir -p $(BASE_OBJDIR)/$(PDF_SRCDIR)
+
+libpdf: $(wxPdfDocLib)
+
+locales: $(LNG_CMP_FILES)
+
+-include $(DEP_SRC_FILES)
+
+$(wxPdfDocLib): $(OBJ_PDF_FILES)
+	@echo Building lib $@
+	@ar -q $@ $(OBJ_PDF_FILES)
+
+$(EXEC_NAME) : prebuild $(wxPdfDocLib) $(OBJ_SRC_FILES)
+	@echo Linking executable file \"$(EXEC_NAME)\"
+	@g++ -o $(EXEC_NAME) -no-pie $(OBJ_SRC_FILES) $(wxPdfDocLib) $(LIBS)
+
+$(BASE_OBJDIR)/$(CPP_SRCDIR)/%.o: $(BASE_SRCDIR)/$(CPP_SRCDIR)/%.cpp $(BASE_SRCDIR)/$(CPP_SRCDIR)/%.h
+	@echo Compiling $<
+	@g++ -MMD $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(BASE_OBJDIR)/$(PDF_SRCDIR)/%.o: $(BASE_SRCDIR)/$(PDF_SRCDIR)/src/%.cpp
+	@echo Compiling $<
+	@g++ $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+bin/langs/%.mo: bin/langs/%.po
+	@echo Compiling language file $< to $@
+	msgfmt $< -o $@
+
+.PHONY: clean minclean
