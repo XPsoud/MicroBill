@@ -73,6 +73,27 @@ void MicroBillPdfDoc::Footer()
     wxString sPage=wxString::Format(_("Page %d on {nb}"), PageNo());
     Cell(20, 4, sPage , wxPDF_BORDER_NONE, 2, wxPDF_ALIGN_RIGHT);
 
+    // Custom footer text
+    wxString sFooter = m_options.GetFooterText(), sStyle = m_options.GetFooterStyle();
+    if (!sFooter.IsEmpty())
+    {
+        unsigned char r, g, b;
+        long lValue;
+        sStyle.Mid(0, 3).ToLong(&lValue); r=(unsigned char)lValue;
+        sStyle.Mid(3, 3).ToLong(&lValue); g=(unsigned char)lValue;;
+        sStyle.Mid(6, 3).ToLong(&lValue); b=(unsigned char)lValue;
+        sStyle.Mid(9, 2).ToLong(&lValue);
+        if (sStyle.Len()>11) // Extra style (Bold, Italic) ?
+            sStyle = sStyle.Mid(10);
+        else
+            sStyle = _T("");
+
+        SetFont(_T("Helvetica"), sStyle, lValue);
+        SetTextColour(wxColour(r, g, b));
+        SetXY(10, -12);
+        Cell(170, 10, sFooter);
+    }
+
     // Restore text colour
     SetTextColour(curTxtCol);
 }

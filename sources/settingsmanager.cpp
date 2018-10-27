@@ -76,6 +76,8 @@ void SettingsManager::Initialize()
     m_iMoneySignPos = wxRIGHT;
     m_imgHeader = NULL;
     m_sLocation = wxEmptyString;
+    m_sFooterText = wxEmptyString;
+    m_sFooterStyle = _T("00000000008I");
 
     m_bInitialized=true;
 }
@@ -168,6 +170,12 @@ bool SettingsManager::ReadSettings()
         {
             m_sLocation = node->GetNodeContent();
         }
+        // Footer text
+        if (nodName==_T("FooterText"))
+        {
+            m_sFooterStyle = node->GetAttribute(_T("Style"), m_sFooterStyle);
+            m_sFooterText = node->GetNodeContent();
+        }
 
         node = node->GetNext();
     }
@@ -253,6 +261,15 @@ bool SettingsManager::SaveSettings()
         node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("Location")));
         node = node->GetNext();
         node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), m_sLocation));
+    }
+
+    // Footer text
+    if (!m_sFooterText.IsEmpty())
+    {
+        node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("FooterText")));
+        node = node->GetNext();
+        node->AddAttribute(_T("Style"), m_sFooterStyle);
+        node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), m_sFooterText));
     }
 
     wxXmlDocument doc;
@@ -480,3 +497,24 @@ void SettingsManager::SetCompanyLocation(const wxString& value)
     }
 }
 
+void SettingsManager::SetFooterText(const wxString& text, const wxString& style)
+{
+    // Remove extra spaces at the begining and at the end
+    wxString sValue = text;
+    sValue.Trim(true);
+    sValue.Trim(false);
+    if (sValue != m_sFooterText)
+    {
+        m_sFooterText = sValue;
+        m_bModified = true;
+    }
+    // TODO (Xaviou#1#): Make real checks on the following value
+    if (!style.IsEmpty())
+    {
+        if (style != m_sFooterStyle)
+        {
+            m_sFooterStyle = style;
+            m_bModified = true;
+        }
+    }
+}

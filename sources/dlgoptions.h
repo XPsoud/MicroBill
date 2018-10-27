@@ -2,6 +2,7 @@
 #define __DLGOPTIONS_H_INCLUDED__
 
 #include <wx/wx.h>
+#include <wx/clrpicker.h>
 
 class SettingsManager;
 class wxNotebook;
@@ -36,9 +37,12 @@ class DlgOptions : public wxDialog
     wxChoice *m_cmbSign;
     wxRadioButton *m_optSignPos[2];
     // "Customization" tab controls vars
-    wxTextCtrl *m_txtLocation;
+    wxTextCtrl *m_txtLocation, *m_txtFooter;
     wxStaticBitmap *m_stbHeaderImg;
     wxButton *m_btnSelectImg, *m_btnClearImg, *m_btnImgInfos;
+    wxCheckBox *m_chkFootItalic, *m_chkFootBold;
+    wxChoice *m_cmbFootSize;
+    wxColourPickerCtrl *m_cpcFootColor;
     // Main dialog box controls
     wxNotebook *m_nBook;
     wxButton *m_btnApply;

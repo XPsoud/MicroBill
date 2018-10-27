@@ -51,6 +51,9 @@ class SettingsManager
         void SetCompanyLocation(const wxString& value);
         wxString GetCompanyLocation() { return m_sLocation; }
         bool HasCompanyLocation() { return !m_sLocation.IsEmpty(); }
+        void SetFooterText(const wxString& text, const wxString& style=wxEmptyString);
+        wxString GetFooterText() { return m_sFooterText; }
+        wxString GetFooterStyle() { return m_sFooterStyle; }
     protected:
     private:
         SettingsManager();
@@ -74,7 +77,7 @@ class SettingsManager
         wxString m_sMoneySign;
         int m_iMoneySignPos;
         wxImage *m_imgHeader;
-        wxString m_sLocation;
+        wxString m_sLocation, m_sFooterText, m_sFooterStyle;
 };
 
 #endif // __SETTINGSMANAGER_H_INCLUDED__

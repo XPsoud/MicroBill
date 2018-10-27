@@ -21,9 +21,11 @@ DlgOptions::DlgOptions(wxWindow *parent)
 
     ConnectControls();
 
-    CenterOnParent();
-
     FillControls();
+
+    GetSizer()->SetSizeHints(this);
+
+    CenterOnParent();
 }
 
 DlgOptions::~DlgOptions()
@@ -49,16 +51,16 @@ void DlgOptions::CreateControls()
             pageszr=new wxBoxSizer(wxVERTICAL);
 
                 box=new wxStaticBoxSizer(wxVERTICAL, page, _("Position of the main window:"));
-                    label=new wxStaticText(page, -1, _("Position of the main window at application startup"));
+                    label=new wxStaticText(box->GetStaticBox(), -1, _("Position of the main window at application startup"));
                     box->Add(label, 0, wxALL, 5);
                     lnszr=new wxBoxSizer(wxHORIZONTAL);
-                        m_optStartType[0]=new wxRadioButton(page, -1, _("Predefined position"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+                        m_optStartType[0]=new wxRadioButton(box->GetStaticBox(), -1, _("Predefined position"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
                         lnszr->Add(m_optStartType[0], 0, wxALL, 5);
-                        m_optStartType[1]=new wxRadioButton(page, -1, _("Last registered position"));
+                        m_optStartType[1]=new wxRadioButton(box->GetStaticBox(), -1, _("Last registered position"));
                         lnszr->Add(m_optStartType[1], 0, wxTOP|wxBOTTOM|wxRIGHT, 5);
                     box->Add(lnszr, 0, wxALL, 0);
 
-                    box2=new wxStaticBoxSizer(wxVERTICAL, page, _("Predefined positions:"));
+                    box2=new wxStaticBoxSizer(wxVERTICAL, box->GetStaticBox(), _("Predefined positions:"));
                     const wxChar* szLabels[9] = {   _("Top-Left"), _("Top-Center"), _("Top-Right"),
                                                     _("Middle-Left"), _("Center-Screen"), _("Middle-Right"),
                                                     _("Bottom-Left"), _("Bottom-Center"), _("Bottom-Right")};
@@ -66,7 +68,7 @@ void DlgOptions::CreateControls()
                     flxszr=new wxFlexGridSizer(3, 5, 5);
                         for (int i=0; i<9; i++)
                         {
-                            m_optDefPos[i]=new wxRadioButton(page, -1, szLabels[i], wxDefaultPosition, wxDefaultSize, (i==0?wxRB_GROUP:0));
+                            m_optDefPos[i]=new wxRadioButton(m_stbPos, -1, szLabels[i], wxDefaultPosition, wxDefaultSize, (i==0?wxRB_GROUP:0));
                             flxszr->Add(m_optDefPos[i]);
                         }
                         flxszr->AddGrowableCol(0, 1);
@@ -76,9 +78,9 @@ void DlgOptions::CreateControls()
                 pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
 
                 box=new wxStaticBoxSizer(wxVERTICAL, page, _("Misc :"));
-                    m_chkSingleInstance=new wxCheckBox(page, -1, _("Allow only one instance of the application"));
+                    m_chkSingleInstance=new wxCheckBox(box->GetStaticBox(), -1, _("Allow only one instance of the application"));
                     box->Add(m_chkSingleInstance, 0, wxALL, 5);
-                    m_chkCompSettings=new wxCheckBox(page, -1, _("Compress settings file (for size and privacy)"));
+                    m_chkCompSettings=new wxCheckBox(box->GetStaticBox(), -1, _("Compress settings file (for size and privacy)"));
                     box->Add(m_chkCompSettings, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
                 pageszr->Add(box, 0, wxALL|wxEXPAND, 5);
 
@@ -90,23 +92,23 @@ void DlgOptions::CreateControls()
             pageszr=new wxBoxSizer(wxVERTICAL);
 
                 box=new wxStaticBoxSizer(wxVERTICAL, page, _("Interface language:"));
-                    m_chkKeepLang=new wxCheckBox(page, -1, _("Keep the interface language in English (restart needed)"));
+                    m_chkKeepLang=new wxCheckBox(box->GetStaticBox(), -1, _("Keep the interface language in English (restart needed)"));
                     box->Add(m_chkKeepLang, 0, wxALL, 5);
                 pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
 
                 box=new wxStaticBoxSizer(wxVERTICAL, page, _("Monetary sign:"));
                     lnszr=new wxBoxSizer(wxHORIZONTAL);
-                        label = new wxStaticText(page, wxID_STATIC, _("Monetary sign to use:"));
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Monetary sign to use:"));
                         lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
-                        m_cmbSign = new wxChoice(page, -1, wxDefaultPosition, wxSize(50, -1));
+                        m_cmbSign = new wxChoice(box->GetStaticBox(), -1, wxDefaultPosition, wxSize(50, -1));
                         lnszr->Add(m_cmbSign, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
-                        label = new wxStaticText(page, wxID_STATIC, _("Placed"));
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Placed"));
                         lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
-                        m_optSignPos[0] = new wxRadioButton(page, -1, _("before"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+                        m_optSignPos[0] = new wxRadioButton(box->GetStaticBox(), -1, _("before"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
                         lnszr->Add(m_optSignPos[0], 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
-                        m_optSignPos[1] = new wxRadioButton(page, -1, _("after"));
+                        m_optSignPos[1] = new wxRadioButton(box->GetStaticBox(), -1, _("after"));
                         lnszr->Add(m_optSignPos[1], 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
-                        label = new wxStaticText(page, wxID_STATIC, _("the value"));
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("the value"));
                         lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
                     box->Add(lnszr, 0, wxALL, 5);
                 pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
@@ -121,29 +123,54 @@ void DlgOptions::CreateControls()
                 box=new wxStaticBoxSizer(wxVERTICAL, page, _("Location of your entreprise:"));
                     sText = _("Enter the town in witch your company is located.");
                     sText << _T("\n") << _("It will be placed near the edition date of each pdf documents.");
-                    label = new wxStaticText(page, wxID_STATIC, sText);
+                    label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, sText);
                     box->Add(label, 0, wxALL, 5);
                     lnszr=new wxBoxSizer(wxHORIZONTAL);
-                        label = new wxStaticText(page, wxID_STATIC, _("Location:"));
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Location:"));
                         lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
-                        m_txtLocation = new wxTextCtrl(page, -1, wxEmptyString);
+                        m_txtLocation = new wxTextCtrl(box->GetStaticBox(), -1, wxEmptyString);
                         lnszr->Add(m_txtLocation, 1, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
                     box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, 5);
                 pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
 
                 box=new wxStaticBoxSizer(wxVERTICAL, page, _("Header image:"));
-                    label = new wxStaticText(page, wxID_STATIC, _("Image that will be placed on top of pdf documents:"));
-                    box->Add(label, 0, wxALL, 5);
-                    m_stbHeaderImg = new wxStaticBitmap(page, wxID_STATIC, wxBitmap(m_imgHeader));
-                    box->Add(m_stbHeaderImg, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL, 5);
+                    m_stbHeaderImg = new wxStaticBitmap(box->GetStaticBox(), wxID_STATIC, wxBitmap(m_imgHeader));
+                    box->Add(m_stbHeaderImg, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5);
                     lnszr = new wxBoxSizer(wxHORIZONTAL);
-                        m_btnSelectImg = new wxButton(page, -1, _("Select an image"));
+                        m_btnSelectImg = new wxButton(box->GetStaticBox(), -1, _("Select an image"));
                         lnszr->Add(m_btnSelectImg, 0, wxALL, 0);
-                        m_btnClearImg = new wxButton(page, -1, _("Remove custom image"));
+                        m_btnClearImg = new wxButton(box->GetStaticBox(), -1, _("Remove custom image"));
                         lnszr->Add(m_btnClearImg, 0, wxLEFT, 5);
-                        m_btnImgInfos = new wxButton(page, -1, _("Infos"));
+                        m_btnImgInfos = new wxButton(box->GetStaticBox(), -1, _("Infos"));
                         lnszr->Add(m_btnImgInfos, 0, wxLEFT, 5);
                     box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL, 5);
+                pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
+
+                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Footer text:"));
+                    lnszr=new wxBoxSizer(wxHORIZONTAL);
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Text:"));
+                        lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+                        m_txtFooter = new wxTextCtrl(box->GetStaticBox(), -1, wxEmptyString);
+                        lnszr->Add(m_txtFooter, 1, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                    box->Add(lnszr, 0, wxALL|wxEXPAND, 5);
+                    lnszr = new wxBoxSizer(wxHORIZONTAL);
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Style:"));
+                        lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+                        m_chkFootItalic = new wxCheckBox(box->GetStaticBox(), -1, _("Italic"));
+                        lnszr->Add(m_chkFootItalic, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                        m_chkFootBold = new wxCheckBox(box->GetStaticBox(), -1, _("Bold"));
+                        lnszr->Add(m_chkFootBold, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Size:"));
+                        lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                        m_cmbFootSize = new wxChoice(box->GetStaticBox(), -1);
+                            for (int i=6; i<13; ++i)
+                                m_cmbFootSize->Append(wxString::Format(_T("%d"), i));
+                        lnszr->Add(m_cmbFootSize, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Color:"));
+                        lnszr->Add(label, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                        m_cpcFootColor = new wxColourPickerCtrl(box->GetStaticBox(), -1);
+                        lnszr->Add(m_cpcFootColor, 0, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                    box->Add(lnszr, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
                 pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxTOP|wxEXPAND, 5);
 
             page->SetSizer(pageszr);
@@ -156,8 +183,6 @@ void DlgOptions::CreateControls()
             m_btnApply=(wxButton*)FindWindow(wxID_APPLY);
         szrMain->Add(lnszr, 0, wxALL|wxEXPAND, 5);
     SetSizer(szrMain);
-
-    szrMain->SetSizeHints(this);
 }
 
 void DlgOptions::ConnectControls()
@@ -229,6 +254,18 @@ void DlgOptions::FillControls()
     m_bHeaderImageChanged = false;
     m_bImageHeaderDefault = !m_options.HasCustomHeaderImage();
     m_nBook->GetPage(2)->GetSizer()->Layout();
+    m_txtFooter->ChangeValue(m_options.GetFooterText());
+    wxString sStyle = m_options.GetFooterStyle();
+    unsigned char r, g, b;
+    long lValue;
+    sStyle.Mid(0, 3).ToLong(&lValue); r=(unsigned char)lValue;
+    sStyle.Mid(3, 3).ToLong(&lValue); g=(unsigned char)lValue;;
+    sStyle.Mid(6, 3).ToLong(&lValue); b=(unsigned char)lValue;
+    sStyle.Mid(9, 2).ToLong(&lValue);
+    m_chkFootItalic->SetValue(sStyle.Find(_T('I'))!=wxNOT_FOUND);
+    m_chkFootBold->SetValue(sStyle.Find(_T('B'))!=wxNOT_FOUND);
+    m_cmbFootSize->SetStringSelection(wxString::Format(_T("%d"), lValue));
+    m_cpcFootColor->SetColour(wxColour(r, g, b));
 
     m_btnApply->Disable();
 }
@@ -283,6 +320,14 @@ bool DlgOptions::ApplySettings()
             m_options.SetHeaderImage(&m_imgHeader);
         }
     }
+
+    wxString sStyle=wxEmptyString;
+    wxColour fcol = m_cpcFootColor->GetColour();
+    sStyle << wxString::Format(_T("%03d%03d%03d"), fcol.Red(), fcol.Green(), fcol.Blue());
+    sStyle << wxString::Format(_T("00%s"), m_cmbFootSize->GetStringSelection()).Right(2);
+    sStyle << (m_chkFootItalic->GetValue()?_T("I"):_T(""));
+    sStyle << (m_chkFootBold->GetValue()?_T("B"):_T(""));
+    m_options.SetFooterText(m_txtFooter->GetValue(), sStyle);
 
     m_btnApply->Disable();
     return true;
@@ -367,8 +412,9 @@ void DlgOptions::OnBtnRemoveImgClicked(wxCommandEvent& event)
 
 void DlgOptions::OnBtnImgInfosClicked(wxCommandEvent& event)
 {
-    wxString sTitle = _("Custom image size");
-    wxString sMsg = wxString::Format(_("The selected image must respect the ratio of %d x %d pixels."), szDefaultHeaderImgSize.GetWidth(), szDefaultHeaderImgSize.GetHeight());
+    wxString sTitle = _("Custom header image");
+    wxString sMsg = _("Image that will be placed on top of pdf documents.");
+    sMsg << _T("\n\n") << wxString::Format(_("The selected image must respect the ratio of %d x %d pixels."), szDefaultHeaderImgSize.GetWidth(), szDefaultHeaderImgSize.GetHeight());
     sMsg << _T("\n") << _("It will be resized to these values on pdf documents.");
 
     wxRichToolTip tip(sTitle, sMsg);
