@@ -1,6 +1,7 @@
 #include "mainframe.h"
 
 #include "main.h"
+#include "dlgabout.h"
 #include "appversion.h"
 #include "dlgoptions.h"
 #include "dlgaddeditbill.h"
@@ -12,7 +13,6 @@
 
 #include <wx/display.h>
 #include <wx/notebook.h>
-#include <wx/aboutdlg.h>
 
 #ifndef __WXMSW__
     #include "../graphx/microbill.xpm"
@@ -184,15 +184,8 @@ void MainFrame::OnExitClicked(wxCommandEvent& event)
 
 void MainFrame::OnAboutClicked(wxCommandEvent& event)
 {
-    wxAboutDialogInfo info;
-
-    info.SetName(_T(PRODUCTNAME));
-    info.SetVersion(wxGetApp().GetVersionNumString(true));
-    info.SetDescription(wDESCRIPTION);
-    info.SetCopyright(COPYRIGHT);
-    info.SetIcon(wxICON(appIcon));
-
-    wxAboutBox(info);
+    DlgAbout dlg(this);
+    dlg.ShowModal();
 }
 
 void MainFrame::OnConvertEstim2Bill(wxCommandEvent& event)

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 14:53+0200\n"
-"PO-Revision-Date: 2018-10-27 14:54+0200\n"
+"POT-Creation-Date: 2018-10-27 16:56+0200\n"
+"PO-Revision-Date: 2018-10-27 16:56+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -122,6 +122,10 @@ msgstr "Total H.T.:"
 #: sources/billpdfdoc.cpp:228 sources/estimatepdfdoc.cpp:239
 msgid "V.A.T. non-applicable"
 msgstr "TVA non applicable (art. 293 B du CGI)"
+
+#: sources/dlgabout.cpp:20
+msgid "Made with"
+msgstr "Créé avec"
 
 #: sources/dlgaddeditbill.cpp:23
 msgid "Creating a new bill"

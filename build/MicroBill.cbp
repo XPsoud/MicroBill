@@ -354,7 +354,7 @@
 				</Linker>
 			</Target>
 			<Environment>
-				<Variable name="WX_DIR" value="C:/wx$(WX_VERSION)" />
+				<Variable name="WX_DIR" value="C:\wx$(WX_VERSION)" />
 			</Environment>
 		</Build>
 		<Compiler>
@@ -362,6 +362,12 @@
 			<Add option="-std=gnu++11" />
 			<Add directory="../wxpdfdoc/include" />
 		</Compiler>
+		<Unit filename="../sources/aboutlogo.cpp">
+			<Option virtualFolder="Graphx/" />
+		</Unit>
+		<Unit filename="../sources/aboutlogo.h">
+			<Option virtualFolder="Graphx/" />
+		</Unit>
 		<Unit filename="../sources/appversion.h">
 			<Option virtualFolder="Misc/" />
 		</Unit>
@@ -394,6 +400,12 @@
 		</Unit>
 		<Unit filename="../sources/datasmanager.h">
 			<Option virtualFolder="Datas-Options/" />
+		</Unit>
+		<Unit filename="../sources/dlgabout.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlgabout.h">
+			<Option virtualFolder="Dialogs/" />
 		</Unit>
 		<Unit filename="../sources/dlgaddeditbill.cpp">
 			<Option virtualFolder="Dialogs/" />
