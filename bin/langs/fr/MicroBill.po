@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 12:06+0200\n"
-"PO-Revision-Date: 2018-10-27 12:07+0200\n"
+"POT-Creation-Date: 2018-10-27 14:53+0200\n"
+"PO-Revision-Date: 2018-10-27 14:54+0200\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -329,6 +329,35 @@ msgstr ""
 msgid "Edit an estimate entry"
 msgstr "Éditer une entrée de devis"
 
+#: sources/dlglogin.cpp:7
+msgid "Restricted access"
+msgstr "(4) Accès restreint"
+
+#: sources/dlglogin.cpp:42
+msgid ""
+"Access to this application has been\n"
+"protected with a password."
+msgstr ""
+"L'accès à cette application a été\n"
+"protégé avec un mot de passe."
+
+#: sources/dlglogin.cpp:47
+msgid "Incorrect password!"
+msgstr "Mot de passe incorrect !"
+
+#: sources/dlglogin.cpp:56
+msgid "Enter the access password:"
+msgstr "Entrez le mot de passe d'accès :"
+
+#: sources/dlglogin.cpp:64
+msgid "Display password in plain text"
+msgstr "Afficher mot de passe en texte brut"
+
+#: sources/dlglogin.cpp:117
+#, c-format
+msgid "Incorrect password: trial %d on %d"
+msgstr "Mot de passe incorrect : essai %d sur %d"
+
 #: sources/dlgoptions.cpp:53
 msgid "Position of the main window:"
 msgstr "Position de la fenêtre principale :"
@@ -401,154 +430,194 @@ msgstr "Compresser le fichier des paramètres (pour la taille et la confidential
 msgid "Show the splash screen at application startup"
 msgstr "Afficher l'écran d'accueil au démarrage de l'application"
 
-#: sources/dlgoptions.cpp:90
+#: sources/dlgoptions.cpp:89
+msgid "Password:"
+msgstr "Mot de passe :"
+
+#: sources/dlgoptions.cpp:91
+msgid "Application access require a password:"
+msgstr "L'accès à l'application requiert un mot de passe :"
+
+#: sources/dlgoptions.cpp:99
 msgid "General"
 msgstr "Général"
 
-#: sources/dlgoptions.cpp:96
+#: sources/dlgoptions.cpp:105
 msgid "Interface language:"
 msgstr "Langue de l'interface :"
 
-#: sources/dlgoptions.cpp:97
+#: sources/dlgoptions.cpp:106
 msgid "Keep the interface language in English (restart needed)"
 msgstr "Conserver l'interface en anglais (redémarrage nécessaire)"
 
-#: sources/dlgoptions.cpp:101
+#: sources/dlgoptions.cpp:110
 msgid "Monetary sign:"
 msgstr "Signe monétaire :"
 
-#: sources/dlgoptions.cpp:103
+#: sources/dlgoptions.cpp:112
 msgid "Monetary sign to use:"
 msgstr "Signe monétaire à utiliser :"
 
-#: sources/dlgoptions.cpp:107
+#: sources/dlgoptions.cpp:116
 msgid "Placed"
 msgstr "Placé"
 
-#: sources/dlgoptions.cpp:109
+#: sources/dlgoptions.cpp:118
 msgid "before"
 msgstr "avant"
 
-#: sources/dlgoptions.cpp:111
+#: sources/dlgoptions.cpp:120
 msgid "after"
 msgstr "après"
 
-#: sources/dlgoptions.cpp:113
+#: sources/dlgoptions.cpp:122
 msgid "the value"
 msgstr "la valeur"
 
-#: sources/dlgoptions.cpp:119
+#: sources/dlgoptions.cpp:128
 msgid "Language"
 msgstr "Langue"
 
-#: sources/dlgoptions.cpp:125
+#: sources/dlgoptions.cpp:134
 msgid "Location of your entreprise:"
 msgstr "Emplacement de votre entreprise :"
 
-#: sources/dlgoptions.cpp:126
+#: sources/dlgoptions.cpp:135
 msgid "Enter the town in witch your company is located."
 msgstr "Entrez la ville dans laquelle est située votre entreprise."
 
-#: sources/dlgoptions.cpp:127
+#: sources/dlgoptions.cpp:136
 msgid "It will be placed near the edition date of each pdf documents."
 msgstr "Elle sera placée près de la date d'édition de chaque document pdf."
 
-#: sources/dlgoptions.cpp:131
+#: sources/dlgoptions.cpp:140
 msgid "Location:"
 msgstr "Emplacement :"
 
-#: sources/dlgoptions.cpp:138
+#: sources/dlgoptions.cpp:147
 msgid "Header image:"
 msgstr "Image d'en-tête :"
 
-#: sources/dlgoptions.cpp:142
+#: sources/dlgoptions.cpp:151
 msgid "Select an image"
 msgstr "Sélectionner une image"
 
-#: sources/dlgoptions.cpp:144
+#: sources/dlgoptions.cpp:153
 msgid "Remove custom image"
 msgstr "Enlever l'image personnalisée"
 
-#: sources/dlgoptions.cpp:146
+#: sources/dlgoptions.cpp:155
 msgid "Infos"
 msgstr "Infos"
 
-#: sources/dlgoptions.cpp:151
+#: sources/dlgoptions.cpp:160
 msgid "Footer text:"
 msgstr "Texte de pied de page :"
 
-#: sources/dlgoptions.cpp:153
+#: sources/dlgoptions.cpp:162
 msgid "Text:"
 msgstr "Texte :"
 
-#: sources/dlgoptions.cpp:159
+#: sources/dlgoptions.cpp:168
 msgid "Style:"
 msgstr "Style :"
 
-#: sources/dlgoptions.cpp:161
+#: sources/dlgoptions.cpp:170
 msgid "Italic"
 msgstr "Italique"
 
-#: sources/dlgoptions.cpp:163
+#: sources/dlgoptions.cpp:172
 msgid "Bold"
 msgstr "Gras"
 
-#: sources/dlgoptions.cpp:165
+#: sources/dlgoptions.cpp:174
 msgid "Size:"
 msgstr "Taille :"
 
-#: sources/dlgoptions.cpp:171
+#: sources/dlgoptions.cpp:180
 msgid "Color:"
 msgstr "Couleur :"
 
-#: sources/dlgoptions.cpp:179
+#: sources/dlgoptions.cpp:188
 msgid "Customization"
 msgstr "Personnalisation"
 
-#: sources/dlgoptions.cpp:378
+#: sources/dlgoptions.cpp:300
+msgid "The access password has been defined."
+msgstr "Le mot de passe d'accès a été défini."
+
+#: sources/dlgoptions.cpp:306
+msgid "The access password has been removed."
+msgstr "Le mot de passe d'accès a été supprimé."
+
+#: sources/dlgoptions.cpp:308 sources/dlgoptions.cpp:325
+msgid "The access password has been modified."
+msgstr "Le mot de passe d'accès a été modifié."
+
+#: sources/dlgoptions.cpp:310
+msgid "Please enter the old password to allow this modification."
+msgstr "Merci d'entrer l'ancien mot de passe pour autoriser cette modification."
+
+#: sources/dlgoptions.cpp:313
+msgid "Old password"
+msgstr "Ancien mot de passe"
+
+#: sources/dlgoptions.cpp:317 sources/dlgoptions.cpp:337
+msgid "The entered password doesn't match!"
+msgstr "Le mot de passe saisi ne correspond pas !"
+
+#: sources/dlgoptions.cpp:329
+msgid "Please confirm its new value"
+msgstr "Merci de confirmer sa nouvelle valeur"
+
+#: sources/dlgoptions.cpp:333
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: sources/dlgoptions.cpp:447
 msgid "All images files|*.png;*.jpg"
 msgstr "Tous les fichiers images|*.png;*.jpg"
 
-#: sources/dlgoptions.cpp:379
+#: sources/dlgoptions.cpp:448
 msgid "Png images files (*.png)|*.png"
 msgstr "Fichiers images Png (*.png)|*.png"
 
-#: sources/dlgoptions.cpp:380
+#: sources/dlgoptions.cpp:449
 msgid "Jpeg images files (*.jpg)|*.jpg"
 msgstr "Fichiers images Jpeg (*.jpg)|*.jpg"
 
-#: sources/dlgoptions.cpp:381
+#: sources/dlgoptions.cpp:450
 msgid "All files (*.*)|*.*"
 msgstr "Tous les fichiers (*.*)|*.*"
 
-#: sources/dlgoptions.cpp:383
+#: sources/dlgoptions.cpp:452
 msgid "Select an image file"
 msgstr "Sélectionner un fichier image"
 
-#: sources/dlgoptions.cpp:393
+#: sources/dlgoptions.cpp:462
 msgid "The selected image file can't be loaded !"
 msgstr "Le fichier image sélectionné ne peut pas être chargé !"
 
-#: sources/dlgoptions.cpp:393 sources/panelnbookpage_bills.cpp:133
+#: sources/dlgoptions.cpp:462 sources/panelnbookpage_bills.cpp:133
 #: sources/panelnbookpage_clients.cpp:258
 #: sources/panelnbookpage_estimates.cpp:139
 msgid "Error"
 msgstr "Erreur"
 
-#: sources/dlgoptions.cpp:417
+#: sources/dlgoptions.cpp:486
 msgid "Custom header image"
-msgstr "Image d'en-tête "
+msgstr "Image d'en-tête"
 
-#: sources/dlgoptions.cpp:418
+#: sources/dlgoptions.cpp:487
 msgid "Image that will be placed on top of pdf documents."
 msgstr "Image qui sera placée au sommet des documents pdf."
 
-#: sources/dlgoptions.cpp:419
+#: sources/dlgoptions.cpp:488
 #, c-format
 msgid "The selected image must respect the ratio of %d x %d pixels."
 msgstr "L'image sélectionnée doit respecter le rapport de %d x %d pixels."
 
-#: sources/dlgoptions.cpp:420
+#: sources/dlgoptions.cpp:489
 msgid "It will be resized to these values on pdf documents."
 msgstr "Elle sera redimensionnée à ces valeurs sur les documents pdf."
 
@@ -617,11 +686,11 @@ msgstr "Devis valide jusqu’au :"
 msgid "Estimate valid until: _ _ _ _ / _ _ / _ _"
 msgstr "Devis valide jusqu’au  : _ _ / _ _ / _ _ _ _"
 
-#: sources/main.cpp:68
+#: sources/main.cpp:69
 msgid "An other instance of this application is already running !"
 msgstr "Une autre instance de cette application est déjà en train de tourner !"
 
-#: sources/main.cpp:68
+#: sources/main.cpp:69
 msgid "Multiple instances forbidden"
 msgstr "Instances multiples interdites"
 

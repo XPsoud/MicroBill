@@ -86,6 +86,15 @@ void DlgOptions::CreateControls()
                     box->Add(m_chkSplashScreen, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5);
                 pageszr->Add(box, 0, wxALL|wxEXPAND, 5);
 
+                box=new wxStaticBoxSizer(wxVERTICAL, page, _("Password:"));
+                    lnszr=new wxBoxSizer(wxHORIZONTAL);
+                        label = new wxStaticText(box->GetStaticBox(), wxID_STATIC, _("Application access require a password:"));
+                        lnszr->Add(label, 0, wxALL|wxALIGN_CENTER_VERTICAL, 0);
+                        m_txtPassword = new wxTextCtrl(box->GetStaticBox(), -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PASSWORD);
+                        lnszr->Add(m_txtPassword, 1, wxLEFT|wxALIGN_CENTER_VERTICAL, 5);
+                    box->Add(lnszr, 0, wxALL|wxEXPAND, 5);
+                pageszr->Add(box, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxEXPAND, 5);
+
             page->SetSizer(pageszr);
         m_nBook->AddPage(page, _("General"));
 
@@ -243,6 +252,7 @@ void DlgOptions::FillControls()
     m_chkSingleInstance->SetValue(m_options.GetMultipleInstancesAllowed()==false);
     m_chkCompSettings->SetValue(m_options.GetCompressSettings());
     m_chkSplashScreen->SetValue(m_options.GetShowSplashScreen());
+    m_txtPassword->ChangeValue(m_options.GetPassword());
 
     m_chkKeepLang->SetValue(m_options.GetProhibitI18N());
     const wxArrayString& arsMoneySigns = m_options.GetMoneySigns();
@@ -275,6 +285,62 @@ void DlgOptions::FillControls()
 
 bool DlgOptions::ApplySettings()
 {
+    // Check for password modifications
+    wxString sOldPass=m_options.GetPassword();
+    wxString sNewPass=m_txtPassword->GetValue();
+    if (sOldPass!=sNewPass) // Has password changed ?
+    {
+        const int iMaxRetry=3;
+        wxString sMsg;
+        bool bOk = false;
+        int iTry=0;
+        // First case : it has only been set
+        if (sOldPass.IsEmpty())
+        {
+            sMsg = _("The access password has been defined.");
+        }
+        else
+        {
+            // Second case : it has been unset
+            if (sNewPass.IsEmpty())
+                sMsg = _("The access password has been removed.");
+            else // Third case : it has jut been modified
+                sMsg = _("The access password has been modified.");
+
+            sMsg << _T("\n\n") << _("Please enter the old password to allow this modification.");
+            while((iTry<iMaxRetry) && (bOk==false))
+            {
+                if (sOldPass==wxGetPasswordFromUser(sMsg, _("Old password")))
+                    bOk = true;
+                else
+                    if (iTry==0)
+                        sMsg << _T("\n\n") << _("The entered password doesn't match!");
+                iTry++;
+            }
+            if (!bOk)
+                return false;
+
+            bOk = sNewPass.IsEmpty();
+            if (!bOk)
+                sMsg = _("The access password has been modified.");
+        }
+        if (!bOk)
+        {
+            sMsg << _T("\n\n") << _("Please confirm its new value");
+            iTry=0;
+            while((iTry<iMaxRetry) && (bOk==false))
+            {
+                if (sNewPass==wxGetPasswordFromUser(sMsg, _("New password")))
+                    bOk = true;
+                else
+                    if (iTry==0)
+                        sMsg << _T("\n\n") << _("The entered password doesn't match!");
+                iTry++;
+            }
+            if (!bOk)
+                return false;
+        }
+    }
     int iIndex=wxNOT_FOUND;
     if (m_optStartType[0]->GetValue())
     {
@@ -306,6 +372,7 @@ bool DlgOptions::ApplySettings()
     m_options.SetMultipleInstancesAllowed(m_chkSingleInstance->IsChecked()==false);
     m_options.SetCompressSettings(m_chkCompSettings->IsChecked());
     m_options.SetShowSplashScreen(m_chkSplashScreen->IsChecked());
+    m_options.SetPassword(m_txtPassword->GetValue());
 
     m_options.SetProhibitI18N(m_chkKeepLang->IsChecked());
     m_options.SetMonetarySign(m_cmbSign->GetStringSelection());

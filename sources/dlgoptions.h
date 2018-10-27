@@ -32,6 +32,7 @@ class DlgOptions : public wxDialog
     wxRadioButton *m_optStartType[2], *m_optDefPos[9];
     wxStaticBox *m_stbPos;
     wxCheckBox *m_chkSingleInstance, *m_chkCompSettings, *m_chkSplashScreen;
+    wxTextCtrl *m_txtPassword;
     // "Language" tab controls vars
     wxCheckBox *m_chkKeepLang;
     wxChoice *m_cmbSign;

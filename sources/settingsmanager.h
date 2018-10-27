@@ -38,6 +38,9 @@ class SettingsManager
         // Splash screen
         bool GetShowSplashScreen() { return m_bShowSplashScreen; }
         void SetShowSplashScreen(bool value=true);
+        // Access password
+        wxString GetPassword() { return m_sPassword; }
+        void SetPassword(const wxString& value);
         // Monetary sign
         const wxArrayString& GetMoneySigns() { return m_arsMoneySigns; }
         const wxString GetMonetarySign() { return m_sMoneySign; }
@@ -77,7 +80,7 @@ class SettingsManager
         wxPoint m_ptStartPos;
         wxSize m_szStartSize;
         bool m_bSingleInstance, m_bProhibI18N, m_bShowSplashScreen;
-        wxString m_sMoneySign;
+        wxString m_sPassword, m_sMoneySign;
         int m_iMoneySignPos;
         wxImage *m_imgHeader;
         wxString m_sLocation, m_sFooterText, m_sFooterStyle;

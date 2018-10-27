@@ -67,6 +67,7 @@ void SettingsManager::Initialize()
     m_bProhibI18N=false;
     m_bShowSplashScreen=true;
     m_bCompSettings=false;
+    m_sPassword = wxEmptyString;
     m_arsMoneySigns.Clear();
     m_arsMoneySigns.Add(_T("\u20AC"));
     m_arsMoneySigns.Add(_T("$"));
@@ -159,6 +160,11 @@ bool SettingsManager::ReadSettings()
             // Settings file compression ?
             m_bCompSettings=(node->GetNodeContent()==_T("Yes"));
         }
+        if (nodName==_T("AccessPwd"))
+        {
+            // Password to access the applicaiton
+            m_sPassword=node->GetNodeContent();
+        }
         if (nodName==_T("Translation"))
         {
             // Allowed ?
@@ -250,6 +256,14 @@ bool SettingsManager::SaveSettings()
     node = node->GetNext();
     node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), (m_bSingleInstance?_T("Not-Allowed"):_T("Allowed"))));
 
+    // Password to access the application
+    if (!m_sPassword.IsEmpty())
+    {
+        node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("AccessPwd")));
+        node = node->GetNext();
+        node->AddChild(new wxXmlNode(wxXML_TEXT_NODE, _T(""), m_sPassword));
+    }
+
     // Allowing (or not) interface translation
     node->SetNext(new wxXmlNode(NULL, wxXML_ELEMENT_NODE, _T("Translation")));
     node = node->GetNext();
@@ -288,7 +302,7 @@ bool SettingsManager::SaveSettings()
 
     wxFileOutputStream f_out(fname.GetFullPath());
     m_bModified=false;
-    if (GetCompressSettings())
+    if (GetCompressSettings() || !m_sPassword.IsEmpty())
     {
         // Write the xml document through a compression stream
         wxZlibOutputStream z_out(f_out, 9);
@@ -407,6 +421,15 @@ void SettingsManager::SetShowSplashScreen(bool value)
     if (value != m_bShowSplashScreen)
     {
         m_bShowSplashScreen = value;
+        m_bModified = true;
+    }
+}
+
+void SettingsManager::SetPassword(const wxString& value)
+{
+    if (value != m_sPassword)
+    {
+        m_sPassword = value;
         m_bModified = true;
     }
 }

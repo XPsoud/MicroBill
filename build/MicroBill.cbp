@@ -381,6 +381,12 @@
 		<Unit filename="../sources/dlgaddeditestimitem.h">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>
+		<Unit filename="../sources/dlglogin.cpp">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
+		<Unit filename="../sources/dlglogin.h">
+			<Option virtualFolder="Dialogs/" />
+		</Unit>
 		<Unit filename="../sources/dlgoptions.cpp">
 			<Option virtualFolder="Dialogs/" />
 		</Unit>
@@ -410,6 +416,12 @@
 		</Unit>
 		<Unit filename="../sources/estimitemctrl.h">
 			<Option virtualFolder="Interface/" />
+		</Unit>
+		<Unit filename="../sources/key.png.cpp">
+			<Option virtualFolder="Graphx/" />
+		</Unit>
+		<Unit filename="../sources/key.png.h">
+			<Option virtualFolder="Graphx/" />
 		</Unit>
 		<Unit filename="../sources/main.cpp">
 			<Option virtualFolder="Misc/" />

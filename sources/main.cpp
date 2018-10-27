@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "dlglogin.h"
 #include "mainframe.h"
 #include "appversion.h"
 #include "splashscreen.h"
@@ -70,6 +71,19 @@ bool MicroBillApp::OnInit()
             return false;
         }
     }
+
+    // Password protection ?
+    wxString sPassword=settings.GetPassword();
+    bool bPassOk=true;
+    if (!sPassword.IsEmpty())
+    {
+        DlgLogin dlg(splash, sPassword);
+        int iRes=dlg.ShowModal();
+        if (iRes==wxID_CANCEL)
+            return false;
+        bPassOk=(iRes==wxID_OK);
+    }
+    if (!bPassOk) return false;
 
     // Initialize the DatasManager instance
     DatasManager& datas=DatasManager::Get();
