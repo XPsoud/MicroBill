@@ -118,6 +118,14 @@ void MainFrame::CreateControls()
             helpMenu->Append(wxID_ABOUT);
         mbar->Append(helpMenu, wxGetStockLabel(wxID_HELP));
     SetMenuBar(mbar);
+#ifdef __WXMAC__
+    // On OSX, Exit and About menu entries are handled by the osx-specific menu
+    // So the File and Help menus became empty : we can delete them
+    mbar->Remove(1);    // Remove and the Help menu
+    delete helpMenu;    // and delete it
+    mbar->Remove(0);    // Remove the File menu
+    delete fileMenu;    // and delete it
+#endif // __WXMAC__
 }
 
 void MainFrame::ConnectControls()

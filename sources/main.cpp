@@ -8,6 +8,7 @@
 #include "settingsmanager.h"
 
 #include <wx/stdpaths.h>
+#include <wx/filename.h>
 
 IMPLEMENT_APP(MicroBillApp);
 
@@ -36,6 +37,8 @@ bool MicroBillApp::OnInit()
     {
 #ifdef __WXMAC__
         wxString sDir=wxStandardPaths::Get().GetResourcesDir();
+        if (!sDir.EndsWith(wxFileName::GetPathSeparator()))
+            sDir.Append(wxFileName::GetPathSeparator());
 #else
         wxString sDir=settings.GetAppPath();
 #endif // __WXMAC__

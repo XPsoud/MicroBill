@@ -1,0 +1,101 @@
+ifeq ($(OS_Detected), Darwin)
+#############################################################################
+# Application configuration
+#############################################################################
+
+AppName = MicroBill
+srcdir = ./sources
+resdir = ./graphx
+libdir = ./wxpdfdoc
+AppExe = ./bin/$(AppName)
+AppBundle = ./bin/$(AppName).app
+wxPdfDocLib = build/wxpdfdoc/libPdfDocument.a
+
+APP_VERSION_MAJOR = `cat sources/appversion.h | tr -d '\r\n\t ' | sed -e 's/.*VERSION_MAJOR\([0-9]*\).*/\1/'`
+APP_VERSION_MINOR = `cat sources/appversion.h | tr -d '\r\n\t ' | sed -e 's/.*VERSION_MINOR\([0-9]*\).*/\1/'`
+APP_VERSION_REV = `cat sources/appversion.h | tr -d '\r\n\t ' | sed -e 's/.*VERSION_REV\([0-9]*\).*/\1/'`
+APP_VERSION =$(APP_VERSION_MAJOR).$(APP_VERSION_MINOR).$(APP_VERSION_REV)
+
+SETFILE = SetFile
+NM = nm
+LIBS= `wx-config --libs`
+CXXFLAGS= `wx-config --cxxflags`
+INCLUDES= -I./wxpdfdoc/include
+
+### Variables: ###
+
+CPP_SRC_FILES = $(wildcard $(srcdir)/*.cpp)
+OBJ_SRC_FILES = $(CPP_SRC_FILES:$(srcdir)/%.cpp=build/sources/%.o)
+DEP_SRC_FILES = $(OBJ_SRC_FILES:build/sources/%.o=build/sources/%.d)
+CPP_PDF_FILES = $(wildcard $(libdir)/src/*.cpp)
+OBJ_PDF_FILES = $(CPP_PDF_FILES:$(libdir)/src/%.cpp=build/wxpdfdoc/%.o)
+
+
+### Conditionally set variables: ###
+
+__app__mac_setfilecmd = \
+	$(SETFILE) -t APPL $(AppExe)
+
+### Targets: ###
+
+all: prebuild $(AppExe) App_Bundle
+
+clean:
+	rm -rf ./build/sources
+	rm -rf ./build/wxpdfdoc
+	rm -f $(AppExe)
+	rm -rf $(AppBundle)
+
+minclean:
+	rm -rf ./build/sources
+	rm -f $(AppExe)
+	rm -rf $(AppBundle)
+
+prebuild:
+	@mkdir -p build/wxpdfdoc build/sources
+
+$(AppExe): $(wxPdfDocLib) $(OBJ_SRC_FILES)
+	@echo Linking executable $@
+	@g++ -o $@ $(OBJ_SRC_FILES) $(wxPdfDocLib) $(LIBS)
+	@echo Preparing executable for bundle
+	@$(__app__mac_setfilecmd)
+
+$(AppBundle)/Contents/PkgInfo: $(AppExe) ./sources/Info.plist.in ./graphx/microbill.icns
+	@echo Creating Application Bundle
+	@mkdir -p $(AppBundle)/Contents
+	@mkdir -p $(AppBundle)/Contents/MacOS
+	@mkdir -p $(AppBundle)/Contents/Resources
+
+	@sed -e "s/IDENTIFIER/`echo $(srcdir) | sed -e 's,\.\./,,g' | sed -e 's,/,.,g'`/" \
+	-e "s/EXECUTABLE/$(AppName)/" \
+	-e "s/VERSION/$(APP_VERSION)/" \
+	./sources/Info.plist.in >$(AppBundle)/Contents/Info.plist
+
+	@/bin/echo "APPL????" >$(AppBundle)/Contents/PkgInfo
+
+	@mv $(AppExe) $(AppBundle)/Contents/MacOS/$(AppName)
+	@cp -f ./graphx/microbill.icns $(AppBundle)/Contents/Resources/microbill.icns
+	@cp -R ./bin/langs $(AppBundle)/Contents/Resources/
+	@find $(AppBundle) -name *.po -exec rm {} \;
+
+App_Bundle: $(AppBundle)/Contents/PkgInfo
+
+-include $(DEP_SRC_FILES)
+
+libpdf: $(wxPdfDocLib)
+
+$(wxPdfDocLib): $(OBJ_PDF_FILES)
+	@echo Building lib $@
+	@ar -q $@ $(OBJ_PDF_FILES)
+
+build/sources/%.o: sources/%.cpp sources/%.h
+	@echo Compiling $<
+	@g++ -c -MMD -o $@ $(CXXFLAGS) $(INCLUDES) $<
+
+build/wxpdfdoc/%.o: wxpdfdoc/src/%.cpp
+	@echo Compiling $<
+	@g++ -c -o $@ $(CXXFLAGS) $(INCLUDES) $<
+
+.PHONY: all install uninstall clean distclean App_Bundle minclean
+
+endif
