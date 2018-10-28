@@ -7,7 +7,7 @@
 MicroBill is a simple billing application for small entreprises.
 
 ## Features ##
-#### Options : ####
+ - Multi-platform (Windows, Mac Os X and Linux)
  - Customers management
  - Estimates and Bills creation/modification
  - Converting an estimate to a bill
@@ -18,6 +18,5 @@ MicroBill is a simple billing application for small entreprises.
 ## To-Do ##
 
  - Inform the user if settings compression is automatically enabled due to password protection
- - Make the Linux and Mac OS port
  - Export datas and/or settings for backup
  - ...

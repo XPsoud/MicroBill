@@ -3,9 +3,8 @@
 #include "main.h"
 #include "appversion.h"
 
-#include <wx/bitmap.h>
 #include <wx/statbmp.h>
-#include <wx/statline.h>
+#include <wx/pdfdoc_version.h>
 
 #include "aboutlogo.h"
 
@@ -19,6 +18,7 @@ DlgAbout::DlgAbout(wxWindow *parent) : wxDialog(parent, -1, wxGetStockLabel(wxID
 
     wxString sMsg=_("Made with");
     sMsg << _T(" ") << wxGetApp().GetBuildInfos(false);
+    sMsg << _T("\n") << _("and") << _T(" ") << PDFDOC_VERSION_STRING;
 
     wxString sTitle=_T(PRODUCTNAME);
     sTitle << _T(" (v") << VERSION_MAJOR << _T(".") << VERSION_MINOR << _T(".") << VERSION_REV << _T(".") << VERSION_BUILD << _T(")");
@@ -38,7 +38,7 @@ DlgAbout::DlgAbout(wxWindow *parent) : wxDialog(parent, -1, wxGetStockLabel(wxID
                 szrRight->Add(label, 0, wxLEFT|wxRIGHT|wxBOTTOM|wxALIGN_CENTER, 5);
                 label=new wxStaticText(this, -1, wDESCRIPTION);
                 szrRight->Add(label, 0, wxLEFT|wxRIGHT|wxTOP|wxALIGN_CENTER, 5);
-                label=new wxStaticText(this, -1, sMsg);
+                label=new wxStaticText(this, -1, sMsg, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
                 szrRight->Add(label, 0, wxALL|wxALIGN_CENTER, 5);
             szrTop->Add(szrRight, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5);
         szrMain->Add(szrTop, 0, wxALL, 5);

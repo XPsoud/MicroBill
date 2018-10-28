@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wxCheckSums\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 16:56+0200\n"
-"PO-Revision-Date: 2018-10-27 16:56+0200\n"
+"POT-Creation-Date: 2018-10-28 10:57+0100\n"
+"PO-Revision-Date: 2018-10-28 10:58+0100\n"
 "Last-Translator: Xaviou <x.psoud@gmail.com>\n"
 "Language-Team: Xaviou <x.psoud@gmail.com>\n"
 "Language: fr_FR\n"
@@ -16,12 +16,8 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;wxPLURAL\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-SearchPath-0: sources\n"
-
-#: sources/appversion.h:13
-msgid "MicroBill Application"
-msgstr "Application MicroBill"
 
 #: sources/billitemctrl.cpp:72 sources/estimitemctrl.cpp:72
 msgid "Move up"
@@ -123,9 +119,13 @@ msgstr "Total H.T.:"
 msgid "V.A.T. non-applicable"
 msgstr "TVA non applicable (art. 293 B du CGI)"
 
-#: sources/dlgabout.cpp:20
+#: sources/dlgabout.cpp:19
 msgid "Made with"
 msgstr "Créé avec"
+
+#: sources/dlgabout.cpp:21
+msgid "and"
+msgstr "et"
 
 #: sources/dlgaddeditbill.cpp:23
 msgid "Creating a new bill"
@@ -690,11 +690,11 @@ msgstr "Devis valide jusqu’au :"
 msgid "Estimate valid until: _ _ _ _ / _ _ / _ _"
 msgstr "Devis valide jusqu’au  : _ _ / _ _ / _ _ _ _"
 
-#: sources/main.cpp:69
+#: sources/main.cpp:70
 msgid "An other instance of this application is already running !"
 msgstr "Une autre instance de cette application est déjà en train de tourner !"
 
-#: sources/main.cpp:69
+#: sources/main.cpp:70
 msgid "Multiple instances forbidden"
 msgstr "Instances multiples interdites"
 
@@ -714,7 +714,7 @@ msgstr "Devis"
 msgid "Bills"
 msgstr "Factures"
 
-#: sources/mainframe.cpp:170
+#: sources/mainframe.cpp:178
 msgid ""
 "You changed the translation settings.\n"
 "You must restart the application to see this in effect."
@@ -722,7 +722,7 @@ msgstr ""
 "Vous avez modifié les réglages de traduction.\n"
 "Vous devez redémarrer l'application pour que cela soit effectif."
 
-#: sources/mainframe.cpp:170
+#: sources/mainframe.cpp:178
 msgid "Restart needed"
 msgstr "Redémarrage nécessaire"
 
@@ -936,3 +936,7 @@ msgstr "Enregistrer le devis"
 #: sources/panelnbookpage_home.cpp:39 sources/splashscreen.cpp:13
 msgid "Your micro entreprise billing software"
 msgstr "Le logiciel de facturation de votre micro entreprise"
+
+#: sources/appversion.h:13
+msgid "MicroBill Application"
+msgstr "Application MicroBill"
