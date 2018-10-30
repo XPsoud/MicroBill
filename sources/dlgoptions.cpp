@@ -443,7 +443,11 @@ void DlgOptions::OnBtnOkClicked(wxCommandEvent& event)
 
 void DlgOptions::OnBtnSelectImgClicked(wxCommandEvent& event)
 {
+#if wxCHECK_VERSION(3, 1, 0)
     wxString sDir = wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Pictures);
+#else
+    wxString sDir = wxStandardPaths::Get().GetDocumentsDir();
+#endif
     wxString sWldcrd = _("All images files|*.png;*.jpg");
     sWldcrd << _T("|") << _("Png images files (*.png)|*.png");
     sWldcrd << _T("|") << _("Jpeg images files (*.jpg)|*.jpg");

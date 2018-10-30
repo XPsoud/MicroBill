@@ -10,9 +10,9 @@ endif
 endif
 
 # Path to the wxWidgets base install dir
-WXWIN=C:\wx31
+WXWIN?=C:\wx31
 # Sub path of the wxWidgets libs config file
-WXCFG=gcc_dll$(ARCHI)\mswu
+WXCFG?=gcc_dll$(ARCHI)\mswu
 # Path of the wx-config executable
 WXCONFIG_EXE=wx-config.exe
 # Name of the executable to create
